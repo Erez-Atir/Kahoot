@@ -47,21 +47,15 @@ def main_screen():
     TASK III:
         Program the main screen.
         Screen must contain a way to input your answer - a number between 1, and 4
-        'Client' also have a couple of functions which might be useful for decorating the "main_screen",
-            - Client.time_left()
-            - Client.get_place()
-            - Client.get_score()
-            - Client.get_behind()
-        Go Crazzzzzzzzzzzzzzzzy!
-
-        Bullet prof your screen so it won't continue running after time is up.
+        Do not wait for the "time_is_up" if an answer is chosen before hands, return it at the moment
+        The "Client" library has a bunch of function you can use to decorate the screen
 
         :return The answer the user have choosen, 1 <= number <= 4
                 OR None if he didn't have enough time
     """
-    answer = raw_input("Your answer: ")  # <--- delete this
-    if not Client.time_is_up():
-        return int(answer)  # <---------------- write here
+    answer = int(raw_input("Your answer: "))  # <--- delete this
+    while not Client.time_is_up():
+        return answer  # <---------------- write here
     return None
 
 
@@ -73,6 +67,7 @@ def results_screen(correct, wait_until):
 
     TASK IV:
         Program a "Horrrrray! Very Correct Answer Indeed." and a "Boooo! You Are A Loser!" screens
+        The "Client" library has a bunch of function you can use to decorate the screen
         :param correct: True for mastermind, False otherwise
         :return None
         *Stay inside this screen until the next question starts
@@ -95,6 +90,7 @@ def loading(message, wait_until):
 
     TASK V:
         Program a loading screen so everyone would know they need to calm the fuck down once in a while.
+        You can use "Client.get_behind()" to tell the player who is the user right in front of him
         :param message: the reason for the delay
                         will be one of the following:
                             - "Waiting for the game to start..."
@@ -139,10 +135,10 @@ def main():
     That is all,
     GOOD LUCK, Amigo!
     """
-    while not Client.login(login_screen()):  # loops as long as login was unsuccessful
+    while not Client.login(login_screen()):
         username_taken()
     loading("Waiting for the game to start...", lambda x: Client.question_in_progress())
-    while not Client.end_game():  # loops as long as the questions are gonna keep coming
+    while not Client.end_game():
         if Client.question_in_progress():
             Client.send_answer(main_screen())
             loading("Waiting for question to end...", lambda x: not Client.question_in_progress())

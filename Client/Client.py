@@ -63,11 +63,11 @@ def handle_server():
             answer = None
 
         elif data[:len("score: ")] == "score: ":
-            score = data.split(": ")[1]
+            score = int(data.split(": ")[1])
             recieved['score'] = True
 
         elif data[:len("place: ")] == "place: ":
-            place = data.split(": ")[1]
+            place = int(data.split(": ")[1])
             recieved['place'] = True
 
         elif data[:len("behind: ")] == "behind: ":
@@ -188,16 +188,20 @@ def get_behind():
     """
     antagonize yourself by knowing who is this cunt right in front of you
     :return HIM
+            or None is you are in first place
     """
     global my_socket, score
-    my_socket.send('get_behind\n')
-    time.sleep(0.3)
-    attemps = 10000
-    while not handle_server()['behind']:
-        attemps -= 1
-        if attemps < 0:
-            raise Exception("Server didn't respond.")
-    return behind
+    if get_place() > 1:
+        my_socket.send('get_behind\n')
+        time.sleep(0.3)
+        attemps = 10000
+        while not handle_server()['behind']:
+            attemps -= 1
+            if attemps < 0:
+                raise Exception("Server didn't respond.")
+        return behind
+    else:
+        return None
 
 
 def get_place():

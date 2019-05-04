@@ -91,7 +91,8 @@ def __handle_client_request(client_socket, request):
         __mandatory.append((player.socket, "score: " + str(player.score)))
 
     elif request == "get_behind":
-        __mandatory.append((player.socket, "behind: " + __players[__players.index(player)-1].name))
+        if __players.index(player) > 0:
+            __mandatory.append((player.socket, "behind: " + __players[__players.index(player)-1].name))
 
     elif request == "get_place":
         __mandatory.append((player.socket, "place: " + str(__players.index(player)+1)))
