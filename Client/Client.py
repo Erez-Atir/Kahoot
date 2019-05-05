@@ -7,6 +7,7 @@ import traceback
 import socket
 from select import select
 import time
+sys.dont_write_bytecode = True
 
 
 #-----------------------Globals-----------------------

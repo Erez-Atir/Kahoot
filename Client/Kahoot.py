@@ -1,9 +1,9 @@
 #-----------------------Imports-----------------------
 import Client
-import pygame
 
 
 #-----------------------Globals-----------------------
+Client._real_run()
 username = None
 
 

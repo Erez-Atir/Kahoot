@@ -9,6 +9,7 @@ import sys
 import os
 sys.path.insert(0, os.getcwd()+'/files')
 import thread
+sys.dont_write_bytecode = True
 
 try:
     import Tkinter as tk
