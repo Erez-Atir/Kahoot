@@ -177,7 +177,7 @@ def get_score():
     global my_socket, score
     my_socket.send('get_score\n')
     time.sleep(0.3)
-    attemps = 10000
+    attemps = 1000000
     while not handle_server()['score']:
         attemps -= 1
         if attemps < 0:
@@ -195,7 +195,7 @@ def get_behind():
     if get_place() > 1:
         my_socket.send('get_behind\n')
         time.sleep(0.3)
-        attemps = 10000
+        attemps = 1000000
         while not handle_server()['behind']:
             attemps -= 1
             if attemps < 0:
@@ -213,7 +213,7 @@ def get_place():
     global my_socket, score
     my_socket.send('get_place\n')
     time.sleep(0.3)
-    attemps = 10000
+    attemps = 1000000
     while not handle_server()['place']:
         attemps -= 1
         if attemps < 0:

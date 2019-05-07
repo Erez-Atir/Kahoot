@@ -115,16 +115,109 @@ def main():
                     prev_users.remove(prev_user)
         print_names(screen, prev_users) #print the users
     if not exit:
-        exit = add_question(screen, 5, "Is your GUI working properly?", ["Yes", "No", "It already crashed", "All of the above"], 1, None, 10, 1000)
+        exit = add_question(screen, 5, "The correct answer is number 3", ["1", "2", "3", "4"], 1, None, 15, 1000)
+    #if not exit:
+    #        exit = add_question(screen, 5, "Who shot the sheriff?", ["I shot the sheriff", "but I did not shoot the deputy", "It was santa!", "Chuck Norris did it!"], 3, None, 10, 800)
+    #if not exit:
+    #    exit = add_question(screen, 5, "Is this the real life?", ["It's just a fantasy.", "Caught in a landslide", "No escape from reality", "Open your eyes"], 4, None, 10, 800)
     if not exit:
-            exit = add_question(screen, 5, "Who shot the sheriff?", ["I shot the sheriff", "but I did not shoot the deputy", "It was santa!", "Chuck Norris did it!"], 3, None, 10, 800)
-    if not exit:
-        exit = add_question(screen, 5, "Is this the real life?", ["It's just a fantasy.", "Caught in a landslide", "No escape from reality", "Open your eyes"], 4, None, 10, 800)
-
-    Server.end_game()
+        Server.end_game()
+        for buffer in xrange(100):
+            Server.receive()
+        players = Server.get_players().keys()
+        exit_screen(screen, players[0], players[1], players[2])
     pygame.quit()
-    while True:
+
+
+
+def exit_screen(screen, name1, name2, name3):
+    pygame.mixer.music.load(OST_DIR + "winners.mp3")
+    pygame.mixer.music.set_volume(0.8)
+    pygame.mixer.music.play(-1)
+
+    clock = pygame.time.Clock()
+
+
+    gif = 0
+    speed = 1
+    sub = False
+    finish = False
+    la_finito = False
+    up = 0
+    final_place = [170, 215, 303]
+    down = [220, 280, 360]
+    last = time.time()
+    while not finish:
         Server.receive()
+        current = time.time()
+        if current - last > 0.1:
+            last = current
+            screen.fill((87, 37, 194))
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.mixer.music.fadeout(gif*100)
+                    la_finito = True
+            image = pygame.image.load(IMAGES_DIR + "win_background\\frame_%s_delay-0.04s.png" % str(gif % 178).zfill(3))
+            screen.blit(image, (0, up))
+            speed += 1
+
+            if pygame.key.get_pressed()[K_SPACE]:
+                print gif
+                print pygame.mouse.get_pos()
+                print
+
+            if not la_finito:
+                if gif > 50:
+                    down = [x-10 if x-6 >= 0 else x for x in down]
+                elif gif > 60:
+                    down = [x-4 if x-3 >= 0 else x for x in down]
+                elif gif > 70:
+                    down = [x-2 if x-2 >= 0 else x for x in down]
+                elif gif > 50:
+                    down = [x-1 if x-1 >= 0 else x for x in down]
+            else:
+                if gif < 50:
+                    down = [x+12 for x in down]
+                elif gif < 60:
+                    down = [x+10 for x in down]
+                elif gif < 70:
+                    down = [x+8 for x in down]
+                elif gif < 85:
+                    down = [x+6 for x in down]
+                elif gif < 110:
+                    down = [x+4 for x in down]
+
+
+            answerFont = pygame.font.Font(get_font("bauhaus93"), int(60 - (len(name1)*4)))
+            answerText = answerFont.render(name1, False, WHITE)
+            screen.blit(answerText, (460, final_place[0] - down[0]))
+            answerText = answerFont.render(name2, False, WHITE)
+            screen.blit(answerText, (243, final_place[1] - down[1]))
+            answerText = answerFont.render(name3, False, WHITE)
+            screen.blit(answerText, (350, final_place[2] - down[2]))
+            if la_finito:
+                if gif <= 56:
+                    if up > -HEIGHT+100:
+                        up -= 10
+                    else:
+                        finish = True
+                gif -= 1
+            elif gif == 177:
+                sub = True
+                gif -= 1
+            elif gif > 29:
+                if sub and gif > 94:
+                    gif -= 1
+                else:
+                    sub = False
+                    gif += 1
+            elif speed % 2 == 0:
+                gif += 1
+
+            pygame.display.flip()
+            clock.tick(60)
+
+
 
 
 def add_question(screen, timer, question, answers, correct_answer, photo, qtime, points):
@@ -213,8 +306,8 @@ def load_question(screen, question, photo, answers, correct_answer, qtime, qpoin
             screen.blit(timerText, (713, 192))
         pygame.display.flip()
         Server.receive()
-    pygame.mixer.music.fadeout(2000)
     PLAYERSSCORE = Server.results(correct_answer, qpoints)
+    pygame.mixer.music.fadeout(2000)
     return False
 
 
@@ -230,10 +323,6 @@ def print_names(screen, names):
             screen.blit(name_text, (x % 4 * (WIDTH / 4), 230 + int(x / 4) * 60))
 
     pygame.display.flip()
-
-    """first = time.time()
-    while time.time() - first < 1:
-        pass"""
 
 
 def load_timer(num, screen, question):

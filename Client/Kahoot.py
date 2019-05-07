@@ -117,7 +117,7 @@ def finish_screen():
         :return None
     """
     print "\nThe game is finished!\nYou won " + str(Client.get_place()) + " place with " + str(Client.get_score()) + " points!\nGood bye!\n"  # <---- delete this
-    raw_input("\nPress 'Enter' to exit...")  # In my example, a simple "raw_input()" is used to wait until the user want to exit the program
+    raw_input("\nPress 'Enter' to exit...")  # In my example, a simple "raw_input()" is used to wait until the user wants to exit the program
 
 
 #-------------------------Main-------------------------
@@ -143,7 +143,7 @@ def main():
             Client.send_answer(main_screen())
             loading("Waiting for question to end...", lambda x: not Client.question_in_progress())
         else:
-            results_screen(Client.result(), lambda x: Client.question_in_progress())
+            results_screen(Client.result(), lambda x: Client.question_in_progress() or Client.end_game())
     finish_screen()
 
 if __name__ == '__main__':
