@@ -102,6 +102,8 @@ def login(name):
     """
     if '\r' in name or '\n' in name or '\t' in name:
         raise Exception("Usernames are not allowed to contain line breaks or tabs")
+    if len(name) > 12:
+        raise Exception("Name should be 12 characters or less!\nWe didn't give enough fuck to make our GUI more responsive.")
     try:
         global my_socket, username, IP
         if not my_socket:

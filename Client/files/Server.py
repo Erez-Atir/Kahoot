@@ -11,8 +11,6 @@ import ServerDitection
 
 #-----------------------Globals-----------------------
 __IP = "127.0.0.1"
-# Gets local ip
-
 __server_socket = socket.socket()
 __server_socket.bind((__IP, 23))
 __server_socket.listen(5)
@@ -131,14 +129,17 @@ def update_login():
     automatically sends a respond to the client
     :return: a list of all logged in users
     """
-    global __server_socket
-    rlist, wlist, xlist = select([__server_socket] + open_client_sockets, open_client_sockets, open_client_sockets, 0.1)
-    for current_socket in rlist:
-        __single_user(current_socket)
-    for current_socket in xlist:
-        open_client_sockets.remove(current_socket)
-    __send__mandatory(wlist)
-    return [x.name for x in __players]
+    try:
+        global __server_socket
+        rlist, wlist, xlist = select([__server_socket] + open_client_sockets, open_client_sockets, open_client_sockets, 0.01)
+        for current_socket in rlist:
+            __single_user(current_socket)
+        for current_socket in xlist:
+            open_client_sockets.remove(current_socket)
+        __send__mandatory(wlist)
+        return [x.name for x in __players]
+    except Exception:
+        pass
 
 
 def receive():
@@ -146,13 +147,17 @@ def receive():
     receives all of the players answers and saves them but doesn't respond yet in addition to answering trier mandatory requests.
     :return: none
     """
-    global __server_socket
-    rlist, wlist, xlist = select([__server_socket] + open_client_sockets, open_client_sockets, open_client_sockets, 0.1)
-    for current_socket in rlist:
-        __single_user(current_socket)
-    for current_socket in xlist:
-        open_client_sockets.remove(current_socket)
-    __send__mandatory(wlist)
+    try:
+        if open_client_sockets:
+            global __server_socket
+            rlist, wlist, xlist = select([__server_socket] + open_client_sockets, open_client_sockets, open_client_sockets, 0.01)
+            for current_socket in rlist:
+                __single_user(current_socket)
+            for current_socket in xlist:
+                open_client_sockets.remove(current_socket)
+            __send__mandatory(wlist)
+    except Exception:
+        pass
 
 
 def results(correct_answer, score):
@@ -160,27 +165,33 @@ def results(correct_answer, score):
     Sends all players a respond which indicates if their answer was correct or wrong
     :param correct_answer: the number of the correct answer
     :param score: the amount of points each player will gain if he answered correctly
-    :return: a dictionary containing all players and their corresponding score, sorted from highest to lowest
+    :return: a list containing how many users answered each answer
     """
-    global __server_socket
-    rlist, wlist, xlist = select([__server_socket] + open_client_sockets, open_client_sockets, open_client_sockets, 0.1)
-    for player in __players:
-        client_socket, answer = player.socket, player.answer
-        if answer == correct_answer:
-            respond = 'True'
-            player.add_score(score)
-        else:
-            respond = 'False'
-        if client_socket in wlist:
-            client_socket.send(respond + '\n')
+    try:
+        if open_client_sockets:
+            global __server_socket
+            rlist, wlist, xlist = select([__server_socket] + open_client_sockets, open_client_sockets, open_client_sockets, 0.01)
+            answers = [0, 0, 0, 0]
+            for player in __players:
+                client_socket, answer = player.socket, player.answer
+                if answer == correct_answer:
+                    respond = 'True'
+                    player.add_score(score)
+                else:
+                    respond = 'False'
+                if client_socket in wlist:
+                    client_socket.send(respond + '\n')
+                answers[answer] += 1
 
-    for current_socket in xlist:
-        open_client_sockets.remove(current_socket)
-    #flush all answers
-    for player in __players:
-        player.answer = None
-    __players.sort(key=lambda x: x.score, reverse=True)
-    return {x.name: x.score for x in __players}
+            for current_socket in xlist:
+                open_client_sockets.remove(current_socket)
+            #flush all answers
+            for player in __players:
+                player.answer = None
+            __players.sort(key=lambda x: x.score, reverse=True)
+            return answers
+    except Exception:
+            pass
 
 
 def new_question(time):
@@ -189,24 +200,35 @@ def new_question(time):
     :param time: how much time they have to answer the question
     :return: None
     """
-    for player in __players:
-        __mandatory.append((player.socket, 'new: ' + str(time)))
-    rlist, wlist, xlist = select([__server_socket] + open_client_sockets, open_client_sockets, open_client_sockets, 0.1)
-    __send__mandatory(wlist)
+    try:
+        if open_client_sockets:
+            for player in __players:
+                __mandatory.append((player.socket, 'new: ' + str(time)))
+            rlist, wlist, xlist = select([__server_socket] + open_client_sockets, open_client_sockets, open_client_sockets, 0.01)
+            __send__mandatory(wlist)
+    except Exception:
+        pass
 
 
 def get_players():
     """
     Returns a dictionary containing all players and their corresponding score, sorted from highest to lowest
     """
-    return {x.name: x.score for x in __players}
+    try:
+        return {x.name: x.score for x in __players}
+    except Exception:
+        pass
 
 
 def end_game():
     """
     notifies all players that the game has ended
     """
-    for player in __players:
-        __mandatory.append((player.socket, 'game_finished'))
-    rlist, wlist, xlist = select([__server_socket] + open_client_sockets, open_client_sockets, open_client_sockets, 0.1)
-    __send__mandatory(wlist)
+    try:
+        if open_client_sockets:
+            for player in __players:
+                __mandatory.append((player.socket, 'game_finished'))
+            rlist, wlist, xlist = select([__server_socket] + open_client_sockets, open_client_sockets, open_client_sockets, 0.01)
+            __send__mandatory(wlist)
+    except Exception:
+        pass

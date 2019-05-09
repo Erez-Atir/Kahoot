@@ -12,8 +12,6 @@ PLAYERSSCORE = {} #""""dictionary, saves the points of each player"""
 FONT_LIB = pygame.font.match_font('bitstreamverasans')[0:-10]#finds the fony libary path
 IMAGES_DIR = os.getcwd() + "\\images\\" #saves the path to the images libary
 OST_DIR = os.getcwd() + "\\audio\\"
-if not os.path.exists(IMAGES_DIR):#if path doesn't exists
-    IMAGES_DIR = os.getcwd()      #set the default to the libary from which the code runs
 
 """defauly pygame settings"""
 MouseButtonDown = 6
@@ -47,14 +45,14 @@ def main():
     screen = pygame.display.set_mode((WIDTH, HEIGHT))#set screen wid =800, hieght =600
     pygame.display.flip()
     pygame.font.init()
-    if os.path.exists(IMAGES_DIR + "log_screen.png"): #if path to an image exists
-        log_screen = pygame.image.load(IMAGES_DIR + "log_screen.png")#load image
+    if os.path.exists(IMAGES_DIR + "login\\log_screen.png"): #if path to an image exists
+        log_screen = pygame.image.load(IMAGES_DIR + "login\\log_screen.png")#load image
         screen.blit(log_screen, (0,0))
         pygame.display.flip()
     else:                                             #else
         log_screen = pygame.Surface((WIDTH, HEIGHT))  #load nothing
-    if os.path.exists(IMAGES_DIR + "log_screen_start_selected.png"): #if path to an image exists
-        log_screen_start_selcted = pygame.image.load(IMAGES_DIR + "log_screen_start_selected.png") #load image
+    if os.path.exists(IMAGES_DIR + "login\\log_screen_start_selected.png"): #if path to an image exists
+        log_screen_start_selcted = pygame.image.load(IMAGES_DIR + "login\\log_screen_start_selected.png") #load image
     else:
         log_screen_start_selcted = pygame.Surface((WIDTH, HEIGHT)) #white surface incase path doesn't exists
     largeText = pygame.font.Font('freesansbold.ttf', 50)#set a font
@@ -74,9 +72,6 @@ def main():
             if event.type == MouseMotion:#mouse hovering above the start button
                 x, y = event.pos
                 mouse_loc = event.pos
-                """if 25 < x and x < 770 and y > 490 and y <580:#if mouse above start button
-                    screen.blit(log_screen_start_selcted, (0,0))#fill the screen with bold "start" image
-                    pygame.mouse.set_cursor(*pygame.cursors.broken_x)#set cursor to broken x"""
 
             if event.type == pygame.QUIT:#user presses the X
                 exit = True
@@ -114,110 +109,23 @@ def main():
                 if not already_in:
                     prev_users.remove(prev_user)
         print_names(screen, prev_users) #print the users
+
     if not exit:
-        exit = add_question(screen, 5, "The correct answer is number 3", ["1", "2", "3", "4"], 1, None, 15, 1000)
-    #if not exit:
-    #        exit = add_question(screen, 5, "Who shot the sheriff?", ["I shot the sheriff", "but I did not shoot the deputy", "It was santa!", "Chuck Norris did it!"], 3, None, 10, 800)
-    #if not exit:
-    #    exit = add_question(screen, 5, "Is this the real life?", ["It's just a fantasy.", "Caught in a landslide", "No escape from reality", "Open your eyes"], 4, None, 10, 800)
+        exit = add_question(screen, 5, "The correct answer is number 2", ["1", "2", "3", "4"], 2, None, 10, 1000)
+    if not exit:
+            exit = add_question(screen, 5, "Who shot the sheriff?", ["I shot the sheriff", "but I did not shoot the deputy", "It was santa!", "Chuck Norris did it!"], 1, None, 10, 800)
+    if not exit:
+        exit = add_question(screen, 5, "Is this the real life?", ["It's just a fantasy.", "Caught in a landslide", "No escape from reality", "Open your eyes"], 4, None, 10, 800)
+
     if not exit:
         Server.end_game()
         for buffer in xrange(100):
             Server.receive()
         players = Server.get_players().keys()
-        exit_screen(screen, players[0], players[1], players[2])
+        while len(players) < 3:
+            players.append("NO ONE")
+        exit_screen(screen, players)
     pygame.quit()
-
-
-
-def exit_screen(screen, name1, name2, name3):
-    pygame.mixer.music.load(OST_DIR + "winners.mp3")
-    pygame.mixer.music.set_volume(0.8)
-    pygame.mixer.music.play(-1)
-
-    clock = pygame.time.Clock()
-
-
-    gif = 0
-    speed = 1
-    sub = False
-    finish = False
-    la_finito = False
-    up = 0
-    final_place = [170, 215, 303]
-    down = [220, 280, 360]
-    last = time.time()
-    while not finish:
-        Server.receive()
-        current = time.time()
-        if current - last > 0.1:
-            last = current
-            screen.fill((87, 37, 194))
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.mixer.music.fadeout(gif*100)
-                    la_finito = True
-            image = pygame.image.load(IMAGES_DIR + "win_background\\frame_%s_delay-0.04s.png" % str(gif % 178).zfill(3))
-            screen.blit(image, (0, up))
-            speed += 1
-
-            if pygame.key.get_pressed()[K_SPACE]:
-                print gif
-                print pygame.mouse.get_pos()
-                print
-
-            if not la_finito:
-                if gif > 50:
-                    down = [x-10 if x-6 >= 0 else x for x in down]
-                elif gif > 60:
-                    down = [x-4 if x-3 >= 0 else x for x in down]
-                elif gif > 70:
-                    down = [x-2 if x-2 >= 0 else x for x in down]
-                elif gif > 50:
-                    down = [x-1 if x-1 >= 0 else x for x in down]
-            else:
-                if gif < 50:
-                    down = [x+12 for x in down]
-                elif gif < 60:
-                    down = [x+10 for x in down]
-                elif gif < 70:
-                    down = [x+8 for x in down]
-                elif gif < 85:
-                    down = [x+6 for x in down]
-                elif gif < 110:
-                    down = [x+4 for x in down]
-
-
-            answerFont = pygame.font.Font(get_font("bauhaus93"), int(60 - (len(name1)*4)))
-            answerText = answerFont.render(name1, False, WHITE)
-            screen.blit(answerText, (460, final_place[0] - down[0]))
-            answerText = answerFont.render(name2, False, WHITE)
-            screen.blit(answerText, (243, final_place[1] - down[1]))
-            answerText = answerFont.render(name3, False, WHITE)
-            screen.blit(answerText, (350, final_place[2] - down[2]))
-            if la_finito:
-                if gif <= 56:
-                    if up > -HEIGHT+100:
-                        up -= 10
-                    else:
-                        finish = True
-                gif -= 1
-            elif gif == 177:
-                sub = True
-                gif -= 1
-            elif gif > 29:
-                if sub and gif > 94:
-                    gif -= 1
-                else:
-                    sub = False
-                    gif += 1
-            elif speed % 2 == 0:
-                gif += 1
-
-            pygame.display.flip()
-            clock.tick(60)
-
-
 
 
 def add_question(screen, timer, question, answers, correct_answer, photo, qtime, points):
@@ -237,9 +145,11 @@ def add_question(screen, timer, question, answers, correct_answer, photo, qtime,
         exit = load_timer(timer, screen, question)#set timmer for certain amount of time + print it
         if not exit:
             Server.new_question(qtime) # sends a message to all client that a new question is now available
-            exit = load_question(screen, question, photo, answers, correct_answer ,qtime, points) #"""calls a function to print the question"""
+            exit = load_question(screen, question, photo, answers, qtime) #"""calls a function to print the question"""
             if not exit:
-                pass
+                exit = show_answer(screen, Server.results(correct_answer, points), correct_answer, question)
+                if exit:
+                    return True
             else:
                 return True
         else:
@@ -247,7 +157,7 @@ def add_question(screen, timer, question, answers, correct_answer, photo, qtime,
         return False
 
 
-def load_question(screen, question, photo, answers, correct_answer, qtime, qpoints):
+def load_question(screen, question, photo, answers, qtime):
     """
 
     :param screen: gets screen to print on
@@ -263,9 +173,9 @@ def load_question(screen, question, photo, answers, correct_answer, qtime, qpoin
 
     """image"""
     if photo:
-        image = pygame.image.load(IMAGES_DIR + "questions.png")
+        image = pygame.image.load(IMAGES_DIR + "main\\questions.png")
     else:
-        image = pygame.image.load(IMAGES_DIR + "questions_no_image.png")
+        image = pygame.image.load(IMAGES_DIR + "main\\questions_no_image.png")
 
     """question"""
     questionFont = timerFont = pygame.font.Font(get_font("bauhaus93"), 50)
@@ -306,9 +216,269 @@ def load_question(screen, question, photo, answers, correct_answer, qtime, qpoin
             screen.blit(timerText, (713, 192))
         pygame.display.flip()
         Server.receive()
-    PLAYERSSCORE = Server.results(correct_answer, qpoints)
-    pygame.mixer.music.fadeout(2000)
+    pygame.mixer.music.stop()
     return False
+
+
+def load_timer(num, screen, question):
+    first = time.time()
+    last = time.time()
+    #already_rotated = 0
+    questionFont = pygame.font.Font(get_font("bauhaus93"), 50)
+    questionText = questionFont.render(question, False, BLACK)
+    current = time.time()
+    count = 0
+    while current - first <= num + 1:
+        events = pygame.event.get()
+        for event in events:
+            if event.type == QUIT:
+                return True
+        current = time.time()
+        if current - last > 0.05:
+            hamster_img = pygame.image.load(IMAGES_DIR + "loading\\hamster\\Slide%s.png" % str(count/2 % 12 + 1))
+
+            image = pygame.image.load(IMAGES_DIR + "loading\wheel\\frame_%s_delay-0.04s.png" % str(19 - (count % 19)).zfill(2))
+            image.set_colorkey((0, 0, 0))
+
+            screen.blit(BLACKSURFACE, (0, 0))
+            x = 20 # width of a letter, change according to the font
+            screen.blit(questionText, (int((WIDTH/x - len(question))/2 * x), 312))
+            screen.blit(hamster_img, (350, 50))
+            screen.blit(image, (300, 95))
+            timerFont = pygame.font.Font(get_font("bauhaus93"), 150)
+            timerText = timerFont.render(str(num - int(current - first)), False, BLACK)
+            if len(str(int(num - current + first + 1))) == 2:
+                screen.blit(timerText, (340, 155))
+            else:
+                screen.blit(timerText, (370, 155))
+            pygame.display.flip()
+            last = current
+            count += 1
+    return False
+
+
+def show_answer(screen, res, correct_answer, question):
+
+    bo = True
+    rc = pygame.image.load(IMAGES_DIR + "main\\red_correct.png")          #loads all of the photoes containning:
+    bc = pygame.image.load(IMAGES_DIR + "main\\blue_correct.png")         #Yellow correct and incorrect ect.
+    yc = pygame.image.load(IMAGES_DIR + "main\\orange_correct.png")
+    gc = pygame.image.load(IMAGES_DIR + "main\\green_correct.png")
+    inrc = pygame.image.load(IMAGES_DIR + "main\\red_incorrect.png")
+    inbc = pygame.image.load(IMAGES_DIR + "main\\blue_incorrect.png")
+    inyc = pygame.image.load(IMAGES_DIR + "main\\orange_incorrect.png")
+    ingc = pygame.image.load(IMAGES_DIR + "main\\green_incorrect.png")
+    #if the color is correct load the correct form of him and the incorrect form of the rest
+    starttime = time.time()
+    red = inrc
+    blue = inbc
+    yellow = inyc
+    green = ingc
+
+    if correct_answer == 1:
+        red = rc
+    if correct_answer == 2:
+        blue = bc
+    if correct_answer == 3:
+        yellow = yc
+    if correct_answer == 4:
+        green = gc
+    basic_form = pygame.image.load(IMAGES_DIR + "main\\basic_result_form.png")
+
+    Rstartx, Rstarty, Bstartx, Bstarty, Ystartx, Ystarty, Gstartx, Gstarty = 3, 367, 403, 368, 3, 484, 403, 484
+    questionFont = timerFont = pygame.font.Font(get_font("bauhaus93"), 50)
+    questionText = questionFont.render(question, False, BLACK)
+
+    exit = False
+
+    pygame.mixer.music.set_volume(1)
+    pygame.mixer.music.load(OST_DIR + "answers.mp3")
+    pygame.mixer.music.play(-1)
+    time.sleep(0.5)
+    pygame.mixer.music.fadeout(600)
+    while not exit:
+        events = pygame.event.get()
+        for event in events:
+            if event.type == QUIT:
+                return True
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    return False
+        screen.blit(basic_form, (0,0))
+        x = 20
+        Sx = 3 # scale of moving according to the amount of answers in x
+        Sy = 2 # scale of moving according to the amount of answers in y
+
+        width = 395     #width of the rectengels
+        height = 111    #height of the rectrngels
+
+        """Green rectengles"""
+        Rrect1 = pygame.draw.polygon(screen, (11, 87, 4), [(Gstartx, Gstarty), (Gstartx + width, Gstarty),
+                                                           (Gstartx + Sx * res[3] + width, Gstarty + Sy * res[3]),
+                                                           (Gstartx + Sx * res[3], Gstarty + Sy * res[3])])
+        Rrect2 = pygame.draw.polygon(screen, (29, 233, 12), [(Gstartx, Gstarty), (Gstartx, Gstarty + height),
+                                                             (Gstartx + Sx * res[3], Gstarty + Sy * res[3] + height),
+                                                             (Gstartx + Sx * res[3], Gstarty + Sy * res[3])])
+        screen.blit(green, (Gstartx + res[3] * Sx, Gstarty + res[3] * Sy))
+        amount = questionFont.render(str(res[3]), False, WHITE)
+        screen.blit(amount, (Gstartx + 130 + Sx * res[3], Gstarty + 40 + Sy * res[3]))
+
+        """"Yellow rectengles"""
+        Rrect1 = pygame.draw.polygon(screen, (128, 80, 0), [(Ystartx, Ystarty), (Ystartx + width, Ystarty),
+                                                            (Ystartx + Sx * res[2] + width, Ystarty + Sy * res[2]),
+                                                            (Ystartx + Sx * res[2], Ystarty + Sy * res[2])])
+        Rrect2 = pygame.draw.polygon(screen, (254, 172, 35), [(Ystartx, Ystarty), (Ystartx, Ystarty + height),
+                                                              (Ystartx + Sx * res[2], Ystarty + Sy * res[2] + height),
+                                                              (Ystartx + Sx * res[2], Ystarty + Sy * res[2])])
+        screen.blit(yellow, (Ystartx + res[2] * Sx, Ystarty + res[2] * Sy))
+        amount = questionFont.render(str(res[2]), False, WHITE)
+        screen.blit(amount, (Ystartx + 130 + Sx * res[2], Ystarty + 40 + Sy * res[2]))
+
+        """Blue rectengles"""
+        Rrect1 = pygame.draw.polygon(screen, (1, 23, 75), [(Bstartx, Bstarty), (Bstartx + width, Bstarty),
+                                                           (Bstartx + Sx * res[1] + width, Bstarty + Sy * res[1]),
+                                                           (Bstartx + Sx * res[1], Bstarty + Sy * res[1])])
+        Rrect2 = pygame.draw.polygon(screen, (54, 114, 252), [(Bstartx, Bstarty), (Bstartx, Bstarty + height),
+                                                              (Bstartx + Sx * res[1], Bstarty + Sy * res[1] + height),
+                                                              (Bstartx + Sx * res[1], Bstarty + Sy * res[1])])
+        screen.blit(blue, (Bstartx + res[1] * Sx, Bstarty + res[1] * Sy))
+        amount = questionFont.render(str(res[1]), False, WHITE)
+        screen.blit(amount, (Bstartx + 130 + Sx * res[1], Bstarty + 40 + Sy * res[1]))
+
+        """red rectengles"""
+        Rrect1 = pygame.draw.polygon(screen, (106, 3, 0), [(Rstartx, Rstarty), (Rstartx + width, Rstarty),
+                                                           (Rstartx + Sx * res[0] + width, Rstarty + Sy * res[0]),
+                                                           (Rstartx + Sx * res[0], Rstarty + Sy * res[0]) ])
+        Rrect2 = pygame.draw.polygon(screen, (255, 44, 38), [(Rstartx, Rstarty), (Rstartx, Rstarty + height),
+                                                             (Rstartx + Sx * res[0], Rstarty + Sy * res[0] + height),
+                                                             (Rstartx + Sx * res[0], Rstarty + Sy * res[0])])
+        screen.blit(red, (Rstartx + res[0] * Sx, Rstarty + res[0] * Sy))
+        amount = questionFont.render(str(res[0]), False, WHITE)
+        screen.blit(amount, (Rstartx + 130 + Sx * res[0], Rstarty + 40 + Sy * res[0]))
+
+
+
+
+
+        screen.blit(questionText, (int((WIDTH / x - len(question)) / 2 * x), 30))
+
+
+
+
+
+
+
+        """for y in range(4):
+            answerFont = pygame.font.Font(get_font("bauhaus93"), int(50 - (len(answers[y])/1.4)))
+            answerText = answerFont.render(answers[y], False, WHITE)
+            screen.blit(answerText, (int(70 + (WIDTH / 2) * (y % 2)), 405 + 120 * int(y / 2)))"""
+        pygame.display.flip()
+        if bo:
+            starttime = time.time()
+            bo = False
+    return False
+
+
+def exit_screen(screen, names):
+
+    clock = pygame.time.Clock()
+
+    sizes = [400, 400, 400]
+    for i in range(3):
+        answerFont = pygame.font.Font(get_font("bauhaus93"), sizes[i])
+        while answerFont.size(names[i])[0] > 132:
+            sizes[i] -= 1
+            answerFont = pygame.font.Font(get_font("bauhaus93"), sizes[i])
+
+    pygame.mixer.music.load(OST_DIR + "winners.mp3")
+    pygame.mixer.music.set_volume(0.8)
+    pygame.mixer.music.play(-1)
+
+    gif = 0
+    speed = 1
+    sub = False
+    finish = False
+    la_finito = False
+    up = 0
+    last = time.time()
+    start = last
+    final = [350, 386, 419]
+    podioms = [400, 327, 241]
+    while not finish:
+        Server.receive()
+        current = time.time()
+        if current - last > 0.11:
+            last = current
+            screen.fill((87, 37, 194))
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.mixer.music.fadeout(gif*100)
+                    la_finito = True
+            image = pygame.image.load(IMAGES_DIR + "win_background\\frame_%s_delay-0.04s.png" % str(gif % 178).zfill(3))
+            screen.blit(image, (0, up))
+            speed += 1
+
+            if pygame.key.get_pressed()[K_SPACE]:
+                print gif
+                print pygame.mouse.get_pos()
+                print
+
+            if not la_finito:
+                if current - start >= 7:
+                    podioms[0] = podioms[0] - 6 if podioms[0] - 6 >= 0 else 0
+                if current - start >= 14.5:
+                    podioms[1] = podioms[1] - 6 if podioms[1] - 6 >= 0 else 0
+                if current - start >= 23:
+                    podioms[2] = podioms[2] - 6 if podioms[2] - 6 >= 0 else 0
+            else:
+                    podioms = [x + (178 - gif)/20 for x in podioms]
+
+
+            answerFont = pygame.font.Font(get_font("bauhaus93"), sizes[0])
+            answerText = answerFont.render(names[0], False, WHITE, TCHELET)
+            textW, textH = answerFont.size(names[0])
+            screen.blit(answerText, (WIDTH/2 - textW/2, final[0] + podioms[0] - textH))
+            image = pygame.image.load(IMAGES_DIR + "winners_stand\\Slide1.png")
+            image.set_colorkey(BLACK)
+            screen.blit(image, (WIDTH/2 - 74, final[0] + podioms[0]))
+
+            answerFont = pygame.font.Font(get_font("bauhaus93"), sizes[1])
+            answerText = answerFont.render(names[1], False, WHITE, TCHELET)
+            textW, textH = answerFont.size(names[1])
+            screen.blit(answerText, (WIDTH/2 - 74*3 - textW/2, final[1] + podioms[1] - textH))
+            image = pygame.image.load(IMAGES_DIR + "winners_stand\\Slide2.png")
+            image.set_colorkey(BLACK)
+            screen.blit(image, (WIDTH/2 - 74*4, final[1] + podioms[1]))
+
+            answerFont = pygame.font.Font(get_font("bauhaus93"), sizes[2])
+            answerText = answerFont.render(names[2], False, WHITE, TCHELET)
+            textW, textH = answerFont.size(names[2])
+            screen.blit(answerText, (WIDTH/2 + 74*3 - textW/2, final[2] + podioms[2] - textH))
+            image = pygame.image.load(IMAGES_DIR + "winners_stand\\Slide3.png")
+            image.set_colorkey(BLACK)
+            screen.blit(image, (WIDTH/2 + 74*2, final[2] + podioms[2]))
+
+            if la_finito:
+                if gif <= 56:
+                    if up > -HEIGHT+100:
+                        up -= 10
+                    else:
+                        finish = True
+                gif -= 1
+            elif gif == 177:
+                sub = True
+                gif -= 1
+            elif gif > 29:
+                if sub and gif > 94:
+                    gif -= 1
+                else:
+                    sub = False
+                    gif += 1
+            elif speed % 2 == 0:
+                gif += 1
+
+            pygame.display.flip()
+            clock.tick(60)
 
 
 def print_names(screen, names):
@@ -325,54 +495,8 @@ def print_names(screen, names):
     pygame.display.flip()
 
 
-def load_timer(num, screen, question):
-    first = time.time()
-    last = time.time()
-    angle = 19
-    #already_rotated = 0
-    questionFont = pygame.font.Font(get_font("bauhaus93"), 50)
-    questionText = questionFont.render(question, False, BLACK)
-    current = time.time()
-    count = 0
-    while current - first <= num + 1:
-        events = pygame.event.get()
-        for event in events:
-            if event.type == QUIT:
-                return True
-        current = time.time()
-        if current - last > 0.05:
-            hamster_img = pygame.image.load(IMAGES_DIR + "hamster_pos" +  str(count % 4 + 1) + ".png")
-            hamster_img.set_colorkey((255, 255, 255))
-            #already_rotated = (already_rotated + 3) % 360
-            #loading_image = pygame.transform.rotate(image, already_rotated)
-
-            image = pygame.image.load(IMAGES_DIR + "loading\\frame_%s_delay-0.04s.png" % str(angle).zfill(2))
-            image.set_colorkey((0, 0, 0))
-            screen.blit(BLACKSURFACE, (0, 0))
-            #print(len(str(int(num - current + first + 1))))
-            x = 20 # width of a letter, change according to the font
-            screen.blit(questionText, (int((WIDTH/x - len(question))/2 * x), 312))
-            screen.blit(hamster_img, (324, 30))
-            screen.blit(image, (300, 95))
-            timerFont = pygame.font.Font(get_font("bauhaus93"), 150)
-            timerText = timerFont.render(str(num - int(current - first)), False, BLACK)
-            if len(str(int(num - current + first + 1))) == 2:
-                screen.blit(timerText, (340, 155))
-            else:
-                screen.blit(timerText, (370, 155))
-            pygame.display.flip()
-            last = current
-            count += 1
-            if angle > 0:
-                angle -= 1
-            else:
-                angle = 19
-    return False
-
-
 def get_font(name):
     FONT_LIB + name + ".ttf"
-
 
 
 class Button:
