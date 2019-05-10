@@ -198,9 +198,10 @@ def results(correct_answer, score):
                 player.answer = None
             __players.sort(key=lambda x: x.score, reverse=True)
             return answers
-        return [0, 0, 0, 0]
+        return [6, 12, 1, 2]
     except Exception:
-            _error()
+        _error()
+        return [0, 0, 0, 0]
 
 
 def new_question(time):

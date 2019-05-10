@@ -11,6 +11,7 @@ s.connect(("8.8.8.8", 80))
 IP = s.getsockname()[0]
 s.close()
 MyMac = "-".join([hex(getnode()).split('0x')[1].split("L")[0][x:x+2] for x in range(0, 12, 2)]).upper()
+finish = False
 
 
 #----------------------Functions----------------------
@@ -30,7 +31,7 @@ def server_emitter():
         server.bind(("", 44444))
         message = b"Here Be Server: " + IP
         subnet = subnet_calculator()
-        while True:
+        while not finish:
             server.sendto(message, (subnet, 37020))
             time.sleep(1)
     except Exception:

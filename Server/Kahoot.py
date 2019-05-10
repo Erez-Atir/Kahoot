@@ -38,11 +38,12 @@ BLACKSURFACE.fill(WHITE)
 
 
 def main():
-    exit = False                                     #"""the playes exited the game?"""
+    done = False                                     #"""the playes exited the game?"""
     start_game = False                               # the game has started?
     pygame.init()                                    # initiate pygames
 
     screen = pygame.display.set_mode((WIDTH, HEIGHT))#set screen wid =800, hieght =600
+    pygame.display.set_caption("Kaboot")
     pygame.display.flip()
     pygame.font.init()
     if os.path.exists(IMAGES_DIR + "login\\log_screen.png"): #if path to an image exists
@@ -65,7 +66,7 @@ def main():
     pygame.mixer.init()
     pygame.mixer.music.load(OST_DIR + "login.mp3")
     pygame.mixer.music.play(-1)
-    while not start_game and not exit: #while game was not exited and game is still at the log in part
+    while not start_game and not done: #while game was not exited and game is still at the log in part
         events = pygame.event.get()
         """checks events, user input"""
         for event in events:#checks for events including:
@@ -74,7 +75,7 @@ def main():
                 mouse_loc = event.pos
 
             if event.type == pygame.QUIT:#user presses the X
-                exit = True
+                done = True
             if event.type == MouseButtonDown:#player clicks the screen(should be only button)
                 x, y = event.pos
                 if 25 < x and x < 770 and y > 490 and y < 580:  # if mouse above start button
@@ -110,22 +111,25 @@ def main():
                     prev_users.remove(prev_user)
         print_names(screen, prev_users) #print the users
 
-    if not exit:
-        exit = add_question(screen, 6, "The correct answer is number 2", ["1", "2", "3", "4"], 2, None, 10, 1000)
-    if not exit:
-            exit = add_question(screen, 5, "Who shot the sheriff?", ["I shot the sheriff", "but I did not shoot the deputy", "It was santa!", "Chuck Norris did it!"], 1, None, 10, 800)
-    if not exit:
-        exit = add_question(screen, 5, "Is this the real life?", ["It's just a fantasy.", "Caught in a landslide", "No escape from reality", "Open your eyes"], 4, None, 10, 800)
+    Server.ServerDitection.finish = True
+    #if not done:
+    #    done = add_question(screen, 5, "The correct answer is number 2", ["1", "2", "3", "4"], 2, None, 10, 1000)
+    #if not done:
+    #        done = add_question(screen, 5, "Who shot the sheriff?", ["I shot the sheriff", "but I did not shoot the deputy", "It was santa!", "Chuck Norris did it!"], 1, None, 10, 800)
+    #if not done:
+    #    done = add_question(screen, 5, "Is this the real life?", ["It's just a fantasy.", "Caught in a landslide", "No escape from reality", "Open your eyes"], 4, None, 10, 800)
 
-    if not exit:
+    if not done:
         Server.end_game()
         for buffer in xrange(100):
             Server.receive()
         players = Server.get_players().keys()
         while len(players) < 3:
-            players.append("NO ONE")
+            players.append("None")
         exit_screen(screen, players)
     pygame.quit()
+    time.sleep(0.2)
+    exit()
 
 
 def add_question(screen, timer, question, answers, correct_answer, photo, qtime, points):
@@ -142,13 +146,13 @@ def add_question(screen, timer, question, answers, correct_answer, photo, qtime,
         :return: Was the server closed
         """
 
-        exit = load_timer(timer, screen, question)#set timmer for certain amount of time + print it
-        if not exit:
+        done = load_timer(timer, screen, question)#set timmer for certain amount of time + print it
+        if not done:
             Server.new_question(qtime) # sends a message to all client that a new question is now available
-            exit = load_question(screen, question, photo, answers, qtime) #"""calls a function to print the question"""
-            if not exit:
-                exit = show_answer(screen, Server.results(correct_answer, points), correct_answer, question)
-                if exit:
+            done = load_question(screen, question, photo, answers, qtime) #"""calls a function to print the question"""
+            if not done:
+                done = show_answer(screen, Server.results(correct_answer, points), correct_answer, question)
+                if done:
                     return True
             else:
                 return True
@@ -258,8 +262,6 @@ def load_timer(num, screen, question):
 
 
 def show_answer(screen, res, correct_answer, question):
-
-    bo = True
     rc = pygame.image.load(IMAGES_DIR + "main\\red_correct.png")          #loads all of the photoes containning:
     bc = pygame.image.load(IMAGES_DIR + "main\\blue_correct.png")         #Yellow correct and incorrect ect.
     yc = pygame.image.load(IMAGES_DIR + "main\\orange_correct.png")
@@ -268,8 +270,6 @@ def show_answer(screen, res, correct_answer, question):
     inbc = pygame.image.load(IMAGES_DIR + "main\\blue_incorrect.png")
     inyc = pygame.image.load(IMAGES_DIR + "main\\orange_incorrect.png")
     ingc = pygame.image.load(IMAGES_DIR + "main\\green_incorrect.png")
-    #if the color is correct load the correct form of him and the incorrect form of the rest
-    starttime = time.time()
     red = inrc
     blue = inbc
     yellow = inyc
@@ -286,17 +286,23 @@ def show_answer(screen, res, correct_answer, question):
     basic_form = pygame.image.load(IMAGES_DIR + "main\\basic_result_form.png")
 
     Rstartx, Rstarty, Bstartx, Bstarty, Ystartx, Ystarty, Gstartx, Gstarty = 3, 367, 403, 368, 3, 484, 403, 484
-    questionFont = timerFont = pygame.font.Font(get_font("bauhaus93"), 50)
+    questionFont = pygame.font.Font(get_font("bauhaus93"), 50)
     questionText = questionFont.render(question, False, BLACK)
 
-    exit = False
+    x = 20
+    Sx = 3  # scale of moving according to the amount of answers in x
+    Sy = 2  # scale of moving according to the amount of answers in y
 
+    c = 0
+
+    finish = False
     pygame.mixer.music.set_volume(1)
     pygame.mixer.music.load(OST_DIR + "answers.mp3")
     pygame.mixer.music.play(-1)
     time.sleep(0.5)
     pygame.mixer.music.fadeout(600)
-    while not exit:
+    last = time.time()
+    while not finish:
         events = pygame.event.get()
         for event in events:
             if event.type == QUIT:
@@ -304,78 +310,61 @@ def show_answer(screen, res, correct_answer, question):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     return False
-        screen.blit(basic_form, (0,0))
-        x = 20
-        Sx = 3 # scale of moving according to the amount of answers in x
-        Sy = 2 # scale of moving according to the amount of answers in y
+
+        screen.blit(basic_form, (0, 0))
 
         width = 395     #width of the rectengels
         height = 111    #height of the rectrngels
+        if time.time() - last > 0.1:
+            last = time.time()
+            """Green rectengles"""
+            Rrect1 = pygame.draw.polygon(screen, (11, 87, 4), [(Gstartx, Gstarty), (Gstartx + width, Gstarty),
+                                                               (int(Gstartx + Sx*c * res[3] + width), int(Gstarty + Sy * c * res[3])),
+                                                               (int(Gstartx + Sx * c * res[3]), int(Gstarty + Sy * c * res[3]))])
+            Rrect2 = pygame.draw.polygon(screen, (29, 233, 12), [(Gstartx, Gstarty), (Gstartx, Gstarty + height),
+                                                                 (int(Gstartx + Sx * c * res[3]), int(Gstarty + Sy * c * res[3] + height)),
+                                                                 (int(Gstartx + Sx * c * res[3]), int(Gstarty + Sy * c * res[3]))])
+            screen.blit(green, (Gstartx + res[3] * Sx * c, Gstarty + res[3] * Sy * c))
+            amount = questionFont.render(str(int(res[3] * c)), False, WHITE)
+            screen.blit(amount, (Gstartx + 130 + Sx * c * res[3], Gstarty + 40 + Sy * c * res[3]))
 
-        """Green rectengles"""
-        Rrect1 = pygame.draw.polygon(screen, (11, 87, 4), [(Gstartx, Gstarty), (Gstartx + width, Gstarty),
-                                                           (Gstartx + Sx * res[3] + width, Gstarty + Sy * res[3]),
-                                                           (Gstartx + Sx * res[3], Gstarty + Sy * res[3])])
-        Rrect2 = pygame.draw.polygon(screen, (29, 233, 12), [(Gstartx, Gstarty), (Gstartx, Gstarty + height),
-                                                             (Gstartx + Sx * res[3], Gstarty + Sy * res[3] + height),
-                                                             (Gstartx + Sx * res[3], Gstarty + Sy * res[3])])
-        screen.blit(green, (Gstartx + res[3] * Sx, Gstarty + res[3] * Sy))
-        amount = questionFont.render(str(res[3]), False, WHITE)
-        screen.blit(amount, (Gstartx + 130 + Sx * res[3], Gstarty + 40 + Sy * res[3]))
+            """"Yellow rectengles"""
+            Rrect1 = pygame.draw.polygon(screen, (128, 80, 0), [(Ystartx, Ystarty), (Ystartx + width, Ystarty),
+                                                                (int(Ystartx + Sx * c * res[2] + width), int(Ystarty + Sy * c * res[2])),
+                                                                (int(Ystartx + Sx * c * res[2]), int(Ystarty + Sy * c * res[2]))])
+            Rrect2 = pygame.draw.polygon(screen, (254, 172, 35), [(Ystartx, Ystarty), (Ystartx, Ystarty + height),
+                                                                  (int(Ystartx + Sx * c * res[2]), int(Ystarty + Sy * c * res[2] + height)),
+                                                                  (int(Ystartx + Sx * c * res[2]), int(Ystarty + Sy * c * res[2]))])
+            screen.blit(yellow, (Ystartx + res[2] * Sx * c, Ystarty + res[2] * Sy * c))
+            amount = questionFont.render(str(int(res[2] * c)), False, WHITE)
+            screen.blit(amount, (Ystartx + 130 + Sx * c * res[2], Ystarty + 40 + Sy * c * res[2]))
 
-        """"Yellow rectengles"""
-        Rrect1 = pygame.draw.polygon(screen, (128, 80, 0), [(Ystartx, Ystarty), (Ystartx + width, Ystarty),
-                                                            (Ystartx + Sx * res[2] + width, Ystarty + Sy * res[2]),
-                                                            (Ystartx + Sx * res[2], Ystarty + Sy * res[2])])
-        Rrect2 = pygame.draw.polygon(screen, (254, 172, 35), [(Ystartx, Ystarty), (Ystartx, Ystarty + height),
-                                                              (Ystartx + Sx * res[2], Ystarty + Sy * res[2] + height),
-                                                              (Ystartx + Sx * res[2], Ystarty + Sy * res[2])])
-        screen.blit(yellow, (Ystartx + res[2] * Sx, Ystarty + res[2] * Sy))
-        amount = questionFont.render(str(res[2]), False, WHITE)
-        screen.blit(amount, (Ystartx + 130 + Sx * res[2], Ystarty + 40 + Sy * res[2]))
+            """Blue rectengles"""
+            Rrect1 = pygame.draw.polygon(screen, (1, 23, 75), [(Bstartx, Bstarty), (Bstartx + width, Bstarty),
+                                                               (int(Bstartx + Sx * c * res[1] + width), int(Bstarty + Sy * c * res[1])),
+                                                               (int(Bstartx + Sx * c * res[1]), int(Bstarty + Sy * c * res[1]))])
+            Rrect2 = pygame.draw.polygon(screen, (54, 114, 252), [(Bstartx, Bstarty), (Bstartx, Bstarty + height),
+                                                                  (int(Bstartx + Sx * c * res[1]), int(Bstarty + Sy * c * res[1] + height)),
+                                                                  (int(Bstartx + Sx * c * res[1]), int(Bstarty + Sy * c * res[1]))])
+            screen.blit(blue, (Bstartx + res[1] * Sx * c, Bstarty + res[1] * Sy * c))
+            amount = questionFont.render(str(int(res[1] * c)), False, WHITE)
+            screen.blit(amount, (Bstartx + 130 + Sx * c * res[1], Bstarty + 40 + Sy * c * res[1]))
 
-        """Blue rectengles"""
-        Rrect1 = pygame.draw.polygon(screen, (1, 23, 75), [(Bstartx, Bstarty), (Bstartx + width, Bstarty),
-                                                           (Bstartx + Sx * res[1] + width, Bstarty + Sy * res[1]),
-                                                           (Bstartx + Sx * res[1], Bstarty + Sy * res[1])])
-        Rrect2 = pygame.draw.polygon(screen, (54, 114, 252), [(Bstartx, Bstarty), (Bstartx, Bstarty + height),
-                                                              (Bstartx + Sx * res[1], Bstarty + Sy * res[1] + height),
-                                                              (Bstartx + Sx * res[1], Bstarty + Sy * res[1])])
-        screen.blit(blue, (Bstartx + res[1] * Sx, Bstarty + res[1] * Sy))
-        amount = questionFont.render(str(res[1]), False, WHITE)
-        screen.blit(amount, (Bstartx + 130 + Sx * res[1], Bstarty + 40 + Sy * res[1]))
+            """red rectengles"""
+            Rrect1 = pygame.draw.polygon(screen, (106, 3, 0), [(Rstartx, Rstarty), (Rstartx + width, Rstarty),
+                                                               (int(Rstartx + Sx * c * res[0] + width), int(Rstarty + Sy * c * res[0])),
+                                                               (int(Rstartx + Sx * c * res[0]), int(Rstarty + Sy * c * res[0]))])
+            Rrect2 = pygame.draw.polygon(screen, (255, 44, 38), [(Rstartx, Rstarty), (Rstartx, Rstarty + height),
+                                                                 (int(Rstartx + Sx * c * res[0]), int(Rstarty + Sy * c * res[0] + height)),
+                                                                 (int(Rstartx + Sx * c * res[0]), int(Rstarty + Sy * c * res[0]))])
+            screen.blit(red, (Rstartx + res[0] * Sx * c, Rstarty + res[0] * Sy * c))
+            amount = questionFont.render(str(int(res[0] * c)), False, WHITE)
+            screen.blit(amount, (Rstartx + 130 + Sx * c * res[0], Rstarty + 40 + Sy * c * res[0]))
+            screen.blit(questionText, (int((WIDTH / x - len(question)) / 2 * x), 30))
+            pygame.display.flip()
 
-        """red rectengles"""
-        Rrect1 = pygame.draw.polygon(screen, (106, 3, 0), [(Rstartx, Rstarty), (Rstartx + width, Rstarty),
-                                                           (Rstartx + Sx * res[0] + width, Rstarty + Sy * res[0]),
-                                                           (Rstartx + Sx * res[0], Rstarty + Sy * res[0]) ])
-        Rrect2 = pygame.draw.polygon(screen, (255, 44, 38), [(Rstartx, Rstarty), (Rstartx, Rstarty + height),
-                                                             (Rstartx + Sx * res[0], Rstarty + Sy * res[0] + height),
-                                                             (Rstartx + Sx * res[0], Rstarty + Sy * res[0])])
-        screen.blit(red, (Rstartx + res[0] * Sx, Rstarty + res[0] * Sy))
-        amount = questionFont.render(str(res[0]), False, WHITE)
-        screen.blit(amount, (Rstartx + 130 + Sx * res[0], Rstarty + 40 + Sy * res[0]))
+            c = c + 0.1 if c + 0.1 <= 1 else 1
 
-
-
-
-
-        screen.blit(questionText, (int((WIDTH / x - len(question)) / 2 * x), 30))
-
-
-
-
-
-
-
-        """for y in range(4):
-            answerFont = pygame.font.Font(get_font("bauhaus93"), int(50 - (len(answers[y])/1.4)))
-            answerText = answerFont.render(answers[y], False, WHITE)
-            screen.blit(answerText, (int(70 + (WIDTH / 2) * (y % 2)), 405 + 120 * int(y / 2)))"""
-        pygame.display.flip()
-        if bo:
-            starttime = time.time()
-            bo = False
     return False
 
 
@@ -383,7 +372,7 @@ def exit_screen(screen, names):
 
     clock = pygame.time.Clock()
 
-    sizes = [400, 400, 400]
+    sizes = [85, 85, 85]
     for i in range(3):
         answerFont = pygame.font.Font(get_font("bauhaus93"), sizes[i])
         while answerFont.size(names[i])[0] > 132:

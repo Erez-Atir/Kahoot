@@ -63,7 +63,7 @@ def __send__mandatory(wlist):
             __mandatory.remove(message)
 
 
-def __handle_client_request(client_socket, request):
+def __handle_client_request(client_socket, request, taken=False):
     """
     Appends a proper respond to the clients request
     :param client_socket: the user's socket
@@ -75,7 +75,7 @@ def __handle_client_request(client_socket, request):
     if player:
         player = player[0]
     if request[:len("login: ")] == "login: ":
-        if request.split("login: ")[1] not in [x.name for x in __players]:
+        if (request.split("login: ")[1] not in [x.name for x in __players]) and not taken:
             __players.append(Player(request.split("login: ")[1], client_socket))
             __mandatory.append((client_socket, 'OK'))
         else:
@@ -96,7 +96,7 @@ def __handle_client_request(client_socket, request):
         __mandatory.append((player.socket, "place: " + str(__players.index(player)+1)))
         
 
-def __single_user(client_socket):
+def __single_user(client_socket, taken=False):
     """
     Messages a single client
     :param client_socket: the user's socket
@@ -114,7 +114,7 @@ def __single_user(client_socket):
                 data += client_socket.recv(1)
             data = data.replace('\n', '')
             if data:
-                __handle_client_request(client_socket, data)
+                __handle_client_request(client_socket, data, taken)
             else:
                 open_client_sockets.remove(client_socket)
                 print "Connection with client closed."
@@ -123,7 +123,7 @@ def __single_user(client_socket):
 
 
 #-----------------------Library-----------------------
-def update_login():
+def update_login(taken=False):
     """
     Manages all the server's clients login attempts.
     automatically sends a respond to the client
@@ -133,7 +133,7 @@ def update_login():
         global __server_socket
         rlist, wlist, xlist = select([__server_socket] + open_client_sockets, open_client_sockets, open_client_sockets, 0.01)
         for current_socket in rlist:
-            __single_user(current_socket)
+            __single_user(current_socket, taken)
         for current_socket in xlist:
             open_client_sockets.remove(current_socket)
         __send__mandatory(wlist)
@@ -181,7 +181,8 @@ def results(correct_answer, score):
                     respond = 'False'
                 if client_socket in wlist:
                     client_socket.send(respond + '\n')
-                answers[answer] += 1
+                if answer:
+                    answers[answer-1] += 1
 
             for current_socket in xlist:
                 open_client_sockets.remove(current_socket)

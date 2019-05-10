@@ -25,83 +25,17 @@ behind = None
 place = None
 
 
-#----------------------Functions----------------------
-def error():
-    print '\33[31m' + traceback.format_exc() + '\033[0m'
-
-
-def init_dsp():
-    """
-    initiates discover server protocol.
-    """
-    global IP, my_socket
-    IP = ServerDitection.server_scout().split("Here Be Server: ")[1]
-    my_socket = socket.socket()
-    my_socket.connect((IP, 23))
-
-
-def handle_server():
-    """
-    updates the server connection
-    :return: a dictionary containing everything that was received. {result, score, behind, place}
-    """
-    global my_socket, game_finished, new_question, timer, behind, score, place, answer, answered_current
-
-
-    rlist, wlist, xlist = select([my_socket], [my_socket], [my_socket], 0.1)
-    recieved = {'result': False, 'score': False, 'behind': False, 'place': False}
-    if rlist:
-        data = ''
-        while '\n' not in data:
-            data += rlist[0].recv(1)
-        data = data.replace('\n', '')
-        if data == "True":
-            answer = True
-            recieved['result'] = True
-            new_question = False
-            timer = None
-            answered_current = False
-        elif data == "False":
-            answer = False
-            recieved['result'] = True
-            new_question = False
-            timer = None
-            answered_current = False
-
-        elif data[:len("new: ")] == "new: ":
-            timer = int(time.time()) + int(data.split(": ")[1])
-            new_question = True
-            answer = None
-
-        elif data[:len("score: ")] == "score: ":
-            score = int(data.split(": ")[1])
-            recieved['score'] = True
-
-        elif data[:len("place: ")] == "place: ":
-            place = int(data.split(": ")[1])
-            recieved['place'] = True
-
-        elif data[:len("behind: ")] == "behind: ":
-            behind = data.split(": ")[1]
-            recieved['behind'] = True
-
-        elif data == "game_finished":
-            game_finished = True
-
-    return recieved
-
-
 #-----------------------Library-----------------------
 def login(name):
     """
-    Logins to the our Kahoot server.
-    :param name: your choosen name
+    Login to the our Kaboot server.
+    :param name: your choosen username len(name) <= 14
     :return: True -> Connected succefully
              False - > Username was taken
     """
     if '\r' in name or '\n' in name or '\t' in name:
         raise Exception("Usernames are not allowed to contain line breaks or tabs")
-    if len(name) > 12:
+    if len(name) > 14:
         raise Exception("Name should be 12 characters or less!\nWe didn't give enough fuck to make our GUI more responsive.")
     try:
         global my_socket, username, IP
@@ -121,6 +55,24 @@ def login(name):
             return False
     except Exception:
         raise Exception("Login failed!\nPlease make sure the \"test_server\" is up")
+
+
+def send_answer(your_answer=None):
+    """
+    Sends your answer to the current question to the server.
+    :return None
+    """
+    if your_answer:
+        if your_answer < 1 or your_answer > 4:
+            raise Exception("Answer can only be a number between 1 and 4!\nYou've chosen " + str(your_answer) + "!")
+        global my_socket, answered_current
+        handle_server()
+        if not question_in_progress():
+            raise Exception("You are out of time")
+        if answered_current:
+            raise Exception("You have already answered the current question!")
+        my_socket.send("answer: " + str(your_answer) + "\n")
+        answered_current = True
 
 
 def question_in_progress():
@@ -234,22 +186,67 @@ def end_game():
     return game_finished
 
 
-def send_answer(your_answer=None):
+#----------------------Functions----------------------
+def error():
+    print '\33[31m' + traceback.format_exc() + '\033[0m'
+
+
+def handle_server():
     """
-    Sends your answer to the current question to the server.
-    :return None
+    updates the server connection
+    :return: a dictionary containing everything that was received. {result, score, behind, place}
     """
-    if your_answer:
-        if your_answer < 1 or your_answer > 4:
-            raise Exception("Answer can only be a number between 1 and 4!\nYou've chosen " + str(your_answer) + "!")
-        global my_socket, answered_current
-        handle_server()
-        if not question_in_progress():
-            raise Exception("You are out of time")
-        if answered_current:
-            raise Exception("You have already answered the current question!")
-        my_socket.send("answer: " + str(your_answer) + "\n")
-        answered_current = True
+    global my_socket, game_finished, new_question, timer, behind, score, place, answer, answered_current
 
 
+    rlist, wlist, xlist = select([my_socket], [my_socket], [my_socket], 0.1)
+    recieved = {'result': False, 'score': False, 'behind': False, 'place': False}
+    if rlist:
+        data = ''
+        while '\n' not in data:
+            data += rlist[0].recv(1)
+        data = data.replace('\n', '')
+        if data == "True":
+            answer = True
+            recieved['result'] = True
+            new_question = False
+            timer = None
+            answered_current = False
+        elif data == "False":
+            answer = False
+            recieved['result'] = True
+            new_question = False
+            timer = None
+            answered_current = False
 
+        elif data[:len("new: ")] == "new: ":
+            timer = int(time.time()) + int(data.split(": ")[1])
+            new_question = True
+            answer = None
+
+        elif data[:len("score: ")] == "score: ":
+            score = int(data.split(": ")[1])
+            recieved['score'] = True
+
+        elif data[:len("place: ")] == "place: ":
+            place = int(data.split(": ")[1])
+            recieved['place'] = True
+
+        elif data[:len("behind: ")] == "behind: ":
+            behind = data.split(": ")[1]
+            recieved['behind'] = True
+
+        elif data == "game_finished":
+            game_finished = True
+
+    return recieved
+
+
+def init_real_run():
+    """
+    initiates drs application level protocol
+    """
+    global IP, my_socket
+    IP = ServerDitection.server_scout().split("Here Be Server: ")[1]
+    my_socket = socket.socket()
+    my_socket.connect((IP, 23))

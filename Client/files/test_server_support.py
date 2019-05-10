@@ -95,14 +95,17 @@ def receive():
     global timer, correct, player
     if timer < int(time.time()):
         answer = Server.results(correct, 10)
-        if answer[player[0]] != player[1]:
-            was_correct = " has answered the correct answer."
-            player = (player[0], answer[player[0]])
+        score = Server.get_players()
+        if score[player[0]] != player[1]:
+            msg = player[0] + " has answered the correct answer."
+            player = (player[0], score[player[0]])
+        elif any(x != 0 for x in answer):
+            msg = "%s has answered %s. He was wrong." % (player[0], [x+1 for x in range(4) if answer[x] != 0][0])
         else:
-            was_correct = " either answered a wrong answer, or he didn't answer at all."
+            msg = player[0] + " didn't answer at all."
 
         w.log.config(state="normal")
-        w.log.insert("end", player[0] + str(was_correct) + "\n\n")
+        w.log.insert("end", msg + "\n\n")
         w.log.config(state="disabled")
         w.Button1.config(state="normal")
         timer = None
@@ -128,8 +131,12 @@ def log_timer(current):
 
 def update():
     global root, w
-    Server.receive()
-    root.after(200, update)
+    try:
+        Server.receive()
+        update()
+    except Exception:
+        pass
+
 
 def init(top, gui, *args, **kwargs):
     global w, top_level, root
