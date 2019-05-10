@@ -198,7 +198,8 @@ def results(correct_answer, score):
                 player.answer = None
             __players.sort(key=lambda x: x.score, reverse=True)
             return answers
-        return [12, 4, 1, 6]
+        import random
+        return [random.randint(0, 20) for x in range(4)]
     except Exception:
         _error()
         return [0, 0, 0, 0]

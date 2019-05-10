@@ -114,10 +114,10 @@ def main():
     Server.ServerDitection.finish = True
     #if not done:
     #    done = add_question(screen, 5, "The correct answer is number 2", ["1", "2", "3", "4"], 2, None, 10, 1000)
-    if not done:
-            done = add_question(screen, 5, "Who shot the sheriff?", ["I shot the sheriff", "but I did not shoot the deputy", "It was santa!", "Chuck Norris did it!"], 1, None, 10, 800)
     #if not done:
-    #    done = add_question(screen, 5, "Is this the real life?", ["It's just a fantasy.", "Caught in a landslide", "No escape from reality", "Open your eyes"], 4, None, 10, 800)
+    #        done = add_question(screen, 5, "Who shot the sheriff?", ["I shot the sheriff", "but I did not shoot the deputy", "It was santa!", "Chuck Norris did it!"], 1, None, 10, 800)
+    if not done:
+        done = add_question(screen, 5, "Is this the real life?", ["It's just a fantasy.", "Caught in a landslide", "No escape from reality", "Open your eyes"], 4, None, 10, 800)
 
     if not done:
         Server.end_game()
@@ -298,10 +298,9 @@ def show_answer(screen, res, correct_answer, question):
 
     finish = False
     pygame.mixer.music.set_volume(1)
+    time.sleep(0.05)
     pygame.mixer.music.load(OST_DIR + "answers.mp3")
-    pygame.mixer.music.play(-1)
-    time.sleep(0.5)
-    pygame.mixer.music.fadeout(600)
+    pygame.mixer.music.play(1)
     last = time.time()
     while not finish:
         Server.receive()
