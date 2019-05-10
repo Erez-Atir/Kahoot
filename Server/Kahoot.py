@@ -114,8 +114,8 @@ def main():
     Server.ServerDitection.finish = True
     #if not done:
     #    done = add_question(screen, 5, "The correct answer is number 2", ["1", "2", "3", "4"], 2, None, 10, 1000)
-    #if not done:
-    #        done = add_question(screen, 5, "Who shot the sheriff?", ["I shot the sheriff", "but I did not shoot the deputy", "It was santa!", "Chuck Norris did it!"], 1, None, 10, 800)
+    if not done:
+            done = add_question(screen, 5, "Who shot the sheriff?", ["I shot the sheriff", "but I did not shoot the deputy", "It was santa!", "Chuck Norris did it!"], 1, None, 10, 800)
     #if not done:
     #    done = add_question(screen, 5, "Is this the real life?", ["It's just a fantasy.", "Caught in a landslide", "No escape from reality", "Open your eyes"], 4, None, 10, 800)
 
@@ -247,7 +247,7 @@ def load_timer(num, screen, question):
             screen.blit(BLACKSURFACE, (0, 0))
             x = 20 # width of a letter, change according to the font
             screen.blit(questionText, (int((WIDTH/x - len(question))/2 * x), 312))
-            screen.blit(hamster_img, (350, 50))
+            screen.blit(hamster_img, (340, 50))
             screen.blit(image, (300, 95))
             bar = pygame.Surface((int((current - first)/num * WIDTH), 60))
             bar.fill((124, 0, 255))
@@ -258,6 +258,7 @@ def load_timer(num, screen, question):
             pygame.display.flip()
             last = current
             count += 1
+    pygame.image.save(screen, "test.png")
     return False
 
 
@@ -303,6 +304,7 @@ def show_answer(screen, res, correct_answer, question):
     pygame.mixer.music.fadeout(600)
     last = time.time()
     while not finish:
+        Server.receive()
         events = pygame.event.get()
         for event in events:
             if event.type == QUIT:
@@ -406,11 +408,6 @@ def exit_screen(screen, names):
             image = pygame.image.load(IMAGES_DIR + "win_background\\frame_%s_delay-0.04s.png" % str(gif % 178).zfill(3))
             screen.blit(image, (0, up))
             speed += 1
-
-            if pygame.key.get_pressed()[K_SPACE]:
-                print gif
-                print pygame.mouse.get_pos()
-                print
 
             if not la_finito:
                 if current - start >= 7:

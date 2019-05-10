@@ -198,7 +198,7 @@ def results(correct_answer, score):
                 player.answer = None
             __players.sort(key=lambda x: x.score, reverse=True)
             return answers
-        return [6, 12, 1, 2]
+        return [12, 4, 1, 6]
     except Exception:
         _error()
         return [0, 0, 0, 0]
