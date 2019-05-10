@@ -111,7 +111,7 @@ def main():
         print_names(screen, prev_users) #print the users
 
     if not exit:
-        exit = add_question(screen, 5, "The correct answer is number 2", ["1", "2", "3", "4"], 2, None, 10, 1000)
+        exit = add_question(screen, 6, "The correct answer is number 2", ["1", "2", "3", "4"], 2, None, 10, 1000)
     if not exit:
             exit = add_question(screen, 5, "Who shot the sheriff?", ["I shot the sheriff", "but I did not shoot the deputy", "It was santa!", "Chuck Norris did it!"], 1, None, 10, 800)
     if not exit:
@@ -228,7 +228,7 @@ def load_timer(num, screen, question):
     questionText = questionFont.render(question, False, BLACK)
     current = time.time()
     count = 0
-    while current - first <= num + 1:
+    while current - first <= num + 0.4:
         events = pygame.event.get()
         for event in events:
             if event.type == QUIT:
@@ -245,12 +245,12 @@ def load_timer(num, screen, question):
             screen.blit(questionText, (int((WIDTH/x - len(question))/2 * x), 312))
             screen.blit(hamster_img, (350, 50))
             screen.blit(image, (300, 95))
-            timerFont = pygame.font.Font(get_font("bauhaus93"), 150)
-            timerText = timerFont.render(str(num - int(current - first)), False, BLACK)
-            if len(str(int(num - current + first + 1))) == 2:
-                screen.blit(timerText, (340, 155))
-            else:
-                screen.blit(timerText, (370, 155))
+            bar = pygame.Surface((int((current - first)/num * WIDTH), 60))
+            bar.fill((124, 0, 255))
+            barop = pygame.Surface((WIDTH - int((current - first-0.3)/num * WIDTH) if WIDTH - int((current - first)/num * WIDTH) > 0 else 0, 60))
+            barop.fill((188, 135, 243))
+            screen.blit(barop, (int((current - first-0.3)/num * WIDTH), 400))
+            screen.blit(bar, (0, 400))
             pygame.display.flip()
             last = current
             count += 1

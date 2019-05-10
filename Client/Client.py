@@ -30,6 +30,16 @@ def error():
     print '\33[31m' + traceback.format_exc() + '\033[0m'
 
 
+def init_dsp():
+    """
+    initiates discover server protocol.
+    """
+    global IP, my_socket
+    IP = ServerDitection.server_scout().split("Here Be Server: ")[1]
+    my_socket = socket.socket()
+    my_socket.connect((IP, 23))
+
+
 def handle_server():
     """
     updates the server connection
@@ -82,17 +92,6 @@ def handle_server():
 
 
 #-----------------------Library-----------------------
-def _real_run():
-    """
-    This is a very very secretive function.
-    You don't need to use it until we tell you...
-    """
-    global IP, my_socket
-    IP = ServerDitection.server_scout().split("Here Be Server: ")[1]
-    my_socket = socket.socket()
-    my_socket.connect((IP, 23))
-
-
 def login(name):
     """
     Logins to the our Kahoot server.

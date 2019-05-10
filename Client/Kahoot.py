@@ -3,7 +3,7 @@ import Client
 
 
 #-----------------------Globals-----------------------
-Client._real_run()
+Client.init_dsp()
 username = None
 
 
