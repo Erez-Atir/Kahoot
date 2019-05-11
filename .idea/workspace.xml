@@ -26,7 +26,7 @@
       <file leaf-file-name="Kahoot.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Server/Kahoot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="119" column="4" selection-start="4906" selection-end="4906" vertical-scroll-proportion="-6.8" vertical-offset="6154" max-vertical-offset="8789">
+            <state line="127" column="32" selection-start="5296" selection-end="5296" vertical-scroll-proportion="0.0" vertical-offset="2074" max-vertical-offset="8789">
               <folding />
             </state>
           </provider>
@@ -35,7 +35,7 @@
       <file leaf-file-name="Server.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Server/files/Server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="188" column="37" selection-start="6165" selection-end="6165" vertical-scroll-proportion="0.0" vertical-offset="2876" max-vertical-offset="4165">
+            <state line="188" column="37" selection-start="6165" selection-end="6165" vertical-scroll-proportion="0.0" vertical-offset="3196" max-vertical-offset="4250">
               <folding />
             </state>
           </provider>
@@ -111,86 +111,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Kahoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Kahoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Kahoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Kahoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Kahoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Kahoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="files" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Kahoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Kahoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Kahoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Kahoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="files" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Chat" />
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
     <property name="SearchEverywhereHistory" value="" />
@@ -464,7 +390,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297414" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -474,7 +400,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39848813" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30387932" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="71" y="463" width="1899" height="293" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30453563" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="71" y="463" width="1899" height="293" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -513,6 +439,34 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Server/Kahoot.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state line="119" column="10" selection-start="4912" selection-end="4912" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8789">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/files/Server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="188" column="37" selection-start="6165" selection-end="6165" vertical-scroll-proportion="0.0" vertical-offset="3196" max-vertical-offset="4250">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/Kahoot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="119" column="4" selection-start="4906" selection-end="4906" vertical-scroll-proportion="0.0" vertical-offset="1938" max-vertical-offset="8789">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/files/Server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="188" column="37" selection-start="6165" selection-end="6165" vertical-scroll-proportion="0.0" vertical-offset="3196" max-vertical-offset="4250">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/Kahoot.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state line="260" column="39" selection-start="10671" selection-end="10671" vertical-scroll-proportion="0.0" vertical-offset="2533" max-vertical-offset="8891">
           <folding />
         </state>
@@ -527,30 +481,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Server/files/ServerDitection.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="0" selection-start="1675" selection-end="1675" vertical-scroll-proportion="0.0" vertical-offset="646" max-vertical-offset="986">
-          <folding />
-        </state>
+        <state line="38" column="0" selection-start="1675" selection-end="1675" vertical-scroll-proportion="0.0" vertical-offset="646" max-vertical-offset="986" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Kahoot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="141" column="12" selection-start="5168" selection-end="5168" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2924">
-          <folding />
-        </state>
+        <state line="141" column="12" selection-start="5168" selection-end="5168" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2924" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="244" column="17" selection-start="6627" selection-end="6627" vertical-scroll-proportion="0.0" vertical-offset="4148" max-vertical-offset="4386">
-          <folding />
-        </state>
+        <state line="244" column="17" selection-start="6627" selection-end="6627" vertical-scroll-proportion="0.0" vertical-offset="4148" max-vertical-offset="4386" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/test_server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="14" selection-start="845" selection-end="845" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5882">
-          <folding />
-        </state>
+        <state line="36" column="14" selection-start="845" selection-end="845" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5882" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Server/Kahoot.py">
@@ -569,16 +515,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="0" selection-start="1104" selection-end="1104" vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="4454">
-          <folding />
-        </state>
+        <state line="45" column="0" selection-start="1104" selection-end="1104" vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="4454" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Kahoot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="149" column="10" selection-start="5846" selection-end="5846" vertical-scroll-proportion="0.0" vertical-offset="2024" max-vertical-offset="2635">
-          <folding />
-        </state>
+        <state line="149" column="10" selection-start="5846" selection-end="5846" vertical-scroll-proportion="0.0" vertical-offset="2024" max-vertical-offset="2635" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Server/Kahoot.py">
@@ -602,16 +544,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="39" selection-start="3172" selection-end="3172" vertical-scroll-proportion="0.0" vertical-offset="1870" max-vertical-offset="4454">
-          <folding />
-        </state>
+        <state line="110" column="39" selection-start="3172" selection-end="3172" vertical-scroll-proportion="0.0" vertical-offset="1870" max-vertical-offset="4454" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Kahoot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="137" column="21" selection-start="5311" selection-end="5311" vertical-scroll-proportion="0.0" vertical-offset="2024" max-vertical-offset="2635">
-          <folding />
-        </state>
+        <state line="137" column="21" selection-start="5311" selection-end="5311" vertical-scroll-proportion="0.0" vertical-offset="2024" max-vertical-offset="2635" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Server/Kahoot.py">
@@ -630,44 +568,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="179" column="21" selection-start="4645" selection-end="4645" vertical-scroll-proportion="0.0" vertical-offset="3043" max-vertical-offset="4420">
-          <folding />
-        </state>
+        <state line="179" column="21" selection-start="4645" selection-end="4645" vertical-scroll-proportion="0.0" vertical-offset="3043" max-vertical-offset="4420" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Kahoot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="125" column="39" selection-start="4709" selection-end="4709" vertical-scroll-proportion="0.0" vertical-offset="1718" max-vertical-offset="2635">
-          <folding />
-        </state>
+        <state line="125" column="39" selection-start="4709" selection-end="4709" vertical-scroll-proportion="0.0" vertical-offset="1718" max-vertical-offset="2635" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Kahoot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="18" selection-start="144" selection-end="144" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="2635">
-          <folding />
-        </state>
+        <state line="5" column="18" selection-start="144" selection-end="144" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="2635" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="76" selection-end="116" vertical-scroll-proportion="0.0" vertical-offset="1109" max-vertical-offset="4420">
-          <folding />
-        </state>
+        <state line="3" column="0" selection-start="76" selection-end="116" vertical-scroll-proportion="0.0" vertical-offset="1109" max-vertical-offset="4420" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Kahoot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="18" selection-start="144" selection-end="144" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="2635">
-          <folding />
-        </state>
+        <state line="5" column="18" selection-start="144" selection-end="144" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="2635" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="76" selection-end="116" vertical-scroll-proportion="0.0" vertical-offset="1109" max-vertical-offset="4420">
-          <folding />
-        </state>
+        <state line="3" column="0" selection-start="76" selection-end="116" vertical-scroll-proportion="0.0" vertical-offset="1109" max-vertical-offset="4420" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Server/Kahoot.py">
@@ -696,16 +622,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Kahoot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="6" selection-start="55" selection-end="61" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="2635">
-          <folding />
-        </state>
+        <state line="1" column="6" selection-start="55" selection-end="61" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="2635" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Kahoot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="94" selection-start="445" selection-end="445" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="2618">
-          <folding />
-        </state>
+        <state line="16" column="94" selection-start="445" selection-end="445" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="2618" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/files/test_server_support.py">
@@ -760,9 +682,7 @@
     </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/.PyCharm30/system/python_stubs/-1088862027/__builtin__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="1184" selection-end="1184" vertical-scroll-proportion="0.7459547" vertical-offset="66" max-vertical-offset="87567">
-          <folding />
-        </state>
+        <state line="31" column="0" selection-start="1184" selection-end="1184" vertical-scroll-proportion="0.7459547" vertical-offset="66" max-vertical-offset="87567" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/files/test_server_support.py">
@@ -772,30 +692,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Kahoot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="141" column="12" selection-start="5168" selection-end="5168" vertical-scroll-proportion="0.41574278" vertical-offset="2022" max-vertical-offset="2924">
-          <folding />
-        </state>
+        <state line="141" column="12" selection-start="5168" selection-end="5168" vertical-scroll-proportion="0.41574278" vertical-offset="2022" max-vertical-offset="2924" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="244" column="17" selection-start="6627" selection-end="6627" vertical-scroll-proportion="0.7361419" vertical-offset="3467" max-vertical-offset="4369">
-          <folding />
-        </state>
+        <state line="244" column="17" selection-start="6627" selection-end="6627" vertical-scroll-proportion="0.7361419" vertical-offset="3467" max-vertical-offset="4369" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/test_server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="14" selection-start="845" selection-end="845" vertical-scroll-proportion="-0.018847007" vertical-offset="612" max-vertical-offset="5865">
-          <folding />
-        </state>
+        <state line="36" column="14" selection-start="845" selection-end="845" vertical-scroll-proportion="-0.018847007" vertical-offset="612" max-vertical-offset="5865" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Server/files/ServerDitection.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="0" selection-start="1675" selection-end="1675" vertical-scroll-proportion="0.0" vertical-offset="46" max-vertical-offset="935">
-          <folding />
-        </state>
+        <state line="38" column="0" selection-start="1675" selection-end="1675" vertical-scroll-proportion="0.0" vertical-offset="46" max-vertical-offset="935" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Server/files/Server.py">
@@ -807,7 +719,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Server/Kahoot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="119" column="4" selection-start="4906" selection-end="4906" vertical-scroll-proportion="-6.8" vertical-offset="6154" max-vertical-offset="8789">
+        <state line="127" column="32" selection-start="5296" selection-end="5296" vertical-scroll-proportion="0.0" vertical-offset="2074" max-vertical-offset="8789">
           <folding />
         </state>
       </provider>

@@ -114,10 +114,10 @@ def main():
     Server.ServerDitection.finish = True
     #if not done:
     #    done = add_question(screen, 5, "The correct answer is number 2", ["1", "2", "3", "4"], 2, None, 10, 1000)
-    #if not done:
-    #        done = add_question(screen, 5, "Who shot the sheriff?", ["I shot the sheriff", "but I did not shoot the deputy", "It was santa!", "Chuck Norris did it!"], 1, None, 10, 800)
     if not done:
-        done = add_question(screen, 5, "Is this the real life?", ["It's just a fantasy.", "Caught in a landslide", "No escape from reality", "Open your eyes"], 4, None, 10, 800)
+            done = add_question(screen, 5, "Who shot the sheriff?", ["I shot the sheriff", "but I did not shoot the deputy", "It was santa!", "Chuck Norris did it!"], 1, None, 10, 800)
+    if not done:
+        done = add_question(screen, 5, "Is this the real life?", ["It's just a fantasy.", "Caught in a landslide", "No escape from reality", "Open your eyes"], 4, None, 11, 800)
 
     if not done:
         Server.end_game()
