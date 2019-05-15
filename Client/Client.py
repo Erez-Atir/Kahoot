@@ -29,8 +29,8 @@ place = None
 def login(name):
     """
     Login to the our Kaboot server.
-    :param name: your choosen username len(name) <= 14
-    :return: True -> Connected succefully
+    :param name: your choosen username. len(name) <= 14
+    :return: True -> Connected successfully
              False - > Username was taken
     """
     if '\r' in name or '\n' in name or '\t' in name:
@@ -67,7 +67,7 @@ def send_answer(your_answer=None):
             raise Exception("Answer can only be a number between 1 and 4!\nYou've chosen " + str(your_answer) + "!")
         global my_socket, answered_current
         handle_server()
-        if not question_in_progress():
+        if not question_received():
             raise Exception("You are out of time")
         if answered_current:
             raise Exception("You have already answered the current question!")
@@ -75,9 +75,9 @@ def send_answer(your_answer=None):
         answered_current = True
 
 
-def question_in_progress():
+def question_received():
     """
-    :return True -> A new question has received
+    :return True -> A question has started
             False -> New question didn't start yet
     """
     global new_question
@@ -111,9 +111,9 @@ def time_is_up():
 
 def result():
     """
-    checks if your answer was correct of wrong
+    checks if your answer was correct or wrong
     :return True -> it was correct
-            False -> it was wrong or no answer was received
+            False -> it was wrong/no answer was received
     """
     global answer
     handle_server()
@@ -125,7 +125,7 @@ def result():
 def get_score():
     """
     get your current score
-    :return your points
+    :return the amount of points you have collected so far
     """
     global my_socket, score
     my_socket.send('get_score\n')
@@ -142,7 +142,7 @@ def get_behind():
     """
     antagonize yourself by knowing who is this cunt right in front of you
     :return HIM
-            or None is you are in first place
+            or None if you are in first place
     """
     global my_socket, score
     if get_place() > 1:
@@ -160,8 +160,8 @@ def get_behind():
 
 def get_place():
     """
-    tells you how well you did in compare to the other class
-    :returns the amount of points you have collected so far
+    tells you how well you did in compare to other student in your class
+    :returns your place
     """
     global my_socket, score
     my_socket.send('get_place\n')
@@ -176,8 +176,8 @@ def get_place():
 
 def end_game():
     """
-    Prepare you final results screen because this game is done
-    you can still preform get_place, get_score, or get_behind after game is done.
+    Prepare your final_screen because this game is done, maybe...
+    you can still preform 'get_place', 'get_score', or 'get_behind' functions after game is done.
     :return True -> game is finished
             False -> not yet
     """
@@ -187,6 +187,8 @@ def end_game():
 
 
 #----------------------Functions----------------------
+#--------------------Back End Shit--------------------
+#--------------------Do Not Touch!--------------------
 def error():
     print '\33[31m' + traceback.format_exc() + '\033[0m'
 
@@ -244,7 +246,7 @@ def handle_server():
 
 def init_real_run():
     """
-    initiates drs application level protocol
+    Run this function to make your GUI crush :)
     """
     global IP, my_socket
     IP = ServerDitection.server_scout().split("Here Be Server: ")[1]

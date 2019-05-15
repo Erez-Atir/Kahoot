@@ -1,5 +1,5 @@
 #-----------------------Imports-----------------------
-import Client
+import client
 
 
 #-----------------------Globals-----------------------
@@ -18,19 +18,24 @@ def main():
     Everything is already sorted out in to functions. Each function is its own screen and should be programmed separately and independently,
     But do not open a new window for every function, that's just bad manners...
 
+    To your assist, we have programmed two libraries:
+        - Client
+        - textbox
+        To see a library's abilities enter its file and read its fucking manual, below the #---Library--- stamp
+
     That is all,
     GOOD LUCK, Amigo!
     """
-    while not Client.login(login_screen()):
+    while not client.login(login_screen()):
         username_taken()
-    loading("Waiting for the game to start...", lambda x: Client.question_in_progress())
-    while not Client.end_game():
-        if Client.question_in_progress():
-            Client.send_answer(main_screen())
-            if Client.question_in_progress():
-                loading("Waiting for question to end...", lambda x: not Client.question_in_progress())
+    loading("Waiting for the game to start...", lambda x: client.question_received())
+    while not client.end_game():
+        if client.question_received():
+            client.send_answer(main_screen())
+            if client.question_received():
+                loading("Waiting for question to end...", lambda x: not client.question_received())
         else:
-            results_screen(Client.result(), lambda x: Client.question_in_progress() or Client.end_game())
+            results_screen(client.result(), lambda x: client.question_received() or client.end_game())
     finish_screen()
 
 
@@ -42,6 +47,7 @@ def login_screen():
 
     TASK I:
         Program a login screen which gets a username as an input from the user and returns it.
+        You can use the textbox library which we programmed just for you in order to create an "InputBox"
         :return a username
     """
     global username
@@ -81,7 +87,7 @@ def main_screen():
                 OR None if he didn't have enough time
     """
     answer = int(raw_input("Your answer: "))  # <--- delete this
-    while not Client.time_is_up():
+    while not client.time_is_up():
         return answer  # <---------------- write here
     return None
 
@@ -145,7 +151,7 @@ def finish_screen():
         Do not close the program until the user says so!
         :return None
     """
-    print "\nThe game is finished!\nYou won " + str(Client.get_place()) + " place with " + str(Client.get_score()) + " points!\nGood bye!\n"  # <---- delete this
+    print "\nThe game is finished!\nYou won " + str(client.get_place()) + " place with " + str(client.get_score()) + " points!\nGood bye!\n"  # <---- delete this
     raw_input("\nPress 'Enter' to exit...")  # In my example, a simple "raw_input()" is used to wait until the user wants to exit the program
 
 
@@ -158,7 +164,7 @@ def gui_is_ready():
         Contact one of the project managers and tell them you have finished you GUI.
         We want to appreciate how well made it is, and also to instruct you how to connect to the real Kaboot.
     """
-    Client.init_real_run()
+    pass
 
 
 if __name__ == '__main__':

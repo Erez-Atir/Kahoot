@@ -116,11 +116,10 @@ def main():
     Server.ServerDitection.finish = True
     #if not done:
     #    done = add_question(screen, 5, "The correct answer is number 2", ["1", "2", "3", "4"], 2, None, 10, 1000)
-    if not done:
-            done = add_question(screen, 5, "Who shot the sheriff?", ["I shot the sheriff", "but I did not shoot the deputy", "It was santa!", "Chuck Norris did it!"], 1, None, 10, 800)
+    #if not done:
+    #        done = add_question(screen, 5, "Who shot the sheriff?", ["I shot the sheriff", "but I did not shoot the deputy", "It was santa!", "Chuck Norris did it!"], 1, None, 10, 800)
     if not done:
         done = add_question(screen, 5, "Is this the real life?", ["It's just a fantasy.", "Caught in a landslide", "No escape from reality", "Open your eyes"], 4, None, 11, 800)
-
     if not done:
         Server.end_game()
         for buffer in xrange(100):
@@ -129,6 +128,7 @@ def main():
         while len(players) < 3:
             players.append("None")
         exit_screen(screen, players)
+
     pygame.quit()
     time.sleep(0.2)
     exit()
@@ -144,7 +144,7 @@ def add_question(screen, timer, question, answers, correct_answer, photo, qtime,
         :param correct_answer:  gets the number of the correct answer
         :param photo: gets a photo that's relevant to the question
         :param qtime: gets time to answer the question
-        :param points: gets the maximum points recived py this question
+        :param points: gets the maximum points received py this question
         :return: Was the server closed
         """
 
@@ -406,7 +406,7 @@ def exit_screen(screen, names):
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.mixer.music.fadeout(gif*100)
-                    la_finito = True
+                    finish = True
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:

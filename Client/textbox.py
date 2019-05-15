@@ -1,0 +1,125 @@
+import pygame
+import time
+FONT_LIB = pygame.font.match_font('bitstreamverasans')[0:-10]
+
+
+class InputBox:
+    """
+    Creates an input box which you can use to get the username for the first screen.
+    :param screen: the surface you want to draw on
+    :param size: (x, y) -> where x is the length of the box and y is the height
+    :param place: (x, y) -> where x is the x-coordinate of the box and y is the y-coordinate, in relation to 'screen'
+    :param color: (R, G, B) of the background color of the box
+    :param border_width: the width of the border, 0 for no border
+    :param border_color: (R, G, B) of the border color
+    :param text_color: (R, G, B) of the text color
+    :param font: the name of the font for the text
+    """
+    def __init__(self, screen, size, place, color=(255, 255, 255), border_width=0, border_color=(0, 0, 0), text_color=(0, 0, 0), font="Arial"):
+        self.__start = time.time()
+        self.__input_text = ""
+        self.__keys = {letter: time.time() for letter in [chr(let) for let in range(97, 123) + range(48, 58) + [8, 32, 127]]}
+        self.__last_size = None
+        self._screen = screen
+        self.size = size
+        self.place = place
+        self.color = color
+        self.border_width = border_width
+        self.border_color = border_color
+        self.text_color = text_color
+        self.font = FONT_LIB + font + ".ttf"
+
+    def draw(self):
+        """
+        Call this inside the loop in order to draw the textbox to the screen
+        """
+        pygame.draw.rect(self._screen, self.color, (self.place, self.size))
+        if self.border_width:
+            pygame.draw.rect(self._screen, self.border_color, (tuple([x-self.border_width/2 for x in self.place]), tuple([x+self.border_width for x in self.size])), self.border_width)
+
+        pressed = pygame.key.get_pressed()
+        backspaced = False
+        shift = 97-65 if any(pressed[303:305]) else 0
+        for key in range(97, 123) + range(48, 58) + [8, 32, 127]:
+            if pressed[key]:
+                if time.time() - self.__keys[chr(key)] >= 0.4 and key != 8:
+                    self.__keys[chr(key)] = time.time()
+                    if 97 <= key <= 122:
+                        self.__input_text += chr(key-shift)
+                    else:
+                        self.__input_text += chr(key)
+                elif key == 8:
+                    if time.time() - self.__keys[chr(key)] >= 0.15:
+                        self.__keys[chr(key)] = time.time()
+                        self.__input_text = self.__input_text[:-1]
+                        self.__last_size += 100
+                    backspaced = True
+            else:
+                self.__keys[chr(key)] = 0
+
+        text_to_print = self.__input_text
+        if int((time.time() - self.__start)*2) % 2 == 0 or backspaced:
+            text_to_print += '|'
+
+        font_size = self.__last_size if self.__last_size else self.size[1]
+        text_font = pygame.font.Font(self.font, font_size)
+        while any(x >= y*0.95 for x, y in zip(text_font.size(self.__input_text + '|'), self.size)):
+            font_size -= 1
+            text_font = pygame.font.Font(self.font, font_size)
+        self.__last_size = font_size
+        printext = text_font.render(text_to_print, False, self.text_color)
+        textW, textH = text_font.size(self.__input_text)
+        self._screen.blit(printext, (self.place[0] + self.size[0]/2 - textW/2, self.place[1] + self.size[1]/2 - textH/2))
+
+    def get_input(self):
+        """
+        Call this after the loop is done and the user has submitted his input in order to get it
+        :return The user's input
+        """
+        return self.__input_text
+
+
+class OutputBox:
+    """
+    Creates an input box which you can use to get the username for the first screen.
+    :param screen: the surface you want to draw on
+    :param text: the text you want to print
+    :param size: (x, y) -> where x is the length of the box and y is the height
+    :param place: (x, y) -> where x is the x-coordinate of the box and y is the y-coordinate, in relation to 'screen'
+    :param color: (R, G, B) of the background color of the box
+    :param border_width: the width of the border, 0 for no border
+    :param border_color: (R, G, B) of the border color
+    :param text_color: (R, G, B) of the text color
+    :param font: the name of the font for the text
+    """
+    def __init__(self, screen, text, size, place, color=(255, 255, 255), border_width=0, border_color=(0, 0, 0), text_color=(0, 0, 0), font="Arial"):
+        self.__font_size = size[1]
+        self._screen = screen
+        self.text = text
+        self.size = size
+        self.place = place
+        self.color = color
+        self.border_width = border_width
+        self.border_color = border_color
+        self.text_color = text_color
+        self.font = FONT_LIB + font + ".ttf"
+
+    def draw(self):
+        """
+        Call this inside the loop in order to draw the textbox to the screen
+        """
+        pygame.draw.rect(self._screen, self.color, (self.place, self.size))
+        if self.border_width:
+            pygame.draw.rect(self._screen, self.border_color, (tuple([x-self.border_width/2 for x in self.place]), tuple([x+self.border_width for x in self.size])), self.border_width)
+        font_size = self.__font_size
+        text_font = pygame.font.Font(self.font, font_size)
+        while max([text_font.size(self.text.split("\n")[x])[0] for x in range(len(self.text.split("\n")))]) >= self.size[0] or (text_font.size(self.text)[1])*len(self.text.split("\n")) >= self.size[1]:
+            font_size -= 1
+            text_font = pygame.font.Font(self.font, font_size)
+            self.__font_size = font_size
+        linumber = 0
+        for line in self.text.split("\n"):
+            printext = text_font.render(line, False, self.text_color)
+            textW, textH = text_font.size(self.text.split("\n")[linumber])
+            self._screen.blit(printext, (self.place[0] + self.size[0]/2 - textW/2, self.place[1] + self.size[1]/2 - (textH/2)*len(self.text.split("\n")) + textH*linumber))
+            linumber += 1
