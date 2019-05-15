@@ -42,7 +42,9 @@ def main():
     start_game = False                               # the game has started?
     pygame.init()                                    # initiate pygames
 
-    screen = pygame.display.set_mode((WIDTH, HEIGHT))#set screen wid =800, hieght =600
+    #screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)  # full screen
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))  # set screen wid =800, hieght =600
+
     pygame.display.set_caption("Kaboot")
     pygame.display.flip()
     pygame.font.init()
@@ -110,7 +112,7 @@ def main():
                 if not already_in:
                     prev_users.remove(prev_user)
         print_names(screen, prev_users) #print the users
-
+    pygame.mouse.set_cursor(*pygame.cursors.arrow);
     Server.ServerDitection.finish = True
     #if not done:
     #    done = add_question(screen, 5, "The correct answer is number 2", ["1", "2", "3", "4"], 2, None, 10, 1000)
@@ -197,7 +199,7 @@ def load_question(screen, question, photo, answers, qtime):
     while time_passed < qtime:
         events = pygame.event.get()
         for event in events:
-            if event.type == QUIT:
+            if event.type == pygame.QUIT:
                 pygame.mixer.music.stop()
                 return True
         screen.blit(image, (0, 0))
@@ -263,6 +265,7 @@ def load_timer(num, screen, question):
 
 
 def show_answer(screen, res, correct_answer, question):
+    res_sum = max(res)
     rc = pygame.image.load(IMAGES_DIR + "main\\red_correct.png")          #loads all of the photoes containning:
     bc = pygame.image.load(IMAGES_DIR + "main\\blue_correct.png")         #Yellow correct and incorrect ect.
     yc = pygame.image.load(IMAGES_DIR + "main\\orange_correct.png")
@@ -291,8 +294,8 @@ def show_answer(screen, res, correct_answer, question):
     questionText = questionFont.render(question, False, BLACK)
 
     x = 20
-    Sx = 3  # scale of moving according to the amount of answers in x
-    Sy = 2  # scale of moving according to the amount of answers in y
+    Sx = 60.0/res_sum  # scale of moving according to the amount of answers in x
+    Sy = 40.0/res_sum  # scale of moving according to the amount of answers in y
 
     c = 0
 
@@ -306,7 +309,7 @@ def show_answer(screen, res, correct_answer, question):
         Server.receive()
         events = pygame.event.get()
         for event in events:
-            if event.type == QUIT:
+            if event.type == pygame.QUIT:
                 return True
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
@@ -404,6 +407,12 @@ def exit_screen(screen, names):
                 if event.type == pygame.QUIT:
                     pygame.mixer.music.fadeout(gif*100)
                     la_finito = True
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    pygame.mixer.music.fadeout(gif*100)
+                    la_finito = True
+
             image = pygame.image.load(IMAGES_DIR + "win_background\\frame_%s_delay-0.04s.png" % str(gif % 178).zfill(3))
             screen.blit(image, (0, up))
             speed += 1
