@@ -263,7 +263,6 @@ def load_timer(num, screen, question):
             pygame.display.flip()
             last = current
             count += 1
-    pygame.image.save(screen, "test.png")
     return False
 
 
