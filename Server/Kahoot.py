@@ -3,10 +3,8 @@ from pygame.locals import *
 import time
 import random
 import os
-import sys
-sys.path.insert(0, os.getcwd()+'/files')
-import Server
-sys.dont_write_bytecode = True
+from Server.files import Server
+from Server.files import textbox
 
 PLAYERSSCORE = {} #""""dictionary, saves the points of each player"""
 FONT_LIB = pygame.font.match_font('bitstreamverasans')[0:-10]#finds the fony libary path
@@ -114,12 +112,12 @@ def main():
         print_names(screen, prev_users) #print the users
     pygame.mouse.set_cursor(*pygame.cursors.arrow);
     Server.ServerDitection.finish = True
-    #if not done:
-    #    done = add_question(screen, 5, "The correct answer is number 2", ["1", "2", "3", "4"], 2, None, 10, 1000)
+    if not done:
+        done = add_question(screen, 5, "Is your GUI working", ["Yes!", "No!", "I can't answer because\nit has already crashed", "So far\nso good!"], random.randint(0, 4), None, 10, 1000)
     #if not done:
     #        done = add_question(screen, 5, "Who shot the sheriff?", ["I shot the sheriff", "but I did not shoot the deputy", "It was santa!", "Chuck Norris did it!"], 1, None, 10, 800)
-    if not done:
-        done = add_question(screen, 5, "Is this the real life?", ["It's just a fantasy.", "Caught in a landslide", "No escape from reality", "Open your eyes"], 4, None, 11, 800)
+    #if not done:
+    #    done = add_question(screen, 5, "Is this the real life?", ["It's just a fantasy.", "Caught in a landslide", "No escape from reality", "Open your eyes"], 4, None, 11, 800)
     if not done:
         Server.end_game()
         for buffer in xrange(100):
@@ -177,21 +175,26 @@ def load_question(screen, question, photo, answers, qtime):
     """
 
 
-    """image"""
+    # image
     if photo:
         image = pygame.image.load(IMAGES_DIR + "main\\questions.png")
     else:
         image = pygame.image.load(IMAGES_DIR + "main\\questions_no_image.png")
 
-    """question"""
+    # question
     questionFont = timerFont = pygame.font.Font(get_font("bauhaus93"), 50)
     questionText = questionFont.render(question, False, BLACK)
     x = 20  # widtgh of a letter, change according to font so the question will be in the middle of the screen
 
-    """time"""
+    # time
     start_time = time.time()
 
     time_passed = time.time() - start_time
+
+    answer_boxes = []
+    for y in range(4):
+        answer_boxes.append(textbox.OutputBox(screen, text=answers[y], size=(335, 105), place=(int(60 + (WIDTH / 2) * (y % 2)), 372 + 120 * int(y / 2)),
+                                              color=None, text_color=WHITE, font=get_font("bauhaus93")))
 
     pygame.mixer.music.load(OST_DIR + "question.mp3")
     pygame.mixer.music.set_volume(0.4)
@@ -203,15 +206,15 @@ def load_question(screen, question, photo, answers, qtime):
                 pygame.mixer.music.stop()
                 return True
         screen.blit(image, (0, 0))
-        """question"""
-        screen.blit(questionText, (int((WIDTH / x - len(question)) / 2 * x), 30))
-        """answers"""
-        for y in range(4):
-            answerFont = pygame.font.Font(get_font("bauhaus93"), int(50 - (len(answers[y])/1.4)))
-            answerText = answerFont.render(answers[y], False, WHITE)
-            screen.blit(answerText, (int(70 + (WIDTH / 2) * (y % 2)), 405 + 120 * int(y / 2)))
 
-        """timer"""
+        # question
+        screen.blit(questionText, (int((WIDTH / x - len(question)) / 2 * x), 30))
+
+        # answers
+        for answer in answer_boxes:
+            answer.draw()
+
+        # timer
         time_passed = time.time() - start_time
         timerText = questionFont.render(str(int(qtime - time_passed)), False, WHITE)
         if len(str(int(qtime - time_passed))) == 2:

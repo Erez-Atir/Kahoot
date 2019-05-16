@@ -199,7 +199,7 @@ def results(correct_answer, score):
             __players.sort(key=lambda x: x.score, reverse=True)
             return answers
         import random
-        return [random.randint(0, 20) for x in range(4)]
+        return [random.randint(random.randint(0, x*100), random.randint(x*100, 500)) for x in range(4)]
     except Exception:
         _error()
         return [0, 0, 0, 0]

@@ -1,5 +1,5 @@
 #-----------------------Imports-----------------------
-import client
+from Client.Libraries import client
 
 
 #-----------------------Globals-----------------------
@@ -11,7 +11,7 @@ def main():
     """
     Don't worry! We have got your back!
     All of the hard work was already done for you.
-    Our server and your client already have a programmed protocol which you can access by our very helpful "Client" library.
+    Our server and your client already have a programmed protocol which you can access by our very helpful "client" library.
     All that is left for you to do is to program your own unique User Interface, on which the client would run.
     How fun is that?!
 
@@ -19,7 +19,7 @@ def main():
     But do not open a new window for every function, that's just bad manners...
 
     To your assist, we have programmed two libraries:
-        - Client
+        - client
         - textbox
         To see a library's abilities enter its file and read its fucking manual, below the #---Library--- stamp
 
@@ -81,7 +81,7 @@ def main_screen():
         Program the main screen.
         Screen must contain a way to input your answer - a number between 1, and 4
         Do not wait for the "time_is_up" if an answer is chosen before hands, return it at the moment
-        The "Client" library has a bunch of function you can use to decorate the screen
+        The "client" library has a bunch of function you can use to decorate the screen
 
         :return The answer the user had choosen, 1 <= number <= 4
                 OR None if he didn't have enough time
@@ -103,7 +103,7 @@ def results_screen(correct, wait_until):
 
     TASK IV:
         Program a "Horrrrray! Very Correct Answer Indeed." and a "Boooooo! You Are A Loser!" screens
-        The "Client" library has a bunch of function you can use to decorate the screen
+        The "client" library has a bunch of function you can use to decorate the screen
         :return None
     """
     if correct:
