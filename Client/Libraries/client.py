@@ -7,12 +7,13 @@ import traceback
 import socket
 from select import select
 import time
+from Client import Libraries
 sys.dont_write_bytecode = True
 
 
 #-----------------------Globals-----------------------
-IP = None
-my_socket = None
+IP = Libraries.IP
+my_socket = Libraries.my_socket
 username = None
 game_finished = False
 new_question = False
@@ -38,7 +39,7 @@ def login(name):
     if len(name) > 14:
         raise Exception("Name should be 12 characters or less!\nWe didn't give enough fuck to make our GUI more responsive.")
     try:
-        global my_socket, username, IP
+        global my_socket, username
         if not my_socket:
             IP = "127.0.0.1"
             my_socket = socket.socket()
@@ -53,7 +54,8 @@ def login(name):
             return True
         else:
             return False
-    except Exception:
+    except Exception as e:
+        print e
         raise Exception("Login failed!\nPlease make sure the \"test_server\" is up")
 
 
@@ -243,12 +245,3 @@ def handle_server():
 
     return recieved
 
-
-def init_real_run():
-    """
-    Run this function to make your GUI crush :)
-    """
-    global IP, my_socket
-    IP = ServerDitection.server_scout().split("Here Be Server: ")[1]
-    my_socket = socket.socket()
-    my_socket.connect((IP, 23))

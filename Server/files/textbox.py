@@ -28,7 +28,7 @@ class InputBox:
         self.border_width = border_width
         self.border_color = border_color
         self.text_color = text_color
-        self.font = FONT_LIB + font + ".ttf"
+        self.font = font
 
     def draw(self):
         """
@@ -149,7 +149,7 @@ class OutputBox:
     :param text_color: (R, G, B) of the text color
     :param font: the name of the font for the text
     """
-    def __init__(self, screen, text, size, place, color=(255, 255, 255), border_width=0, border_color=(0, 0, 0), text_color=(0, 0, 0), font="Arial"):
+    def __init__(self, screen, text, size, place, color=(255, 255, 255), border_width=0, border_color=(0, 0, 0), text_color=(0, 0, 0), font=None):
         self.__font_size = size[1]
         self._screen = screen
         self.text = text
