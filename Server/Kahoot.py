@@ -40,8 +40,8 @@ def main():
     start_game = False                               # the game has started?
     pygame.init()                                    # initiate pygames
 
-    #screen = pygame.display.set_mode((800, 600), pygame.FULLSCREEN)  # full screen
-    screen = pygame.display.set_mode((WIDTH, HEIGHT))  # set screen wid =800, hieght =600
+    screen = pygame.display.set_mode((800, 600), pygame.FULLSCREEN)  # full screen
+    #screen = pygame.display.set_mode((WIDTH, HEIGHT))  # set screen wid =800, hieght =600
 
     pygame.display.set_caption("Kaboot")
     pygame.display.flip()
@@ -184,7 +184,7 @@ def score_board(screen, players, next_round_points):
             users.append(textbox.OutputBox(screen, players.keys()[i] + "  -  " + str(players.values()[i]) + " points", (700, 70), (50, 120), (255, 255, 255), 3, (0, 0, 0), (0, 0, 0), FONT_LIB + "ALGER.TTF"))
         elif i < len(players.keys()):
             users.append(textbox.OutputBox(screen, players.keys()[i] + "  -  " + str(players.values()[i]) + " points", (700, 70), (50, 70 * i + 20 + 120), (), 3, (0, 0, 0), (0, 0, 0), FONT_LIB + "ALGER.TTF"))
-    under = textbox.OutputBox(screen, "Answer correctly the next round to win " + str(next_round_points) + " points!", (650, 75), (75, 525), (163, 73, 163), 0, (), (255, 255, 255), get_font("BAUHS93"))
+    under = textbox.OutputBox(screen, "Next round reward - " + str(next_round_points) + " points!", (650, 75), (75, 525), (163, 73, 163), 0, (), (255, 255, 255), get_font("BAUHS93"))
     while not finish:
         events = pygame.event.get()
         for event in events:
