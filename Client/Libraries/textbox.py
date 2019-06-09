@@ -3,6 +3,7 @@ import time
 FONT_LIB = pygame.font.match_font('bitstreamverasans')[0:-10] + "\\"
 
 
+#-----------------------Library-----------------------
 class InputBox:
     """
     Creates an input box which you can use to get the username for the first screen.

@@ -1,10 +1,9 @@
 import pygame
 from pygame.locals import *
 import time
-import random
 import os
-from Server.files import Server
-from Server.files import textbox
+from files import Server
+from files import textbox
 
 PLAYERSSCORE = {} #""""dictionary, saves the points of each player"""
 FONT_LIB = pygame.font.match_font('bitstreamverasans')[0:-10] + "\\" #finds the fony libary path

@@ -1,5 +1,5 @@
 #-----------------------Imports-----------------------
-from Client.Libraries import client
+from Libraries import client
 
 
 #-----------------------Globals-----------------------
