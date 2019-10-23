@@ -45,8 +45,6 @@ class Player:
 
 
 #----------------------Functions----------------------
-def _error():
-    print '\33[31m' + traceback.format_exc() + '\033[0m'
 
 
 def __send__mandatory(wlist):
@@ -106,7 +104,6 @@ def __single_user(client_socket, taken=False):
     if client_socket is __server_socket:
                 new_socket, address = __server_socket.accept()
                 open_client_sockets.append(new_socket)
-                print "Connected with client."
     else:
         try:
             data = ''
@@ -117,7 +114,6 @@ def __single_user(client_socket, taken=False):
                 __handle_client_request(client_socket, data, taken)
             else:
                 open_client_sockets.remove(client_socket)
-                print "Connection with client closed."
         except socket.error:
             open_client_sockets.remove(client_socket)
 

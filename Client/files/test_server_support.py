@@ -143,6 +143,7 @@ def init(top, gui, *args, **kwargs):
     w = gui
     top_level = top
     root = top
+    return Server
 
 
 def destroy_window():
@@ -151,9 +152,6 @@ def destroy_window():
     top_level.destroy()
     top_level = None
 
-if __name__ == '__main__':
-    import unknown
-    unknown.vp_start_gui()
 
 
 

@@ -7,7 +7,7 @@ import traceback
 import socket
 from select import select
 import time
-from Client import Libraries
+import Libraries
 sys.dont_write_bytecode = True
 
 
@@ -54,8 +54,7 @@ def login(name):
             return True
         else:
             return False
-    except Exception as e:
-        print e
+    except Exception:
         raise Exception("Login failed!\nPlease make sure the \"test_server\" is up")
 
 
@@ -191,10 +190,6 @@ def end_game():
 #----------------------Functions----------------------
 #--------------------Back End Shit--------------------
 #--------------------Do Not Touch!--------------------
-def error():
-    print '\33[31m' + traceback.format_exc() + '\033[0m'
-
-
 def handle_server():
     """
     updates the server connection

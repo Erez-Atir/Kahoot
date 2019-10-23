@@ -7,6 +7,7 @@
 
 import sys
 import os
+import time
 sys.path.insert(0, os.getcwd()+'/files')
 import thread
 sys.dont_write_bytecode = True
@@ -34,8 +35,14 @@ def vp_start_gui():
     thread.start_new_thread(test_server_support.update, ())
     test_server_support.set_Tk_var()
     top = Toplevel1 (root)
-    test_server_support.init(root, top)
+    Server = test_server_support.init(root, top)
     root.mainloop()
+    Server.end_game()
+    Server.new_question(0)
+    timer = time.time()
+    while time.time() - timer <= 1:
+        Server.receive()
+
 
 w = None
 def create_Toplevel1(root, *args, **kwargs):
@@ -71,7 +78,7 @@ class Toplevel1:
             [('selected', _compcolor), ('active',_ana2color)])
 
         top.geometry("591x426+650+150")
-        top.title("New Toplevel")
+        top.title("Test Server")
         top.configure(background="#d9d9d9")
 
         self.log = ScrolledText(top)

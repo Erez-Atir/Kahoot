@@ -39,8 +39,8 @@ def main():
     start_game = False                               # the game has started?
     pygame.init()                                    # initiate pygames
 
-    screen = pygame.display.set_mode((800, 600), pygame.FULLSCREEN)  # full screen
-    #screen = pygame.display.set_mode((WIDTH, HEIGHT))  # set screen wid =800, hieght =600
+    #screen = pygame.display.set_mode((800, 600), pygame.FULLSCREEN)  # full screen
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))  # set screen wid =800, hieght =600
 
     pygame.display.set_caption("Kaboot")
     pygame.display.flip()
@@ -112,11 +112,11 @@ def main():
     pygame.mouse.set_cursor(*pygame.cursors.arrow)
     Server.ServerDitection.finish = True
     if not done:
-        done = add_question(screen, 5, "Is your GUI working", ["Yes!", "No!", "I can't answer because\nit has already crashed", "So far\nso good!"], 2, None, 0, 1000, True)
+        done = add_question(screen, 5, "Is your GUI working", ["Yes!", "No!", "I can't answer because\nit has already crashed", "So far\nso good!"], 2, None, 10, 1000, True)
     if not done:
             done = add_question(screen, 5, "Who shot the sheriff?", ["I shot the sheriff", "but I did not shoot the deputy", "It was santa!", "Chuck Norris did it!"], 1, None, 10, 800)
     if not done:
-        done = add_question(screen, 5, "Is this the real life?", ["It's just a fantasy.", "Caught in a landslide", "No escape from reality", "Open your eyes"], 4, None, 11, 800)
+        done = add_question(screen, 5, "Is this the real life?", ["It's just a fantasy.", "Caught in a landslide", "No escape from reality", "Open your eyes"], 4, None, 10, 800)
     if not done:
         Server.end_game()
         for buffer in xrange(100):
@@ -176,7 +176,7 @@ def score_board(screen, players, next_round_points):
     time_passed = time.time() - start_time
 
     finish = False
-    header = textbox.OutputBox(screen, "Scoreboard", (800, 90), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), FONT_LIB + "RosewoodStd-Regular.otf")
+    header = textbox.OutputBox(screen, "Scoreboard", (800, 90), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), "files\\RosewoodStd-Regular.otf")
     users = []
     for i in range(5):
         if not i and players:
