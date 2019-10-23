@@ -5,7 +5,7 @@ from Libraries import client
 
 #-----------------------Globals-----------------------
 username = None
-
+screen = None
 
 #-------------------------Main-------------------------
 def main():
@@ -51,7 +51,7 @@ def login_screen():
         You can use the textbox library which we programmed just for you in order to create an "InputBox"
         :return a username
     """
-    global username
+    global username, screen
     username = raw_input("Choose username: ")  # <--- delete this
     return username
 
