@@ -112,11 +112,21 @@ def main():
     pygame.mouse.set_cursor(*pygame.cursors.arrow)
     Server.ServerDitection.finish = True
     if not done:
-        done = add_question(screen, 5, "Is your GUI working", ["Yes!", "No!", "I can't answer because\nit has already crashed", "So far\nso good!"], 2, None, 10, 1000, True)
+        done = add_question(screen, 5, "Is your GUI working?", ["Yes!", "No!", "I can't answer because\nit has already crashed", "Who is GUI?"], 1, None, 40, 100, True)
     if not done:
-            done = add_question(screen, 5, "Who shot the sheriff?", ["I shot the sheriff", "but I did not shoot the deputy", "It was santa!", "Chuck Norris did it!"], 1, None, 10, 800)
+        done = add_question(screen, 7, "What can you do in a Pygame program?", ["Display photos", "Play sounds", "Create moving sprites", "All of the answers are correct"], 4, None, 40, 1000, True)
     if not done:
-        done = add_question(screen, 5, "Is this the real life?", ["It's just a fantasy.", "Caught in a landslide", "No escape from reality", "Open your eyes"], 4, None, 10, 800)
+            done = add_question(screen, 10, "Which of the following did not appear in the presentation?", ["Fill", "David Ben Gurion", "Binyamin Netanyahu", "Arnold Schwarzenegger"], 3, None, 40, 200)
+    if not done:
+        done = add_question(screen, 5, "Why would someone use a sprite?", ["To draw a Square", "To color the screen", "To handle large numbers\nof objects on screen", "To display an image on screen"], 3, None, 40, 1000)
+    if not done:
+            done = add_question(screen, 9, "How much sprites was in the sprite group in our presentation?", ["3", "6", "10", "7"], 2, None, 40, 300)
+    if not done:
+        done = add_question(screen, 5, "What function allows us to color a surface?", ["fill()", "paint()", "leaf()", "color()"], 1, None, 40, 1000)
+    if not done:
+        done = add_question(screen, 8, "What color format do Pygame functions relieve?", ["BGR", "RGB", "BMP", "LLS"], 2, None, 40, 1000, True)
+    if not done:
+            done = add_question(screen, 10, "Did you have fun making your own GUI as a client for our kaboot?", ["YES!!! So much fun!", "No! I hated it!", "hmmmmf, it was ok", "is GUI a friend of Fill?"], 1, None, 40, 50)
     if not done:
         Server.end_game()
         for buffer in xrange(100):

@@ -1,5 +1,7 @@
 import pygame
 import time
+
+pygame.font.init()
 FONT_LIB = pygame.font.match_font('bitstreamverasans')[0:-10] + "\\"
 
 
