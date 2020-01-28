@@ -9,6 +9,7 @@ PLAYERSSCORE = {} #""""dictionary, saves the points of each player"""
 FONT_LIB = pygame.font.match_font('bitstreamverasans')[0:-10] + "\\" #finds the fony libary path
 IMAGES_DIR = os.getcwd() + "\\images\\" #saves the path to the images libary
 OST_DIR = os.getcwd() + "\\audio\\"
+users = None
 
 """defauly pygame settings"""
 MouseButtonDown = 6
@@ -20,9 +21,13 @@ BLACK = (0, 0, 0)
 TCHELET = (150, 150, 255)
 MouseMotion = 4
 
+#screen = pygame.display.set_mode((800, 600), pygame.FULLSCREEN)  # full screen
+screen = pygame.display.set_mode((1000, 700))  # set screen wid =800, hieght =600
+
 """height and width of the screen"""
-HEIGHT = 600
-WIDTH = 800
+size = width, height = pygame.display.Info().current_w, pygame.display.Info().current_h
+WIDTH = size[0]
+HEIGHT = size[1]
 
 """vars for un used libary update_login"""
 LASTUPDATECALL = time.time()
@@ -35,27 +40,28 @@ BLACKSURFACE.fill(WHITE)
 
 
 def main():
+    global users
     done = False                                     #"""the playes exited the game?"""
     start_game = False                               # the game has started?
     pygame.init()                                    # initiate pygames
-
-    #screen = pygame.display.set_mode((800, 600), pygame.FULLSCREEN)  # full screen
-    screen = pygame.display.set_mode((WIDTH, HEIGHT))  # set screen wid =800, hieght =600
 
     pygame.display.set_caption("Kaboot")
     pygame.display.flip()
     pygame.font.init()
     if os.path.exists(IMAGES_DIR + "login\\log_screen.png"): #if path to an image exists
         log_screen = pygame.image.load(IMAGES_DIR + "login\\log_screen.png")#load image
+        size = log_screen.get_rect().size
+        log_screen = pygame.transform.scale(log_screen, (int(size[0]/800.*WIDTH), int(size[1]/600.*HEIGHT)))
         screen.blit(log_screen, (0,0))
         pygame.display.flip()
     else:                                             #else
         log_screen = pygame.Surface((WIDTH, HEIGHT))  #load nothing
     if os.path.exists(IMAGES_DIR + "login\\log_screen_start_selected.png"): #if path to an image exists
         log_screen_start_selcted = pygame.image.load(IMAGES_DIR + "login\\log_screen_start_selected.png") #load image
+        size = log_screen_start_selcted.get_rect().size
+        log_screen_start_selcted = pygame.transform.scale(log_screen_start_selcted, (int(size[0]/800.*WIDTH), int(size[1]/600.*HEIGHT)))
     else:
         log_screen_start_selcted = pygame.Surface((WIDTH, HEIGHT)) #white surface incase path doesn't exists
-    largeText = pygame.font.Font('freesansbold.ttf', 50)#set a font
 
     prev_users = Server.update_login() #gets list of names
     print_names(screen, prev_users)#prints the name to the screen
@@ -75,14 +81,21 @@ def main():
 
             if event.type == pygame.QUIT:#user presses the X
                 done = True
+                exit()
+            if event.type == pygame.KEYDOWN:
+                # If pressed key is ESC quit program
+                if event.key == pygame.K_ESCAPE:
+                    done = True
+                    exit()
             if event.type == MouseButtonDown:#player clicks the screen(should be only button)
-                x, y = event.pos
-                if 25 < x and x < 770 and y > 490 and y < 580:  # if mouse above start button
-                    pygame.mixer.music.fadeout(5000)
-                    start_game = True
+                if event.button == 1:
+                    x, y = event.pos
+                    if 25/800.*WIDTH < x and x < 770/800.*WIDTH and y > 490/600.*HEIGHT and y < 580/600.*HEIGHT:   # if mouse above start button
+                        pygame.mixer.music.fadeout(5000)
+                        start_game = True
         """"load screen"""
         x, y = mouse_loc                                   #gets mouse location
-        if 25 < x and x < 770 and y > 490 and y < 580:     # if mouse above start button
+        if 25/800.*WIDTH < x and x < 770/800.*WIDTH and y > 490/600.*HEIGHT and y < 580/600.*HEIGHT:    # if mouse above start button=
             screen.blit(log_screen_start_selcted, (0, 0))  # fill the screen with bold "start" image
             pygame.mouse.set_cursor(*pygame.cursors.broken_x)# set cursor to broken x
         else:
@@ -114,26 +127,14 @@ def main():
     if not done:
         done = add_question(screen, 5, "Is your GUI working?", ["Yes!", "No!", "I can't answer because\nit has already crashed", "Who is GUI?"], 1, None, 40, 100, True)
     if not done:
-        done = add_question(screen, 7, "What can you do in a Pygame program?", ["Display photos", "Play sounds", "Create moving sprites", "All of the answers are correct"], 4, None, 40, 1000, True)
-    if not done:
-            done = add_question(screen, 10, "Which of the following did not appear in the presentation?", ["Fill", "David Ben Gurion", "Binyamin Netanyahu", "Arnold Schwarzenegger"], 3, None, 40, 200)
-    if not done:
-        done = add_question(screen, 5, "Why would someone use a sprite?", ["To draw a Square", "To color the screen", "To handle large numbers\nof objects on screen", "To display an image on screen"], 3, None, 40, 1000)
-    if not done:
-            done = add_question(screen, 9, "How much sprites was in the sprite group in our presentation?", ["3", "6", "10", "7"], 2, None, 40, 300)
-    if not done:
-        done = add_question(screen, 5, "What function allows us to color a surface?", ["fill()", "paint()", "leaf()", "color()"], 1, None, 40, 1000)
-    if not done:
-        done = add_question(screen, 8, "What color format do Pygame functions relieve?", ["BGR", "RGB", "BMP", "LLS"], 2, None, 40, 1000, True)
-    if not done:
-            done = add_question(screen, 10, "Did you have fun making your own GUI as a client for our kaboot?", ["YES!!! So much fun!", "No! I hated it!", "hmmmmf, it was ok", "is GUI a friend of Fill?"], 1, None, 40, 50)
+        done = add_question(screen, 7, "What can you do in a Pygame program?", ["Display photos", "Play sounds", "Create moving sprites", "All of the answers are correct"], 4, None, 40, 150)
     if not done:
         Server.end_game()
         for buffer in xrange(100):
             Server.receive()
         names = Server.get_players()
-        players = names.keys()
-        points = names.values()
+        players = [x[1] for x in names]
+        points = [x[0] for x in names]
         while len(players) < 3:
             players.append("None")
             points.append(0)
@@ -178,27 +179,33 @@ def add_question(screen, timer, question, answers, correct_answer, photo, qtime,
 
 def score_board(screen, players, next_round_points):
     image = pygame.image.load(IMAGES_DIR + "scoreboard\\scoreboard.png")
+    image = resfix(image)
 
 
     # time
     start_time = time.time()
 
-    time_passed = time.time() - start_time
-
+    #print players
     finish = False
-    header = textbox.OutputBox(screen, "Scoreboard", (800, 90), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), "files\\RosewoodStd-Regular.otf")
+    header = textbox.OutputBox(screen, "Scoreboard", (WIDTH, int(90/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), "files\\RosewoodStd-Regular.otf")
     users = []
     for i in range(5):
         if not i and players:
-            users.append(textbox.OutputBox(screen, players.keys()[i] + "  -  " + str(players.values()[i]) + " points", (700, 70), (50, 120), (255, 255, 255), 3, (0, 0, 0), (0, 0, 0), FONT_LIB + "ALGER.TTF"))
-        elif i < len(players.keys()):
-            users.append(textbox.OutputBox(screen, players.keys()[i] + "  -  " + str(players.values()[i]) + " points", (700, 70), (50, 70 * i + 20 + 120), (), 3, (0, 0, 0), (0, 0, 0), FONT_LIB + "ALGER.TTF"))
-    under = textbox.OutputBox(screen, "Next round reward - " + str(next_round_points) + " points!", (650, 75), (75, 525), (163, 73, 163), 0, (), (255, 255, 255), get_font("BAUHS93"))
+            users.append(textbox.OutputBox(screen, players[i][1] + "  -  " + str(players[i][0]) + " points", (int(700/800.*WIDTH), int(70/600.*HEIGHT)), (int(50/800.*WIDTH), int(120/600.*HEIGHT)), (255, 255, 255), 3, (0, 0, 0), (0, 0, 0), FONT_LIB + "ALGER.TTF"))
+        elif i < len(players):
+            users.append(textbox.OutputBox(screen, players[i][1] + "  -  " + str(players[i][0]) + " points", (int(700/800.*WIDTH), int(70/600.*HEIGHT)), (int(50/800.*WIDTH), int((70 * i + 20 + 120)/600.*HEIGHT)), (), 3, (0, 0, 0), (0, 0, 0), FONT_LIB + "ALGER.TTF"))
+    under = textbox.OutputBox(screen, "Next round reward - " + str(next_round_points) + " points!", (int(650/800.*WIDTH), int(75/600.*HEIGHT)), (int(75/800.*WIDTH), int(525/600.*HEIGHT)), (163, 73, 163), 0, (), (255, 255, 255), get_font("BAUHS93"))
     while not finish:
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.QUIT:
+                exit()
                 return True
+            if event.type == pygame.KEYDOWN:
+                # If pressed key is ESC quit program
+                if event.key == pygame.K_ESCAPE:
+                    exit()
+                    return True
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     finish = True
@@ -227,15 +234,17 @@ def load_question(screen, question, photo, answers, qtime):
     :return: Did player exit the game
     """
 
-
+    global users
     # image
     if photo:
         image = pygame.image.load(IMAGES_DIR + "main\\questions.png")
     else:
         image = pygame.image.load(IMAGES_DIR + "main\\questions_no_image.png")
 
+    image = pygame.transform.scale(image, (WIDTH, HEIGHT))
+
     # question
-    question_text = textbox.OutputBox(screen, question, (800, 70), (0, 30), (255, 255, 255), 0, (), (0, 0, 0), get_font("BAUHS93"))
+    question_text = textbox.OutputBox(screen, question, (WIDTH, int(100/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), get_font("BAUHS93"))
     x = 20  # widtgh of a letter, change according to font so the question will be in the middle of the screen
 
     # time
@@ -245,18 +254,36 @@ def load_question(screen, question, photo, answers, qtime):
 
     answer_boxes = []
     for y in range(4):
-        answer_boxes.append(textbox.OutputBox(screen, text=answers[y], size=(335, 105), place=(int(60 + (WIDTH / 2) * (y % 2)), 372 + 120 * int(y / 2)),
+        answer_boxes.append(textbox.OutputBox(screen, text=answers[y], size=(int(335/800.*WIDTH), int(105/600.*HEIGHT)), place=(int(int(60/800.*WIDTH) + (WIDTH / 2) * (y % 2)), int(372/600.*HEIGHT) + int(120/600.*HEIGHT) * int(y / 2)),
                                               color=None, text_color=WHITE, font=get_font("BAUHS93")))
+
+    timerText = textbox.OutputBox(screen, text=str(qtime), size=(int((103-43-6)/800.*WIDTH), int((237-177)/600.*HEIGHT)), place=(int((43+3)/800.*WIDTH), int(177/600.*HEIGHT)),
+                                              color=None, text_color=WHITE, font=get_font("BAUHS93"))
+    timerTextHeader = textbox.OutputBox(screen, text="Seconds:", size=(int(142/800.*WIDTH), int((237-177+100)/600.*HEIGHT)), place=(0, int(177/600.*HEIGHT) - int((237-177+50)/600.*HEIGHT)),
+                                              color=None, text_color=BLACK, font=get_font("BAUHS93"))
+
+    answerText = textbox.OutputBox(screen, text=str(0), size=(int((753-693-6)/800.*WIDTH), int((235-175)/600.*HEIGHT)), place=(int((693+3)/800.*WIDTH), int(175/600.*HEIGHT)),
+                                              color=None, text_color=WHITE, font=get_font("BAUHS93"))
+    answerTextHeader = textbox.OutputBox(screen, text="Answers:", size=(int((800-664)/800.*WIDTH), int((235-175+100)/600.*HEIGHT)), place=(int(664/800.*WIDTH), int(175/600.*HEIGHT) - int((235-175+50)/600.*HEIGHT)),
+                                              color=None, text_color=BLACK, font=get_font("BAUHS93"))
 
     pygame.mixer.music.load(OST_DIR + "question.mp3")
     pygame.mixer.music.set_volume(0.4)
     pygame.mixer.music.play(-1)
-    while time_passed < qtime:
+    answers_amount = 0
+    while time_passed < qtime and answers_amount < len(users):
         events = pygame.event.get()
+        answers_amount = Server.receive()
         for event in events:
             if event.type == pygame.QUIT:
                 pygame.mixer.music.stop()
+                exit()
                 return True
+            if event.type == pygame.KEYDOWN:
+                # If pressed key is ESC quit program
+                if event.key == pygame.K_ESCAPE:
+                    exit()
+                    return True
         screen.blit(image, (0, 0))
 
         # question
@@ -268,15 +295,17 @@ def load_question(screen, question, photo, answers, qtime):
 
         # timer
         time_passed = time.time() - start_time
-        timerText = pygame.font.Font(None, 50).render(str(int(qtime - time_passed)), False, WHITE)
-        if len(str(int(qtime - time_passed))) == 2:
-            screen.blit(timerText, (55, 192))
-            screen.blit(timerText, (705, 192))
-        else:
-            screen.blit(timerText, (63, 192))
-            screen.blit(timerText, (713, 192))
+        timerText.text = str(int(qtime - time_passed))
+        timerText.draw()
+        timerTextHeader.draw()
+
+        answerText.text = str(int(answers_amount)) if answers_amount is not None else "0"
+        answerText.draw()
+        answerTextHeader.draw()
+
+
+
         pygame.display.flip()
-        Server.receive()
     pygame.mixer.music.stop()
     return False
 
@@ -286,30 +315,44 @@ def load_timer(num, screen, question):
     last = time.time()
     current = time.time()
     count = 0
-    question_text = textbox.OutputBox(screen, question, (800, 70), (0, 312), (255, 255, 255), 0, (), (0, 0, 0), get_font("BAUHS93"))
-    while current - first <= num + 0.4:
+    question_text = textbox.OutputBox(screen, question, (WIDTH, int(70/600.*HEIGHT)), (0, int(312/600.*HEIGHT)), (255, 255, 255), 0, (), (0, 0, 0), get_font("BAUHS93"))
+    finish = False
+    while current - first <= num + 0.4 and not finish:
         events = pygame.event.get()
         for event in events:
             if event.type == QUIT:
+                exit()
                 return True
+            if event.type == pygame.KEYDOWN:
+                # If pressed key is ESC quit program
+                if event.key == pygame.K_ESCAPE:
+                    exit()
+                    return True
+            if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        finish = True
         current = time.time()
         if current - last > 0.05:
             hamster_img = pygame.image.load(IMAGES_DIR + "loading\\hamster\\Slide%s.png" % str(count/2 % 12 + 1))
+            size = hamster_img.get_rect().size
+            hamster_img = pygame.transform.scale(hamster_img, (int(size[0]/800.*WIDTH), int(size[1]/600.*HEIGHT)))
 
             image = pygame.image.load(IMAGES_DIR + "loading\wheel\\frame_%s_delay-0.04s.png" % str(19 - (count % 19)).zfill(2))
+            size = image.get_rect().size
+            image = pygame.transform.scale(image, (int(size[0]/800.*WIDTH), int(size[1]/600.*HEIGHT)))
             image.set_colorkey((0, 0, 0))
 
             screen.blit(BLACKSURFACE, (0, 0))
             x = 20 # width of a letter, change according to the font
             question_text.draw()
-            screen.blit(hamster_img, (340, 50))
-            screen.blit(image, (300, 95))
-            bar = pygame.Surface((int((current - first)/num * WIDTH), 60))
+            screen.blit(hamster_img, (int(340/800.*WIDTH), int(50/600.*HEIGHT)))
+            screen.blit(image, (int(300/800.*WIDTH), int(95/600.*HEIGHT)))
+            bar = pygame.Surface((int((current - first)/num * WIDTH), int(60/600.*HEIGHT)))
             bar.fill((124, 0, 255))
-            barop = pygame.Surface((WIDTH - int((current - first-0.3)/num * WIDTH) if WIDTH - int((current - first)/num * WIDTH) > 0 else 0, 60))
+            barop = pygame.Surface((WIDTH - int((current - first-0.3)/num * WIDTH) if WIDTH - int((current - first)/num * WIDTH) > 0 else 0, int(60/600.*HEIGHT)))
             barop.fill((188, 135, 243))
-            screen.blit(barop, (int((current - first-0.3)/num * WIDTH), 400))
-            screen.blit(bar, (0, 400))
+            screen.blit(barop, (int((current - first-0.3)/num * WIDTH), int(400/600.*HEIGHT)))
+            screen.blit(bar, (0, int(400/600.*HEIGHT)))
             pygame.display.flip()
             last = current
             count += 1
@@ -318,14 +361,22 @@ def load_timer(num, screen, question):
 
 def show_answer(screen, res, correct_answer, question):
     res_sum = max(res) if max(res) else 1
-    rc = pygame.image.load(IMAGES_DIR + "main\\red_correct.png")          #loads all of the photoes containning:
-    bc = pygame.image.load(IMAGES_DIR + "main\\blue_correct.png")         #Yellow correct and incorrect ect.
+    rc = pygame.image.load(IMAGES_DIR + "main\\red_correct.png")
+    rc = resfix(rc)
+    bc = pygame.image.load(IMAGES_DIR + "main\\blue_correct.png")
+    bc = resfix(bc)
     yc = pygame.image.load(IMAGES_DIR + "main\\orange_correct.png")
+    yc = resfix(yc)
     gc = pygame.image.load(IMAGES_DIR + "main\\green_correct.png")
+    gc = resfix(gc)
     inrc = pygame.image.load(IMAGES_DIR + "main\\red_incorrect.png")
+    inrc = resfix(inrc)
     inbc = pygame.image.load(IMAGES_DIR + "main\\blue_incorrect.png")
+    inbc = resfix(inbc)
     inyc = pygame.image.load(IMAGES_DIR + "main\\orange_incorrect.png")
+    inyc = resfix(inyc)
     ingc = pygame.image.load(IMAGES_DIR + "main\\green_incorrect.png")
+    ingc = resfix(ingc)
     red = inrc
     blue = inbc
     yellow = inyc
@@ -340,12 +391,13 @@ def show_answer(screen, res, correct_answer, question):
     if correct_answer == 4:
         green = gc
     basic_form = pygame.image.load(IMAGES_DIR + "main\\basic_result_form.png")
+    basic_form = resfix(basic_form)
 
-    Rstartx, Rstarty, Bstartx, Bstarty, Ystartx, Ystarty, Gstartx, Gstarty = 3, 367, 403, 368, 3, 484, 403, 484
+    a = [3, 367, 403, 368, 3, 484, 403, 484]
+    Rstartx, Rstarty, Bstartx, Bstarty, Ystartx, Ystarty, Gstartx, Gstarty = [int(a[x]/800.*WIDTH) if x % 2 == 0 else int(a[x]/600.*HEIGHT) for x in range(len(a))]
     questionFont = pygame.font.Font(get_font("BAUHS93"), 50)
-    question_text = textbox.OutputBox(screen, question, (800, 70), (0, 30), (255, 255, 255), 0, (), (0, 0, 0), get_font("BAUHS93"))
+    question_text = textbox.OutputBox(screen, question, (WIDTH, int(100/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), get_font("BAUHS93"))
 
-    x = 20
     Sx = 60.0/res_sum  # scale of moving according to the amount of answers in x
     Sy = 25.0/res_sum  # scale of moving according to the amount of answers in y
 
@@ -362,15 +414,21 @@ def show_answer(screen, res, correct_answer, question):
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.QUIT:
+                exit()
                 return True
+            if event.type == pygame.KEYDOWN:
+                # If pressed key is ESC quit program
+                if event.key == pygame.K_ESCAPE:
+                    exit()
+                    return True
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     return False
 
         screen.blit(basic_form, (0, 0))
 
-        width = 395     #width of the rectengels
-        height = 111    #height of the rectrngels
+        width = int(395/800.*WIDTH)     #width of the rectengels
+        height = int(111/600.*HEIGHT)    #height of the rectrngels
         if time.time() - last > 0.1:
             last = time.time()
             """Green rectengles"""
@@ -431,7 +489,7 @@ def exit_screen(screen, names, points):
     sizes = [85, 85, 85]
     for i in range(3):
         answerFont = pygame.font.Font(None, sizes[i])
-        while answerFont.size(names[i])[0] > 132:
+        while answerFont.size(names[i])[0] > int(132/800.*WIDTH):
             sizes[i] -= 1
             answerFont = pygame.font.Font(None, sizes[i])
 
@@ -455,17 +513,21 @@ def exit_screen(screen, names, points):
         if current - last > 0.11:
             last = current
             screen.fill((87, 37, 194))
-            for event in pygame.event.get():
+            events = pygame.event.get()
+            for event in events:
                 if event.type == pygame.QUIT:
                     pygame.mixer.music.fadeout(gif*100)
                     finish = True
+                    exit()
 
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
-                    pygame.mixer.music.fadeout(gif*100)
-                    la_finito = True
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        pygame.mixer.music.fadeout(gif*100)
+                        la_finito = True
+
 
             image = pygame.image.load(IMAGES_DIR + "win_background\\frame_%s_delay-0.04s.png" % str(gif % 178).zfill(3))
+            image = resfix(image)
             screen.blit(image, (0, up))
             speed += 1
 
@@ -480,36 +542,28 @@ def exit_screen(screen, names, points):
                     podioms = [x + (178 - gif)/20 for x in podioms]
 
 
-            answerFont = pygame.font.Font(None, sizes[0])
-            answerText = answerFont.render(names[0], False, WHITE, TCHELET)
-            textW, textH = answerFont.size(names[0])
-            screen.blit(answerText, (WIDTH/2 - textW/2, final[0] + podioms[0] - textH))
             image = pygame.image.load(IMAGES_DIR + "winners_stand\\Slide1.png")
-            image.set_colorkey(BLACK)
-            screen.blit(image, (WIDTH/2 - 74, final[0] + podioms[0]))
-            textbox.OutputBox(screen, str(points[0]) + " points!", (74*2, 45), (WIDTH/2 - 74, final[0] + podioms[0] + 90), None, 0, None, (255, 255, 255)).draw()
+            image = pygame.transform.scale(image, (WIDTH/5, int(HEIGHT*1.3)))
+            screen.blit(image, (int((800/2 - 74)/800.*WIDTH), int((final[0] + podioms[0])/600.*HEIGHT)))
+            textbox.OutputBox(screen, str(points[0]) + " points!", (WIDTH/5, int(45/600.*HEIGHT)), (int((800/2 - 74)/800.*WIDTH), int((final[0] + podioms[0] + 130)/600.*HEIGHT)), None, 0, None, (255, 255, 255)).draw()
+            textbox.OutputBox(screen, names[0], (WIDTH/5, int(80/600.*HEIGHT)), (int((800/2 - 74)/800.*WIDTH), int((final[0] + podioms[0])/600.*HEIGHT)), None, 0, None, (255, 255, 255)).draw()
 
-            answerFont = pygame.font.Font(None, sizes[1])
-            answerText = answerFont.render(names[1], False, WHITE, TCHELET)
-            textW, textH = answerFont.size(names[1])
-            screen.blit(answerText, (WIDTH/2 - 74*3 - textW/2, final[1] + podioms[1] - textH))
+
             image = pygame.image.load(IMAGES_DIR + "winners_stand\\Slide2.png")
-            image.set_colorkey(BLACK)
-            screen.blit(image, (WIDTH/2 - 74*4, final[1] + podioms[1]))
-            textbox.OutputBox(screen, str(points[1]) + " points!", (74*2, 45), (WIDTH/2 - 74*4, final[1] + podioms[1] + 90), None, 0, None, (255, 255, 255)).draw()
+            image = pygame.transform.scale(image, (WIDTH/5, int(HEIGHT*1.3)))
+            screen.blit(image, (int((800/2 - 74*4)/800.*WIDTH), int((final[1] + podioms[1])/600.*HEIGHT)))
+            textbox.OutputBox(screen, str(points[1]) + " points!", (WIDTH/5, int(45/600.*HEIGHT)), (int((800/2 - 74*4)/800.*WIDTH), int((final[1] + podioms[1] + 130)/600.*HEIGHT)), None, 0, None, (255, 255, 255)).draw()
+            textbox.OutputBox(screen, names[1], (WIDTH/5, int(80/600.*HEIGHT)), (int((800/2 - 74*4)/800.*WIDTH), int((final[1] + podioms[1])/600.*HEIGHT)), None, 0, None, (255, 255, 255)).draw()
 
-            answerFont = pygame.font.Font(None, sizes[2])
-            answerText = answerFont.render(names[2], False, WHITE, TCHELET)
-            textW, textH = answerFont.size(names[2])
-            screen.blit(answerText, (WIDTH/2 + 74*3 - textW/2, final[2] + podioms[2] - textH))
             image = pygame.image.load(IMAGES_DIR + "winners_stand\\Slide3.png")
-            image.set_colorkey(BLACK)
-            screen.blit(image, (WIDTH/2 + 74*2, final[2] + podioms[2]))
-            textbox.OutputBox(screen, str(points[2]) + " points!", (74*2, 45), (WIDTH/2 + 74*2, final[2] + podioms[2] + 90), None, 0, None, (255, 255, 255)).draw()
+            image = pygame.transform.scale(image, (WIDTH/5, int(HEIGHT*1.3)))
+            screen.blit(image, (int((800/2 + 74*2)/800.*WIDTH), int((final[2] + podioms[2])/600.*HEIGHT)))
+            textbox.OutputBox(screen, str(points[2]) + " points!", (WIDTH/5, int(45/600.*HEIGHT)), (int((800/2 + 74*2)/800.*WIDTH), int((final[2] + podioms[2] + 130)/600.*HEIGHT)), None, 0, None, (255, 255, 255)).draw()
+            textbox.OutputBox(screen, names[2], (WIDTH/5, int(80/600.*HEIGHT)), (int((800/2 + 74*2)/800.*WIDTH), int((final[2] + podioms[2])/600.*HEIGHT)), None, 0, None, (255, 255, 255)).draw()
 
             if la_finito:
                 if gif <= 56:
-                    if up > -HEIGHT+100:
+                    if up > -HEIGHT+HEIGHT/8:
                         up -= 10
                     else:
                         finish = True
@@ -538,7 +592,7 @@ def print_names(screen, names):
             screen.blit(name_text, (x % 4 * (WIDTH / 4) + 20, 245 + int(x / 4) * 60))
         else:
             largeText = pygame.font.Font(None, 60)
-            name_text = largeText.render(names[x], False, BLACK)  # prin
+            name_text = largeText.render(names[x], False, BLACK)  # print
             screen.blit(name_text, (x % 4 * (WIDTH / 4), 230 + int(x / 4) * 60))
 
     pygame.display.flip()
@@ -546,6 +600,22 @@ def print_names(screen, names):
 
 def get_font(name):
     return FONT_LIB + name + ".ttf"
+
+
+def check_for_place(screen, events, width=1):
+    pos = pygame.mouse.get_pos()
+    for event in events:
+        if event.type == MouseButtonDown:#player clicks the screen(should be only button)
+            if event.button == 1:
+                print pos
+
+    pygame.draw.line(screen, (0, 0, 0), (pos[0], 0), (pos[0], HEIGHT), width)
+    pygame.draw.line(screen, (0, 0, 0), (0, pos[1]), (WIDTH, pos[1]), width)
+
+
+def resfix(image):
+    size = image.get_rect().size
+    return pygame.transform.scale(image, (int(size[0]/800.*WIDTH), int(size[1]/600.*HEIGHT)))
 
 
 class Button:

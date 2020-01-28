@@ -5,6 +5,7 @@ import thread
 import traceback
 import os
 import sys
+import operator
 sys.path.insert(0, os.getcwd()+'/files')
 import ServerDitection
 
@@ -32,6 +33,9 @@ open_client_sockets = []
 
 __players = []
 # A list of all players in the game
+
+answersanount = 0
+#the amount of answers recieved so far
 
 
 #-----------------------Classes-----------------------
@@ -78,12 +82,12 @@ def __handle_client_request(client_socket, request):
     :param request: what was received from the user
     :return: none
     """
-    global __mandatory, open_client_sockets
+    global __mandatory, open_client_sockets, answersanount
     player = [x for x in __players if x.socket == client_socket]
     if player:
         player = player[0]
     if request[:len("login: ")] == "login: ":
-        if request.split("login: ")[1] not in [x.name for x in __players]:
+        if request.split("login: ")[1] and request.split("login: ")[1] not in [x.name for x in __players]:
             __players.append(Player(request.split("login: ")[1], client_socket))
             __mandatory.append((client_socket, 'OK'))
         else:
@@ -92,6 +96,7 @@ def __handle_client_request(client_socket, request):
     elif request[:len("answer: ")] == "answer: ":
         if player.answer is None:
             player.submit_answer(int(request.split("answer: ")[1]))
+            answersanount += 1
 
     elif request == "get_score":
         __mandatory.append((player.socket, "score: " + str(player.score)))
@@ -153,7 +158,7 @@ def update_login():
 def receive():
     """
     receives all of the players answers and saves them but doesn't respond yet in addition to answering trier mandatory requests.
-    :return: none
+    :return: how many players answered yet
     """
     try:
         if open_client_sockets:
@@ -164,6 +169,7 @@ def receive():
             for current_socket in xlist:
                 open_client_sockets.remove(current_socket)
             __send__mandatory(wlist)
+            return answersanount
     except Exception:
         pass
 
@@ -176,6 +182,8 @@ def results(correct_answer, score):
     :return: a list containing how many users answered each answer
     """
     try:
+        global answersanount
+        answersanount = 0
         if open_client_sockets:
             global __server_socket
             rlist, wlist, xlist = select([__server_socket] + open_client_sockets, open_client_sockets, open_client_sockets, 0.1)
@@ -226,7 +234,7 @@ def get_players():
     Returns a dictionary containing all players and their corresponding score, sorted from highest to lowest
     """
     try:
-        return {x.name: x.score for x in __players}
+        return sorted([(x.score, x.name) for x in __players], reverse=True)
     except Exception:
         pass
 

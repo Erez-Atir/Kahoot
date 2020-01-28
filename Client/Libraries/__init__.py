@@ -9,4 +9,4 @@ sys.dont_write_bytecode = True
 import ServerDitection
 import socket
 
-#IP = ServerDitection.server_scout().split("Here Be Server: ")[1];my_socket = socket.socket();my_socket.connect((IP, 23))
+IP = ServerDitection.server_scout().split("Here Be Server: ")[1];my_socket = socket.socket();my_socket.connect((IP, 23))
