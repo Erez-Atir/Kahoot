@@ -213,7 +213,7 @@ def results(correct_answer, score):
         return [0, 0, 0, 0]
 
 
-def new_question(time):
+def new_question(time, answers):
     """
     Notifies all players that there is a new question available for them to answer
     :param time: how much time they have to answer the question
@@ -222,7 +222,7 @@ def new_question(time):
     try:
         if open_client_sockets:
             for player in __players:
-                __mandatory.append((player.socket, 'new: ' + str(time)))
+                __mandatory.append((player.socket, 'new: ' + str(time) + str(answers)))
             rlist, wlist, xlist = select([__server_socket] + open_client_sockets, open_client_sockets, open_client_sockets, 0.1)
             __send__mandatory(wlist)
     except Exception:

@@ -1,5 +1,7 @@
 import pygame
 import time
+from win32api import GetKeyState
+from win32con import VK_CAPITAL
 
 pygame.font.init()
 FONT_LIB = pygame.font.match_font('bitstreamverasans')[0:-10] + "\\"
@@ -18,7 +20,7 @@ class InputBox:
     :param text_color: (R, G, B) of the text color
     :param font: the name of the font for the text
     """
-    def __init__(self, screen, size, place, color=(255, 255, 255), border_width=0, border_color=(0, 0, 0), text_color=(0, 0, 0), font="Arial.ttf"):
+    def __init__(self, screen, size, place, color=(255, 255, 255), border_width=0, border_color=(0, 0, 0), text_color=(0, 0, 0), font="Arial.ttf", limit=None):
         self.__start = time.time()
         self.__input_text = ""
         self.__keys = {letter: time.time() for letter in [chr(let) for let in range(97, 123) + range(48, 58) + [8, 32, 127]] + ["<-", "->"]}
@@ -33,6 +35,7 @@ class InputBox:
         self.border_color = border_color
         self.text_color = text_color
         self.font = FONT_LIB + font
+        self.limit = limit
 
     def draw(self):
         """
@@ -53,7 +56,7 @@ class InputBox:
         backspaced = False
         if self.__toggle:
             pressed = pygame.key.get_pressed()
-            shift = 97-65 if any(pressed[303:305]) else 0
+            shift = 97-65 if any(pressed[303:305]) or GetKeyState(VK_CAPITAL) else 0
             for key in range(97, 123) + range(48, 58) + [8, 32, 127, 275, 276, 278, 279]:
                 if pressed[key]:
                     if key in [275, 276]:
@@ -112,6 +115,8 @@ class InputBox:
                         self.__keys[key] = 0
                     else:
                         self.__keys[chr(key)] = 0
+        if self.limit:
+            self.__input_text = self.__input_text[:self.limit]
         font_size = self.__last_size if self.__last_size else self.size[1]
         text_font = pygame.font.Font(self.font, font_size)
         while any(x >= y*0.95 for x, y in zip(text_font.size(self.__input_text + '|'), self.size)):

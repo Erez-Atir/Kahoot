@@ -24,6 +24,7 @@ answer = None
 score = None
 behind = None
 place = None
+answers = None
 
 
 #-----------------------Library-----------------------
@@ -107,7 +108,20 @@ def time_is_up():
     handle_server()
     if not timer:
         return True
-    return timer - int(time.time()) <= 0
+    return timer - int(time.time()) < 0
+
+
+def get_answers():
+    """
+    checks if the question has finished
+    :return True -> if it did
+            False -> if it didn't
+    """
+    global answers
+    handle_server()
+    if not timer:
+        raise Exception("No question currently in progress")
+    return answers
 
 
 def result():
@@ -195,7 +209,7 @@ def handle_server():
     updates the server connection
     :return: a dictionary containing everything that was received. {result, score, behind, place}
     """
-    global my_socket, game_finished, new_question, timer, behind, score, place, answer, answered_current
+    global my_socket, game_finished, new_question, timer, behind, score, place, answer, answered_current, answers
 
 
     rlist, wlist, xlist = select([my_socket], [my_socket], [my_socket], 0.1)
@@ -219,8 +233,9 @@ def handle_server():
             answered_current = False
 
         elif data[:len("new: ")] == "new: ":
-            timer = int(time.time()) + int(data.split(": ")[1])
+            timer = int(time.time()) + int(data.split(": ")[1].split("[")[0]) - 1
             new_question = True
+            answers = data.split("['")[1].split("']")[0].replace("\"", "\'").replace("\\n", "\n").split("', '")
             answer = None
 
         elif data[:len("score: ")] == "score: ":

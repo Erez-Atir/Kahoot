@@ -125,12 +125,12 @@ def main():
     pygame.mouse.set_cursor(*pygame.cursors.arrow)
     Server.ServerDitection.finish = True
     if not done:
-        done = add_question(screen, 5, "Is your GUI working?", ["Yes!", "No!", "I can't answer because\nit has already crashed", "Who is GUI?"], 1, None, 40, 100, True)
+        done = add_question(screen, 5, "Which one do you think is better?", ["With shapes!", "With text", "I don't know...\nPick whatever you want", "They are both ugly"], 1, None, 10, 100, True)
     if not done:
         done = add_question(screen, 7, "What can you do in a Pygame program?", ["Display photos", "Play sounds", "Create moving sprites", "All of the answers are correct"], 4, None, 40, 150)
     if not done:
         Server.end_game()
-        for buffer in xrange(100):
+        for buffer in xrange(1000):
             Server.receive()
         names = Server.get_players()
         players = [x[1] for x in names]
@@ -166,7 +166,7 @@ def add_question(screen, timer, question, answers, correct_answer, photo, qtime,
 
         done = load_timer(timer, screen, question)#set timmer for certain amount of time + print it
         if not done:
-            Server.new_question(qtime) # sends a message to all client that a new question is now available
+            Server.new_question(qtime, answers) # sends a message to all client that a new question is now available
             done = load_question(screen, question, photo, answers, qtime) #"""calls a function to print the question"""
             if not done:
                 done = show_answer(screen, Server.results(correct_answer, points), correct_answer, question)
@@ -328,9 +328,9 @@ def load_timer(num, screen, question):
                 if event.key == pygame.K_ESCAPE:
                     exit()
                     return True
-            if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_SPACE:
-                        finish = True
+            #if event.type == pygame.KEYDOWN:
+            #        if event.key == pygame.K_SPACE:
+            #            finish = True
         current = time.time()
         if current - last > 0.05:
             hamster_img = pygame.image.load(IMAGES_DIR + "loading\\hamster\\Slide%s.png" % str(count/2 % 12 + 1))
@@ -522,8 +522,9 @@ def exit_screen(screen, names, points):
 
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
-                        pygame.mixer.music.fadeout(gif*100)
-                        la_finito = True
+                        if gif > 56:
+                            pygame.mixer.music.fadeout(gif*100)
+                            la_finito = True
 
 
             image = pygame.image.load(IMAGES_DIR + "win_background\\frame_%s_delay-0.04s.png" % str(gif % 178).zfill(3))
@@ -546,20 +547,20 @@ def exit_screen(screen, names, points):
             image = pygame.transform.scale(image, (WIDTH/5, int(HEIGHT*1.3)))
             screen.blit(image, (int((800/2 - 74)/800.*WIDTH), int((final[0] + podioms[0])/600.*HEIGHT)))
             textbox.OutputBox(screen, str(points[0]) + " points!", (WIDTH/5, int(45/600.*HEIGHT)), (int((800/2 - 74)/800.*WIDTH), int((final[0] + podioms[0] + 130)/600.*HEIGHT)), None, 0, None, (255, 255, 255)).draw()
-            textbox.OutputBox(screen, names[0], (WIDTH/5, int(80/600.*HEIGHT)), (int((800/2 - 74)/800.*WIDTH), int((final[0] + podioms[0])/600.*HEIGHT)), None, 0, None, (255, 255, 255)).draw()
+            textbox.OutputBox(screen, names[0], (WIDTH/5-WIDTH/25, int(80/600.*HEIGHT)), (int((800/2 - 74)/800.*WIDTH+WIDTH/50), int((final[0] + podioms[0])/600.*HEIGHT)), None, 0, None, (255, 255, 255)).draw()
 
 
             image = pygame.image.load(IMAGES_DIR + "winners_stand\\Slide2.png")
             image = pygame.transform.scale(image, (WIDTH/5, int(HEIGHT*1.3)))
             screen.blit(image, (int((800/2 - 74*4)/800.*WIDTH), int((final[1] + podioms[1])/600.*HEIGHT)))
             textbox.OutputBox(screen, str(points[1]) + " points!", (WIDTH/5, int(45/600.*HEIGHT)), (int((800/2 - 74*4)/800.*WIDTH), int((final[1] + podioms[1] + 130)/600.*HEIGHT)), None, 0, None, (255, 255, 255)).draw()
-            textbox.OutputBox(screen, names[1], (WIDTH/5, int(80/600.*HEIGHT)), (int((800/2 - 74*4)/800.*WIDTH), int((final[1] + podioms[1])/600.*HEIGHT)), None, 0, None, (255, 255, 255)).draw()
+            textbox.OutputBox(screen, names[1], (WIDTH/5-WIDTH/25, int(80/600.*HEIGHT)), (int((800/2 - 74*4)/800.*WIDTH+WIDTH/50), int((final[1] + podioms[1])/600.*HEIGHT)), None, 0, None, (255, 255, 255)).draw()
 
             image = pygame.image.load(IMAGES_DIR + "winners_stand\\Slide3.png")
             image = pygame.transform.scale(image, (WIDTH/5, int(HEIGHT*1.3)))
             screen.blit(image, (int((800/2 + 74*2)/800.*WIDTH), int((final[2] + podioms[2])/600.*HEIGHT)))
             textbox.OutputBox(screen, str(points[2]) + " points!", (WIDTH/5, int(45/600.*HEIGHT)), (int((800/2 + 74*2)/800.*WIDTH), int((final[2] + podioms[2] + 130)/600.*HEIGHT)), None, 0, None, (255, 255, 255)).draw()
-            textbox.OutputBox(screen, names[2], (WIDTH/5, int(80/600.*HEIGHT)), (int((800/2 + 74*2)/800.*WIDTH), int((final[2] + podioms[2])/600.*HEIGHT)), None, 0, None, (255, 255, 255)).draw()
+            textbox.OutputBox(screen, names[2], (WIDTH/5-WIDTH/25, int(80/600.*HEIGHT)), (int((800/2 + 74*2)/800.*WIDTH+WIDTH/50), int((final[2] + podioms[2])/600.*HEIGHT)), None, 0, None, (255, 255, 255)).draw()
 
             if la_finito:
                 if gif <= 56:
@@ -581,7 +582,7 @@ def exit_screen(screen, names, points):
                 gif += 1
 
             pygame.display.flip()
-            clock.tick(60)
+            clock.tick(30)
 
 
 def print_names(screen, names):
@@ -589,11 +590,11 @@ def print_names(screen, names):
         if len(names[x] ) > 3:
             largeText = pygame.font.Font(None, int(WIDTH/4/len(names[x])) - int(30/len(names[x])) + 5)
             name_text = largeText.render(names[x], False, BLACK)#print the name
-            screen.blit(name_text, (x % 4 * (WIDTH / 4) + 20, 245 + int(x / 4) * 60))
+            screen.blit(name_text, (x % 4 * (WIDTH / 4) + 20, int(245/600.*HEIGHT) + int(x / 4) * 60))
         else:
             largeText = pygame.font.Font(None, 60)
             name_text = largeText.render(names[x], False, BLACK)  # print
-            screen.blit(name_text, (x % 4 * (WIDTH / 4), 230 + int(x / 4) * 60))
+            screen.blit(name_text, (x % 4 * (WIDTH / 4), int(230/600.*HEIGHT) + int(x / 4) * 60))
 
     pygame.display.flip()
 
