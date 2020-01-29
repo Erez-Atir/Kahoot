@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4a5628d7-df6f-4558-bd47-85e0ba4365e8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/Kahoot.py" afterPath="$PROJECT_DIR$/Client/Kahoot.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/Kahoot.py" afterPath="$PROJECT_DIR$/Server/Kahoot.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/files/Server.py" afterPath="$PROJECT_DIR$/Server/files/Server.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/Libraries/client.py" afterPath="$PROJECT_DIR$/Client/Libraries/client.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/Libraries/textbox.py" afterPath="$PROJECT_DIR$/Client/Libraries/textbox.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Kahoot.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -71,7 +66,7 @@
       <file leaf-file-name="Kahoot.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Client/Kahoot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="199" column="41" selection-start="8907" selection-end="8907" vertical-scroll-proportion="0.1016129" vertical-offset="3519" max-vertical-offset="7758">
+            <state line="227" column="8" selection-start="10298" selection-end="10298" vertical-scroll-proportion="0.82741934" vertical-offset="3573" max-vertical-offset="7776">
               <folding>
                 <element signature="e#55#68#0" expanded="true" />
               </folding>
@@ -590,16 +585,17 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19273302" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39870688" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2937365" sideWeight="0.5002633" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28833693" sideWeight="0.4997367" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -814,7 +810,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Kahoot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="199" column="41" selection-start="8907" selection-end="8907" vertical-scroll-proportion="0.1016129" vertical-offset="3519" max-vertical-offset="7758">
+        <state line="227" column="8" selection-start="10298" selection-end="10298" vertical-scroll-proportion="0.82741934" vertical-offset="3573" max-vertical-offset="7776">
           <folding>
             <element signature="e#55#68#0" expanded="true" />
           </folding>

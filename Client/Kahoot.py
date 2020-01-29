@@ -197,7 +197,7 @@ def main_screen():
                                 border_width=0, border_color=WHITE, text_color=WHITE)
     button4 = textbox.OutputBox(screen=screen, text=answers[3], size=resfix(735, 385), place=resfix(755, 405), color=GREEN,
                                 border_width=0, border_color=WHITE, text_color=WHITE)
-    timer = textbox.OutputBox(screen=sc  reen, text="", size=(size[0]/3, size[1]/3), place=((WIDTH-size[0])/2+size[0]/3, (HEIGHT-size[1])/2+size[1]/3), color=None, border_width=0, border_color=BLACK, text_color=WHITE)
+    timer = textbox.OutputBox(screen=screen, text="", size=(size[0]/3, size[1]/3), place=((WIDTH-size[0])/2+size[0]/3, (HEIGHT-size[1])/2+size[1]/3), color=None, border_width=0, border_color=BLACK, text_color=WHITE)
 
     while not client.time_is_up():
         mouse = pygame.mouse.get_pos()
@@ -225,6 +225,7 @@ def main_screen():
         timer.text = str(thymin) if thymin >= 0 else str(0)
         pygame.draw.circle(screen, PURPLE, resfix(1500/2, 800/2), resfix(100))
         timer.draw()
+        
         screen.fill(WHITE)
         button1.draw()
         button2.draw()
