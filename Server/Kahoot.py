@@ -28,6 +28,7 @@ screen = pygame.display.set_mode((1000, 700))  # set screen wid =800, hieght =60
 size = width, height = pygame.display.Info().current_w, pygame.display.Info().current_h
 WIDTH = size[0]
 HEIGHT = size[1]
+clock = pygame.time.Clock()
 
 """vars for un used libary update_login"""
 LASTUPDATECALL = time.time()
@@ -48,20 +49,10 @@ def main():
     pygame.display.set_caption("Kaboot")
     pygame.display.flip()
     pygame.font.init()
-    if os.path.exists(IMAGES_DIR + "login\\log_screen.png"): #if path to an image exists
-        log_screen = pygame.image.load(IMAGES_DIR + "login\\log_screen.png")#load image
-        size = log_screen.get_rect().size
-        log_screen = pygame.transform.scale(log_screen, (int(size[0]/800.*WIDTH), int(size[1]/600.*HEIGHT)))
-        screen.blit(log_screen, (0,0))
-        pygame.display.flip()
-    else:                                             #else
-        log_screen = pygame.Surface((WIDTH, HEIGHT))  #load nothing
-    if os.path.exists(IMAGES_DIR + "login\\log_screen_start_selected.png"): #if path to an image exists
-        log_screen_start_selcted = pygame.image.load(IMAGES_DIR + "login\\log_screen_start_selected.png") #load image
-        size = log_screen_start_selcted.get_rect().size
-        log_screen_start_selcted = pygame.transform.scale(log_screen_start_selcted, (int(size[0]/800.*WIDTH), int(size[1]/600.*HEIGHT)))
-    else:
-        log_screen_start_selcted = pygame.Surface((WIDTH, HEIGHT)) #white surface incase path doesn't exists
+
+    a = textbox.OutputBox(screen, "KABOOT!", (WIDTH, int(100/600.*HEIGHT)), (0, int(50/600.*HEIGHT)), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
+    b = textbox.OutputBox(screen, "No Users Logged In", (WIDTH, int(50/600.*HEIGHT)), (0, int(175/600.*HEIGHT)), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
+    c = textbox.OutputBox(screen, "Start", (int(770/800.*WIDTH-25/800.*WIDTH), int(580/600.*HEIGHT-490/600.*HEIGHT)), (int(25/800.*WIDTH), int(490/600.*HEIGHT)), (255, 255, 255), 0, (0, 0, 0), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
 
     prev_users = Server.update_login() #gets list of names
     print_names(screen, prev_users)#prints the name to the screen
@@ -71,6 +62,7 @@ def main():
     pygame.mixer.init()
     pygame.mixer.music.load(OST_DIR + "login.mp3")
     pygame.mixer.music.play(-1)
+    trying = 0
     while not start_game and not done: #while game was not exited and game is still at the log in part
         events = pygame.event.get()
         """checks events, user input"""
@@ -96,13 +88,32 @@ def main():
         """"load screen"""
         x, y = mouse_loc                                   #gets mouse location
         if 25/800.*WIDTH < x and x < 770/800.*WIDTH and y > 490/600.*HEIGHT and y < 580/600.*HEIGHT:    # if mouse above start button=
-            screen.blit(log_screen_start_selcted, (0, 0))  # fill the screen with bold "start" image
+            screen.fill((35, 177, 76))
+            for topstart in [WIDTH/20+x*int(WIDTH/10) for x in range(20)]:
+                pygame.draw.line(screen, (176, 235, 48), (topstart, -10), (-10, topstart), int(0.0125*WIDTH))
+            a.draw()
+            b.draw()
+            c.border_width = 6
+            c.draw()
             pygame.mouse.set_cursor(*pygame.cursors.broken_x)# set cursor to broken x
         else:
-            screen.blit(log_screen, (0, 0))  # fill screen with regaular log screen
+            screen.fill((35, 177, 76))
+            for topstart in [x*int(WIDTH/10) for x in range(20)]:
+                pygame.draw.line(screen, (176, 235, 48), (trying + topstart, -10), (-10, trying + topstart), int(0.0125*WIDTH))
+            a.draw()
+            b.draw()
+            c.border_width = 0
+            c.draw()
             pygame.mouse.set_cursor(*pygame.cursors.arrow)  # set cursor to an arrow
 
         users = Server.update_login()#gets updated list of names
+        if users:
+            if len(users) == 1:
+                b.text = str(len(users)) + " User Logged In"
+            else:
+                b.text = str(len(users)) + " Users Logged In"
+        else:
+            b.text = "No Users Logged In"
 
         """update list"""
         if users != prev_users:
@@ -121,13 +132,24 @@ def main():
                         already_in = True
                 if not already_in:
                     prev_users.remove(prev_user)
-        print_names(screen, prev_users) #print the users
+
+        print_names(screen, prev_users)
+
+        pygame.display.flip()
+        trying += 1
+        if trying == WIDTH/10:
+            trying = 0
+        clock.tick(60)
+
+
+
+
     pygame.mouse.set_cursor(*pygame.cursors.arrow)
     Server.ServerDitection.finish = True
     if not done:
         done = add_question(screen, 5, "Which one do you think is better?", ["With shapes!", "With text", "I don't know...\nPick whatever you want", "They are both ugly"], 1, None, 10, 100, True)
-    if not done:
-        done = add_question(screen, 7, "What can you do in a Pygame program?", ["Display photos", "Play sounds", "Create moving sprites", "All of the answers are correct"], 4, None, 40, 150)
+    #if not done:
+    #    done = add_question(screen, 7, "What can you do in a Pygame program?", ["Display photos", "Play sounds", "Create moving sprites", "All of the answers are correct"], 4, None, 40, 150)
     if not done:
         Server.end_game()
         for buffer in xrange(1000):
@@ -187,14 +209,14 @@ def score_board(screen, players, next_round_points):
 
     #print players
     finish = False
-    header = textbox.OutputBox(screen, "Scoreboard", (WIDTH, int(90/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), "files\\RosewoodStd-Regular.otf")
+    header = textbox.OutputBox(screen, "Scoreboard", (WIDTH, int(80/600.*HEIGHT)), (0, int(10/600.*HEIGHT)), (255, 255, 255), 0, (), (0, 0, 0), "files\\RosewoodStd-Regular.otf")
     users = []
     for i in range(5):
         if not i and players:
             users.append(textbox.OutputBox(screen, players[i][1] + "  -  " + str(players[i][0]) + " points", (int(700/800.*WIDTH), int(70/600.*HEIGHT)), (int(50/800.*WIDTH), int(120/600.*HEIGHT)), (255, 255, 255), 3, (0, 0, 0), (0, 0, 0), FONT_LIB + "ALGER.TTF"))
         elif i < len(players):
             users.append(textbox.OutputBox(screen, players[i][1] + "  -  " + str(players[i][0]) + " points", (int(700/800.*WIDTH), int(70/600.*HEIGHT)), (int(50/800.*WIDTH), int((70 * i + 20 + 120)/600.*HEIGHT)), (), 3, (0, 0, 0), (0, 0, 0), FONT_LIB + "ALGER.TTF"))
-    under = textbox.OutputBox(screen, "Next round reward - " + str(next_round_points) + " points!", (int(650/800.*WIDTH), int(75/600.*HEIGHT)), (int(75/800.*WIDTH), int(525/600.*HEIGHT)), (163, 73, 163), 0, (), (255, 255, 255), get_font("BAUHS93"))
+    under = textbox.OutputBox(screen, "Next round reward - " + str(next_round_points) + " points!", (int(650/800.*WIDTH), int(75/600.*HEIGHT)), (int(75/800.*WIDTH), int(525/600.*HEIGHT)), (163, 73, 163), 0, (), (255, 255, 255), "files\\montserrat\\Montserrat-Black.otf")
     while not finish:
         events = pygame.event.get()
         for event in events:
@@ -244,7 +266,7 @@ def load_question(screen, question, photo, answers, qtime):
     image = pygame.transform.scale(image, (WIDTH, HEIGHT))
 
     # question
-    question_text = textbox.OutputBox(screen, question, (WIDTH, int(100/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), get_font("BAUHS93"))
+    question_text = textbox.OutputBox(screen, question, (WIDTH, int(100/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
     x = 20  # widtgh of a letter, change according to font so the question will be in the middle of the screen
 
     # time
@@ -255,17 +277,17 @@ def load_question(screen, question, photo, answers, qtime):
     answer_boxes = []
     for y in range(4):
         answer_boxes.append(textbox.OutputBox(screen, text=answers[y], size=(int(335/800.*WIDTH), int(105/600.*HEIGHT)), place=(int(int(60/800.*WIDTH) + (WIDTH / 2) * (y % 2)), int(372/600.*HEIGHT) + int(120/600.*HEIGHT) * int(y / 2)),
-                                              color=None, text_color=WHITE, font=get_font("BAUHS93")))
+                                              color=None, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf"))
 
     timerText = textbox.OutputBox(screen, text=str(qtime), size=(int((103-43-6)/800.*WIDTH), int((237-177)/600.*HEIGHT)), place=(int((43+3)/800.*WIDTH), int(177/600.*HEIGHT)),
-                                              color=None, text_color=WHITE, font=get_font("BAUHS93"))
+                                              color=None, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
     timerTextHeader = textbox.OutputBox(screen, text="Seconds:", size=(int(142/800.*WIDTH), int((237-177+100)/600.*HEIGHT)), place=(0, int(177/600.*HEIGHT) - int((237-177+50)/600.*HEIGHT)),
-                                              color=None, text_color=BLACK, font=get_font("BAUHS93"))
+                                              color=None, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
 
     answerText = textbox.OutputBox(screen, text=str(0), size=(int((753-693-6)/800.*WIDTH), int((235-175)/600.*HEIGHT)), place=(int((693+3)/800.*WIDTH), int(175/600.*HEIGHT)),
-                                              color=None, text_color=WHITE, font=get_font("BAUHS93"))
+                                              color=None, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
     answerTextHeader = textbox.OutputBox(screen, text="Answers:", size=(int((800-664)/800.*WIDTH), int((235-175+100)/600.*HEIGHT)), place=(int(664/800.*WIDTH), int(175/600.*HEIGHT) - int((235-175+50)/600.*HEIGHT)),
-                                              color=None, text_color=BLACK, font=get_font("BAUHS93"))
+                                              color=None, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
 
     pygame.mixer.music.load(OST_DIR + "question.mp3")
     pygame.mixer.music.set_volume(0.4)
@@ -315,7 +337,7 @@ def load_timer(num, screen, question):
     last = time.time()
     current = time.time()
     count = 0
-    question_text = textbox.OutputBox(screen, question, (WIDTH, int(70/600.*HEIGHT)), (0, int(312/600.*HEIGHT)), (255, 255, 255), 0, (), (0, 0, 0), get_font("BAUHS93"))
+    question_text = textbox.OutputBox(screen, question, (WIDTH, int(70/600.*HEIGHT)), (0, int(312/600.*HEIGHT)), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
     finish = False
     while current - first <= num + 0.4 and not finish:
         events = pygame.event.get()
@@ -395,8 +417,8 @@ def show_answer(screen, res, correct_answer, question):
 
     a = [3, 367, 403, 368, 3, 484, 403, 484]
     Rstartx, Rstarty, Bstartx, Bstarty, Ystartx, Ystarty, Gstartx, Gstarty = [int(a[x]/800.*WIDTH) if x % 2 == 0 else int(a[x]/600.*HEIGHT) for x in range(len(a))]
-    questionFont = pygame.font.Font(get_font("BAUHS93"), 50)
-    question_text = textbox.OutputBox(screen, question, (WIDTH, int(100/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), get_font("BAUHS93"))
+    questionFont = pygame.font.Font("files\\montserrat\\Montserrat-Black.otf", 50)
+    question_text = textbox.OutputBox(screen, question, (WIDTH, int(100/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
 
     Sx = 60.0/res_sum  # scale of moving according to the amount of answers in x
     Sy = 25.0/res_sum  # scale of moving according to the amount of answers in y
@@ -484,7 +506,7 @@ def show_answer(screen, res, correct_answer, question):
 
 def exit_screen(screen, names, points):
 
-    clock = pygame.time.Clock()
+
 
     sizes = [85, 85, 85]
     for i in range(3):
@@ -510,83 +532,89 @@ def exit_screen(screen, names, points):
     while not finish:
         Server.receive()
         current = time.time()
-        if current - last > 0.11:
-            last = current
-            screen.fill((87, 37, 194))
-            events = pygame.event.get()
-            for event in events:
-                if event.type == pygame.QUIT:
-                    pygame.mixer.music.fadeout(gif*100)
-                    finish = True
-                    exit()
+        last = current
+        screen.fill((87, 37, 194))
+        events = pygame.event.get()
+        for event in events:
+            if event.type == pygame.QUIT:
+                pygame.mixer.music.fadeout(gif*100)
+                finish = True
+                exit()
 
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_SPACE:
-                        if gif > 56:
-                            pygame.mixer.music.fadeout(gif*100)
-                            la_finito = True
-
-
-            image = pygame.image.load(IMAGES_DIR + "win_background\\frame_%s_delay-0.04s.png" % str(gif % 178).zfill(3))
-            image = resfix(image)
-            screen.blit(image, (0, up))
-            speed += 1
-
-            if not la_finito:
-                if current - start >= 7:
-                    podioms[0] = podioms[0] - 6 if podioms[0] - 6 >= 0 else 0
-                if current - start >= 14.5:
-                    podioms[1] = podioms[1] - 6 if podioms[1] - 6 >= 0 else 0
-                if current - start >= 23:
-                    podioms[2] = podioms[2] - 6 if podioms[2] - 6 >= 0 else 0
-            else:
-                    podioms = [x + (178 - gif)/20 for x in podioms]
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    if gif > 56:
+                        pygame.mixer.music.fadeout(gif*100)
+                        la_finito = True
 
 
-            image = pygame.image.load(IMAGES_DIR + "winners_stand\\Slide1.png")
-            image = pygame.transform.scale(image, (WIDTH/5, int(HEIGHT*1.3)))
-            screen.blit(image, (int((800/2 - 74)/800.*WIDTH), int((final[0] + podioms[0])/600.*HEIGHT)))
-            textbox.OutputBox(screen, str(points[0]) + " points!", (WIDTH/5, int(45/600.*HEIGHT)), (int((800/2 - 74)/800.*WIDTH), int((final[0] + podioms[0] + 130)/600.*HEIGHT)), None, 0, None, (255, 255, 255)).draw()
-            textbox.OutputBox(screen, names[0], (WIDTH/5-WIDTH/25, int(80/600.*HEIGHT)), (int((800/2 - 74)/800.*WIDTH+WIDTH/50), int((final[0] + podioms[0])/600.*HEIGHT)), None, 0, None, (255, 255, 255)).draw()
+        image = pygame.image.load(IMAGES_DIR + "win_background\\frame_%s_delay-0.04s.png" % str(gif % 178).zfill(3))
+        image = resfix(image)
+        screen.blit(image, (0, up))
+        speed += 1
+
+        if not la_finito:
+            if current - start >= 5:
+                podioms[0] = podioms[0] - 6 if podioms[0] - 6 >= 0 else 0
+            if current - start >= 12.5:
+                podioms[1] = podioms[1] - 6 if podioms[1] - 6 >= 0 else 0
+            if current - start >= 21:
+                podioms[2] = podioms[2] - 6 if podioms[2] - 6 >= 0 else 0
+        else:
+                podioms = [x + (178 - gif)/20 for x in podioms]
 
 
-            image = pygame.image.load(IMAGES_DIR + "winners_stand\\Slide2.png")
-            image = pygame.transform.scale(image, (WIDTH/5, int(HEIGHT*1.3)))
-            screen.blit(image, (int((800/2 - 74*4)/800.*WIDTH), int((final[1] + podioms[1])/600.*HEIGHT)))
-            textbox.OutputBox(screen, str(points[1]) + " points!", (WIDTH/5, int(45/600.*HEIGHT)), (int((800/2 - 74*4)/800.*WIDTH), int((final[1] + podioms[1] + 130)/600.*HEIGHT)), None, 0, None, (255, 255, 255)).draw()
-            textbox.OutputBox(screen, names[1], (WIDTH/5-WIDTH/25, int(80/600.*HEIGHT)), (int((800/2 - 74*4)/800.*WIDTH+WIDTH/50), int((final[1] + podioms[1])/600.*HEIGHT)), None, 0, None, (255, 255, 255)).draw()
+        image = pygame.image.load(IMAGES_DIR + "winners_stand\\Slide1.png")
+        image = pygame.transform.scale(image, (WIDTH/5, int(HEIGHT*1.3)))
+        screen.blit(image, (int((800/2 - 74)/800.*WIDTH), int((final[0] + podioms[0])/600.*HEIGHT)))
+        textbox.OutputBox(screen, str(points[0]) + " points!", (WIDTH/5-WIDTH/25, int(45/600.*HEIGHT)), (int((800/2 - 74)/800.*WIDTH+WIDTH/50), int((final[0] + podioms[0] + 130)/600.*HEIGHT)), None, 0, None, (255, 255, 255), "files\\montserrat\\Montserrat-Black.otf").draw()
+        textbox.OutputBox(screen, names[0], (WIDTH/5-WIDTH/25, int(80/600.*HEIGHT)), (int((800/2 - 74)/800.*WIDTH+WIDTH/50), int((final[0] + podioms[0])/600.*HEIGHT)), None, 0, None, (255, 255, 255), "files\\montserrat\\Montserrat-Black.otf").draw()
 
-            image = pygame.image.load(IMAGES_DIR + "winners_stand\\Slide3.png")
-            image = pygame.transform.scale(image, (WIDTH/5, int(HEIGHT*1.3)))
-            screen.blit(image, (int((800/2 + 74*2)/800.*WIDTH), int((final[2] + podioms[2])/600.*HEIGHT)))
-            textbox.OutputBox(screen, str(points[2]) + " points!", (WIDTH/5, int(45/600.*HEIGHT)), (int((800/2 + 74*2)/800.*WIDTH), int((final[2] + podioms[2] + 130)/600.*HEIGHT)), None, 0, None, (255, 255, 255)).draw()
-            textbox.OutputBox(screen, names[2], (WIDTH/5-WIDTH/25, int(80/600.*HEIGHT)), (int((800/2 + 74*2)/800.*WIDTH+WIDTH/50), int((final[2] + podioms[2])/600.*HEIGHT)), None, 0, None, (255, 255, 255)).draw()
 
-            if la_finito:
-                if gif <= 56:
-                    if up > -HEIGHT+HEIGHT/8:
-                        up -= 10
-                    else:
-                        finish = True
-                gif -= 1
-            elif gif == 177:
-                sub = True
-                gif -= 1
-            elif gif > 29:
-                if sub and gif > 94:
-                    gif -= 1
+        image = pygame.image.load(IMAGES_DIR + "winners_stand\\Slide2.png")
+        image = pygame.transform.scale(image, (WIDTH/5, int(HEIGHT*1.3)))
+        screen.blit(image, (int((800/2 - 74*4)/800.*WIDTH), int((final[1] + podioms[1])/600.*HEIGHT)))
+        textbox.OutputBox(screen, str(points[1]) + " points!", (WIDTH/5-WIDTH/25, int(45/600.*HEIGHT)), (int((800/2 - 74*4)/800.*WIDTH+WIDTH/50), int((final[1] + podioms[1] + 130)/600.*HEIGHT)), None, 0, None, (255, 255, 255), "files\\montserrat\\Montserrat-Black.otf").draw()
+        textbox.OutputBox(screen, names[1], (WIDTH/5-WIDTH/25, int(80/600.*HEIGHT)), (int((800/2 - 74*4)/800.*WIDTH+WIDTH/50), int((final[1] + podioms[1])/600.*HEIGHT)), None, 0, None, (255, 255, 255), "files\\montserrat\\Montserrat-Black.otf").draw()
+
+        image = pygame.image.load(IMAGES_DIR + "winners_stand\\Slide3.png")
+        image = pygame.transform.scale(image, (WIDTH/5, int(HEIGHT*1.3)))
+        screen.blit(image, (int((800/2 + 74*2)/800.*WIDTH), int((final[2] + podioms[2])/600.*HEIGHT)))
+        textbox.OutputBox(screen, str(points[2]) + " points!", (WIDTH/5-WIDTH/25, int(45/600.*HEIGHT)), (int((800/2 + 74*2)/800.*WIDTH+WIDTH/50), int((final[2] + podioms[2] + 130)/600.*HEIGHT)), None, 0, None, (255, 255, 255), "files\\montserrat\\Montserrat-Black.otf").draw()
+        textbox.OutputBox(screen, names[2], (WIDTH/5-WIDTH/25, int(80/600.*HEIGHT)), (int((800/2 + 74*2)/800.*WIDTH+WIDTH/50), int((final[2] + podioms[2])/600.*HEIGHT)), None, 0, None, (255, 255, 255), "files\\montserrat\\Montserrat-Black.otf").draw()
+
+        if la_finito:
+            if gif <= 56:
+                if up > -HEIGHT+HEIGHT/8:
+                    up -= 10
                 else:
-                    sub = False
-                    gif += 1
-            elif speed % 2 == 0:
+                    finish = True
+            gif -= 1
+        elif gif == 177:
+            sub = True
+            gif -= 1
+        elif gif > 29:
+            if sub and gif > 94:
+                gif -= 1
+            else:
+                sub = False
                 gif += 1
+        elif speed % 5 != 0:
+            gif += 1
 
-            pygame.display.flip()
-            clock.tick(30)
+        pygame.display.flip()
+        clock.tick(60)
 
 
 def print_names(screen, names):
-    for x in range(min(16, len(names))):#if there is place on the screen
+    counter = 0
+    for y in range(3):
+        for x in range(5):
+            if counter < len(names):
+                textbox.OutputBox(screen=screen, text=names[counter], size=(WIDTH/6, HEIGHT/10), place=(5 + x * (WIDTH / 5), int(245/600.*HEIGHT) + HEIGHT/8*y), color=WHITE, border_width=2, border_color=BLACK, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf").draw()
+                counter += 1
+
+    if False:
         if len(names[x] ) > 3:
             largeText = pygame.font.Font(None, int(WIDTH/4/len(names[x])) - int(30/len(names[x])) + 5)
             name_text = largeText.render(names[x], False, BLACK)#print the name
@@ -596,7 +624,6 @@ def print_names(screen, names):
             name_text = largeText.render(names[x], False, BLACK)  # print
             screen.blit(name_text, (x % 4 * (WIDTH / 4), int(230/600.*HEIGHT) + int(x / 4) * 60))
 
-    pygame.display.flip()
 
 
 def get_font(name):

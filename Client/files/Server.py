@@ -107,8 +107,13 @@ def __single_user(client_socket, taken=False):
     else:
         try:
             data = ''
-            while '\n' not in data:
-                data += client_socket.recv(1)
+            opertonetitis = 50
+            while '\n' not in data and opertonetitis:
+                temp = client_socket.recv(1)
+                data += temp
+                if temp:
+                    opertonetitis = 50
+                opertonetitis -= 1
             data = data.replace('\n', '')
             if data:
                 __handle_client_request(client_socket, data, taken)
@@ -200,7 +205,7 @@ def new_question(time):
     try:
         if open_client_sockets:
             for player in __players:
-                __mandatory.append((player.socket, 'new: ' + str(time)))
+                __mandatory.append((player.socket, 'new: ' + str(time) + str(["Test 1", "Test 2", "Test 3", "Test 4"])))
             rlist, wlist, xlist = select([__server_socket] + open_client_sockets, open_client_sockets, open_client_sockets, 0.01)
             __send__mandatory(wlist)
     except Exception:

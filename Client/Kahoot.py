@@ -76,8 +76,6 @@ def main():
     GOOD LUCK, Amigo!
     """
     global screen
-
-
     while not client.login(login_screen()):
         username_taken()
     loading("Waiting for the game to start...", lambda x: client.question_received())
@@ -105,13 +103,13 @@ def login_screen():
     """
     global username, screen
     screen.fill(PURPLE)
-    a = textbox.OutputBox(screen=screen, text="KABOOT!", size=resfix(500, 100), place=resfix(500, 200), color=PURPLE,
-                      border_width=0, border_color=PURPLE, text_color=WHITE)
-    b = textbox.OutputBox(screen=screen, text="Enter your username:", size=resfix(300, 30), place=resfix(600, 315), color=PURPLE,
-                      border_width=0, border_color=PURPLE, text_color=WHITE)
-    login = textbox.InputBox(screen=screen, size=resfix(750, 80), place=resfix((1500-750)/2, 360), color=(255, 255, 255), border_width=2, border_color=BLACK, limit=12)
+    a = textbox.OutputBox(screen=screen, text="KABOOT!", size=resfix(1000, 200), place=resfix(250, 50), color=PURPLE,
+                      border_width=0, border_color=PURPLE, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
+    b = textbox.OutputBox(screen=screen, text="Enter your username:", size=resfix(500, 100), place=resfix(500, 250), color=PURPLE,
+                      border_width=0, border_color=PURPLE, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
+    login = textbox.InputBox(screen=screen, size=resfix(750, 80), place=resfix((1500-750)/2, 360), color=(255, 255, 255), border_width=2, border_color=BLACK, limit=12, font="files\\montserrat\\Montserrat-Black.otf")
     button = textbox.OutputBox(screen=screen, text="Enter", size=resfix(320, 80), place=resfix(590, 480), color=GREY,
-                          border_width=0, border_color=PURPLE, text_color=WHITE)
+                          border_width=0, border_color=PURPLE, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
 
     finish = False
     while not finish:
@@ -147,10 +145,10 @@ def username_taken():
     """
     global username, screen
     screen.fill(PURPLE)
-    a = textbox.OutputBox(screen=screen, text="KABOOT!", size=resfix(500, 100), place=resfix(500, 200), color=PURPLE,
-                      border_width=0, border_color=PURPLE, text_color=WHITE)
+    a = textbox.OutputBox(screen=screen, text="KABOOT!", size=resfix(1000, 200), place=resfix(250, 50), color=PURPLE,
+                      border_width=0, border_color=PURPLE, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
     b = textbox.OutputBox(screen=screen, text="Username taken!\nPress 'Enter' to continue...", size=resfix(700, 200), place=resfix(400, 315), color=PURPLE,
-                      border_width=0, border_color=PURPLE, text_color=RED)
+                      border_width=0, border_color=PURPLE, text_color=RED, font="files\\montserrat\\Montserrat-Black.otf")
 
     finish = False
     while not finish:
@@ -190,14 +188,14 @@ def main_screen():
     global screen
     answers = client.get_answers()
     button1 = textbox.OutputBox(screen=screen, text=answers[0], size=resfix(735, 385), place=resfix(10, 10), color=RED,
-                                border_width=0, border_color=WHITE, text_color=WHITE)
+                                border_width=0, border_color=WHITE, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
     button2 = textbox.OutputBox(screen=screen, text=answers[1], size=resfix(735, 385), place=resfix(755, 10), color=BLUE,
-                                border_width=0, border_color=WHITE, text_color=WHITE)
+                                border_width=0, border_color=WHITE, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
     button3 = textbox.OutputBox(screen=screen, text=answers[2], size=resfix(735, 385), place=resfix(10, 405), color=ORANGE,
-                                border_width=0, border_color=WHITE, text_color=WHITE)
+                                border_width=0, border_color=WHITE, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
     button4 = textbox.OutputBox(screen=screen, text=answers[3], size=resfix(735, 385), place=resfix(755, 405), color=GREEN,
-                                border_width=0, border_color=WHITE, text_color=WHITE)
-    timer = textbox.OutputBox(screen=screen, text="", size=(size[0]/3, size[1]/3), place=((WIDTH-size[0])/2+size[0]/3, (HEIGHT-size[1])/2+size[1]/3), color=None, border_width=0, border_color=BLACK, text_color=WHITE)
+                                border_width=0, border_color=WHITE, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
+    timer = textbox.OutputBox(screen=screen, text="", size=(size[0]/3, size[1]/3), place=((WIDTH-size[0])/2+size[0]/3, (HEIGHT-size[1])/2+size[1]/3), color=None, border_width=0, border_color=BLACK, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
 
     while not client.time_is_up():
         mouse = pygame.mouse.get_pos()
@@ -225,7 +223,7 @@ def main_screen():
         timer.text = str(thymin) if thymin >= 0 else str(0)
         pygame.draw.circle(screen, PURPLE, resfix(1500/2, 800/2), resfix(100))
         timer.draw()
-        
+
         screen.fill(WHITE)
         button1.draw()
         button2.draw()
@@ -258,11 +256,11 @@ def results_screen(correct, wait_until):
         :return None
     """
     global screen
-    name = textbox.OutputBox(screen=screen, text=username, size=resfix(200, 50), place=resfix(1500-204, 800-54), color=WHITE, border_width=2, border_color=BLACK, text_color=BLACK)
+    name = textbox.OutputBox(screen=screen, text=username, size=resfix(200, 50), place=resfix(1500-204, 800-54), color=WHITE, border_width=2, border_color=BLACK, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
 
     place = client.get_place()
     if place == 1:
-        text = "YOU ARE IN FIRST PLACE! You have " + str(client.get_score()) + " points!"
+        text = "YOU ARE IN FIRST PLACE! YOU HAVE " + str(client.get_score()) + " POINTS!"
     elif place == 2:
         text = "You are in SECOND place with " + str(client.get_score()) + " points!"
     elif place == 3:
@@ -270,10 +268,10 @@ def results_screen(correct, wait_until):
     else:
         text = "You are in " + str(place) + "TH place with " + str(client.get_score()) + " points!"
     stats = textbox.OutputBox(screen=screen, text=text, size=resfix(1000, 200), place=resfix(250, 500),
-                      color=None, border_width=0, border_color=None, text_color=WHITE)
+                      color=None, border_width=0, border_color=None, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
     if correct:
         msg = textbox.OutputBox(screen=screen, text="Horrrrray!\nVery Correct Answer Indeed", size=resfix(1000, 400),
-                          place=resfix(250, 100), color=GREEN, border_width=0, border_color=GREEN, text_color=WHITE)
+                          place=resfix(250, 100), color=GREEN, border_width=0, border_color=GREEN, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
 
         while not wait_until(''):
             for event in pygame.event.get():
@@ -290,7 +288,7 @@ def results_screen(correct, wait_until):
             pygame.display.flip()
     else:
         msg = textbox.OutputBox(screen=screen, text="Boooooo!\nYou Are A Loser!", size=resfix(1000, 400), place=resfix(250, 100),
-                          color=RED, border_width=0, border_color=RED, text_color=WHITE)
+                          color=RED, border_width=0, border_color=RED, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
         while not wait_until(''):
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:#user presses the X
@@ -326,9 +324,9 @@ def loading(message, wait_until):
         :return nothing
     """
     global screen, img, size
-    name = textbox.OutputBox(screen=screen, text=username, size=resfix(200, 50), place=resfix(1500-204, 800-54), color=WHITE, border_width=2, border_color=BLACK, text_color=BLACK)
-    msg = textbox.OutputBox(screen=screen, text=message, size=resfix(1200, 150), place=resfix(150, 15), color=PURPLE, border_width=0, border_color=BLACK, text_color=WHITE)
-    timer = textbox.OutputBox(screen=screen, text="", size=(size[0]/3, size[1]/3), place=((WIDTH-size[0])/2+size[0]/3, (HEIGHT-size[1])/2+size[1]/3), color=None, border_width=0, border_color=BLACK, text_color=WHITE)
+    name = textbox.OutputBox(screen=screen, text=username, size=resfix(200, 50), place=resfix(1500-204, 800-54), color=WHITE, border_width=2, border_color=BLACK, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
+    msg = textbox.OutputBox(screen=screen, text=message, size=resfix(1200, 150), place=resfix(150, 15), color=PURPLE, border_width=0, border_color=BLACK, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
+    timer = textbox.OutputBox(screen=screen, text="", size=(size[0]/3, size[1]/3), place=((WIDTH-size[0])/2+size[0]/3, (HEIGHT-size[1])/2+size[1]/3), color=None, border_width=0, border_color=BLACK, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
 
     gif = 35
     while not wait_until(''):
@@ -375,8 +373,9 @@ def finish_screen():
     """
     global screen
     place = client.get_place()
+    name = textbox.OutputBox(screen=screen, text=username, size=resfix(200, 50), place=resfix(1500-204, 800-54), color=WHITE, border_width=2, border_color=BLACK, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
     if place == 1:
-        text = "YOU WON FIRST PLACE! You have " + str(client.get_score()) + " points!\nWell Done!\n"
+        text = "YOU WON FIRST PLACE! YOU HAVE " + str(client.get_score()) + " POINTS!\nWell Done!\n"
     elif place == 2:
         text = "You finished in SECOND place with " + str(client.get_score()) + " points!\nGood job!\n"
     elif place == 3:
@@ -385,14 +384,14 @@ def finish_screen():
         text = "You finished in " + str(place) + "TH place with " + str(client.get_score()) + " points!\nGood bye!\n"
     finish = False
     if place == 1:
-            box = textbox.OutputBox(screen=screen, text="You won!", size=resfix(1300, 500), place=resfix(100, 00),
-                              color=PURPLE, border_width=0, border_color=PURPLE, text_color=WHITE)
+            box = textbox.OutputBox(screen=screen, text="You Won!", size=resfix(1300, 500), place=resfix(100, 00),
+                              color=PURPLE, border_width=0, border_color=PURPLE, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
     else:
         box = textbox.OutputBox(screen=screen, text="The game is finished!", size=resfix(1300, 500), place=resfix(100, 00),
-                          color=PURPLE, border_width=0, border_color=PURPLE, text_color=WHITE)
+                          color=PURPLE, border_width=0, border_color=PURPLE, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
 
     stats = textbox.OutputBox(screen=screen, text=text, size=resfix(1000, 200), place=resfix(250, 500),
-                      color=None, border_width=0, border_color=None, text_color=WHITE)
+                      color=None, border_width=0, border_color=None, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
     while not finish:
         for event in pygame.event.get():
             if event.type == 2 and event.key == 13:
@@ -406,8 +405,8 @@ def finish_screen():
         screen.fill(PURPLE)
         box.draw()
         stats.draw()
+        name.draw()
         pygame.display.flip()
-
 
 
 def gui_is_ready():

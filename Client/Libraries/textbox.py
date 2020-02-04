@@ -34,7 +34,7 @@ class InputBox:
         self.border_width = border_width
         self.border_color = border_color
         self.text_color = text_color
-        self.font = FONT_LIB + font
+        self.font = font
         self.limit = limit
 
     def draw(self):
@@ -168,7 +168,7 @@ class OutputBox:
         self.border_width = border_width
         self.border_color = border_color
         self.text_color = text_color
-        self.font = FONT_LIB + font
+        self.font = font
 
     def draw(self):
         """

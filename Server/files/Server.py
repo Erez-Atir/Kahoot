@@ -45,6 +45,7 @@ class Player:
         self.socket = client_socket
         self.score = 0
         self.answer = None
+        self.connected = True
 
     def add_score(self, points):
         self.score += points
@@ -69,10 +70,13 @@ def __send__mandatory(wlist):
     """
     global __mandatory
     for message in __mandatory:
-        client_socket, data = message
-        if client_socket in wlist:
-            client_socket.send(data + '\n')
-            __mandatory.remove(message)
+        try:
+            client_socket, data = message
+            if client_socket in wlist:
+                client_socket.send(data + '\n')
+                __mandatory.remove(message)
+        except socket.error:
+                open_client_sockets.remove(client_socket)
 
 
 def __handle_client_request(client_socket, request):
@@ -87,11 +91,17 @@ def __handle_client_request(client_socket, request):
     if player:
         player = player[0]
     if request[:len("login: ")] == "login: ":
-        if request.split("login: ")[1] and request.split("login: ")[1] not in [x.name for x in __players]:
-            __players.append(Player(request.split("login: ")[1], client_socket))
-            __mandatory.append((client_socket, 'OK'))
-        else:
-            __mandatory.append((client_socket, 'TAKEN'))
+        if request.split("login: ")[1]:
+            if request.split("login: ")[1] not in [x.name for x in __players]:
+                __players.append(Player(request.split("login: ")[1], client_socket))
+                __mandatory.append((client_socket, 'OK'))
+            else:
+                for player in __players:
+                    if player.name == request.split("login: ")[1] and not player.connected:
+                        player.socket = client_socket
+                        player.connected = True
+                        __mandatory.append((client_socket, 'OK'))
+                __mandatory.append((client_socket, 'TAKEN'))
 
     elif request[:len("answer: ")] == "answer: ":
         if player.answer is None:
@@ -123,16 +133,27 @@ def __single_user(client_socket):
     else:
         try:
             data = ''
-            while '\n' not in data:
-                data += client_socket.recv(1)
+            opertonetitis = 50
+            while '\n' not in data and opertonetitis:
+                temp = client_socket.recv(1)
+                data += temp
+                if temp:
+                    opertonetitis = 50
+                opertonetitis -= 1
             data = data.replace('\n', '')
             if data:
                 __handle_client_request(client_socket, data)
+
             else:
                 open_client_sockets.remove(client_socket)
+                for player in __players:
+                    if player.socket == client_socket:
+                        player.connected = False
                 print "Connection with client closed."
         except socket.error:
             open_client_sockets.remove(client_socket)
+        except Exception:
+            _error()
 
 
 #-----------------------Library-----------------------
@@ -150,9 +171,9 @@ def update_login():
         for current_socket in xlist:
             open_client_sockets.remove(current_socket)
         __send__mandatory(wlist)
-        return [x.name for x in __players]
+        return [x.name for x in __players if x.connected]
     except Exception:
-        pass
+        _error()
 
 
 def receive():
@@ -171,7 +192,7 @@ def receive():
             __send__mandatory(wlist)
             return answersanount
     except Exception:
-        pass
+        _error()
 
 
 def results(correct_answer, score):
@@ -226,7 +247,7 @@ def new_question(time, answers):
             rlist, wlist, xlist = select([__server_socket] + open_client_sockets, open_client_sockets, open_client_sockets, 0.1)
             __send__mandatory(wlist)
     except Exception:
-        pass
+        _error()
 
 
 def get_players():
@@ -236,7 +257,7 @@ def get_players():
     try:
         return sorted([(x.score, x.name) for x in __players], reverse=True)
     except Exception:
-        pass
+        _error()
 
 
 def end_game():
@@ -250,4 +271,4 @@ def end_game():
             rlist, wlist, xlist = select([__server_socket] + open_client_sockets, open_client_sockets, open_client_sockets, 0.1)
             __send__mandatory(wlist)
     except Exception:
-        pass
+        _error()
