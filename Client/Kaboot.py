@@ -220,9 +220,8 @@ def main_screen():
                 return 4
 
         thymin = client.time_left()
-        timer.text = str(thymin) if thymin >= 0 else str(0)
-        pygame.draw.circle(screen, PURPLE, resfix(1500/2, 800/2), resfix(100))
-        timer.draw()
+        timer.text = str(int(thymin + 0.5)) if thymin >= 0 else str(0)
+
 
         screen.fill(WHITE)
         button1.draw()
@@ -233,6 +232,9 @@ def main_screen():
         #pygame.draw.polygon(screen, WHITE, [resfix(1144, 61), resfix(755+230, 61+(350-61)/2), resfix(1144, 350), resfix(2*1144-(755+210)-20, 61+(350-61)/2)])
         #pygame.draw.polygon(screen, WHITE, [resfix(755+230, 405+61), resfix(755+230, 405+350), resfix(2*1144-(755+210)-20, 405+350), resfix(2*1144-(755+210)-20, 405+61)])
         #pygame.draw.circle(screen, WHITE, resfix(735/2, 405+385/2+15), resfix((350-61)/2+5))
+
+        #pygame.draw.circle(screen, PURPLE, resfix(1500/2, 800/2), resfix(100))
+        #timer.draw()
 
         pygame.display.flip()
 
@@ -340,7 +342,7 @@ def loading(message, wait_until):
 
         if message == "Waiting for question to end...":
             thymin = client.time_left()
-            timer.text = str(thymin) if thymin >= 0 else str(0)
+            timer.text = str(int(thymin+0.5)) if thymin >= 0 else str(0)
         screen.fill(PURPLE)
         msg.draw()
         screen.blit(img[gif], ((WIDTH-size[0])/2, (HEIGHT-size[1])/2))

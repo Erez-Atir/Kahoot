@@ -4,12 +4,17 @@ import time
 import os
 from files import Server
 from files import textbox
+import json
+import base64
+
 
 PLAYERSSCORE = {} #""""dictionary, saves the points of each player"""
 FONT_LIB = pygame.font.match_font('bitstreamverasans')[0:-10] + "\\" #finds the fony libary path
 IMAGES_DIR = os.getcwd() + "\\images\\" #saves the path to the images libary
 OST_DIR = os.getcwd() + "\\audio\\"
 users = None
+QuestioNumber = 0
+TotalQN = None
 
 """defauly pygame settings"""
 MouseButtonDown = 6
@@ -22,7 +27,7 @@ TCHELET = (150, 150, 255)
 MouseMotion = 4
 
 #screen = pygame.display.set_mode((800, 600), pygame.FULLSCREEN)  # full screen
-screen = pygame.display.set_mode((1000, 700))  # set screen wid =800, hieght =600
+screen = pygame.display.set_mode((800, 600))  # set screen wid =800, hieght =600
 
 """height and width of the screen"""
 size = width, height = pygame.display.Info().current_w, pygame.display.Info().current_h
@@ -41,7 +46,7 @@ BLACKSURFACE.fill(WHITE)
 
 
 def main():
-    global users
+    global users, QuestioNumber, TotalQN
     done = False                                     #"""the playes exited the game?"""
     start_game = False                               # the game has started?
     pygame.init()                                    # initiate pygames
@@ -83,14 +88,13 @@ def main():
                 if event.button == 1:
                     x, y = event.pos
                     if 25/800.*WIDTH < x and x < 770/800.*WIDTH and y > 490/600.*HEIGHT and y < 580/600.*HEIGHT:   # if mouse above start button
-                        pygame.mixer.music.fadeout(5000)
                         start_game = True
         """"load screen"""
         x, y = mouse_loc                                   #gets mouse location
         if 25/800.*WIDTH < x and x < 770/800.*WIDTH and y > 490/600.*HEIGHT and y < 580/600.*HEIGHT:    # if mouse above start button=
             screen.fill((35, 177, 76))
-            for topstart in [WIDTH/20+x*int(WIDTH/10) for x in range(20)]:
-                pygame.draw.line(screen, (176, 235, 48), (topstart, -10), (-10, topstart), int(0.0125*WIDTH))
+            for topstart in [x*int(WIDTH/10) for x in range(20)]:
+                pygame.draw.line(screen, (176, 235, 48), (trying + topstart, -10), (-10, trying + topstart), int(0.0125*WIDTH))
             a.draw()
             b.draw()
             c.border_width = 6
@@ -141,26 +145,33 @@ def main():
             trying = 0
         clock.tick(60)
 
-
-
-
     pygame.mouse.set_cursor(*pygame.cursors.arrow)
-    Server.ServerDitection.finish = True
-    if not done:
-        done = add_question(screen, 5, "Which one do you think is better?", ["With shapes!", "With text", "I don't know...\nPick whatever you want", "They are both ugly"], 1, None, 10, 100, True)
-    #if not done:
-    #    done = add_question(screen, 7, "What can you do in a Pygame program?", ["Display photos", "Play sounds", "Create moving sprites", "All of the answers are correct"], 4, None, 40, 150)
-    if not done:
-        Server.end_game()
-        for buffer in xrange(1000):
-            Server.receive()
-        names = Server.get_players()
-        players = [x[1] for x in names]
-        points = [x[0] for x in names]
-        while len(players) < 3:
-            players.append("None")
-            points.append(0)
-        exit_screen(screen, players, points)
+    with open('quizes/test.json', 'rb') as qfile:
+        quiz = json.load(qfile)
+
+    #with open(IMAGES_DIR+"Example.jpg", 'rb') as img:
+    #    quiz['Questions'][0]['photo'] = base64.b64encode(img.read())
+
+    with open('quizes/test.json', 'wb') as qfile:
+        json.dump(quiz, qfile, indent=4)
+
+    pygame.mixer.music.fadeout(quiz['Questions'][0]['time to read']*1000)
+
+    TotalQN = len(quiz['Questions'])
+    first = True
+    for q in quiz['Questions']:
+        add_question(screen, q['time to read'], q['question'], [x.encode("utf-8") for x in q['answers']], q['correct answer'], q['photo'], q['time to answer'], q['points'], first)
+        first = False
+
+    Server.end_game()
+    names = Server.get_players()
+    players = [x[1] for x in names]
+    points = [x[0] for x in names]
+    while len(players) < 3:
+        players.append("None")
+        points.append(0)
+    Server.receive()
+    exit_screen(screen, players, points)
 
     pygame.quit()
     time.sleep(0.2)
@@ -186,12 +197,12 @@ def add_question(screen, timer, question, answers, correct_answer, photo, qtime,
             if done:
                 return True
 
-        done = load_timer(timer, screen, question)#set timmer for certain amount of time + print it
+        done = load_timer(timer, screen, question)  # set timer for certain amount of time + print it
         if not done:
-            Server.new_question(qtime, answers) # sends a message to all client that a new question is now available
-            done = load_question(screen, question, photo, answers, qtime) #"""calls a function to print the question"""
+            Server.new_question(qtime, answers)  # sends a message to all client that a new question is now available
+            done = load_question(screen, question, photo, answers, qtime)  # calls a function to print the question
             if not done:
-                done = show_answer(screen, Server.results(correct_answer, points), correct_answer, question)
+                done = show_answer(screen, Server.results(correct_answer, points), correct_answer, question, photo)
             else:
                 return True
         else:
@@ -264,10 +275,15 @@ def load_question(screen, question, photo, answers, qtime):
         image = pygame.image.load(IMAGES_DIR + "main\\questions_no_image.png")
 
     image = pygame.transform.scale(image, (WIDTH, HEIGHT))
+    addedimg = None
+    if photo:
+        with open("files/temp.jpg", "wb") as temp:
+            temp.write(base64.b64decode(photo))
+        addedimg = pygame.transform.scale(pygame.image.load("./files/temp.jpg"), (int((665-143)/800.*WIDTH), int((334-100)/600.*HEIGHT)))
+
 
     # question
     question_text = textbox.OutputBox(screen, question, (WIDTH, int(100/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
-    x = 20  # widtgh of a letter, change according to font so the question will be in the middle of the screen
 
     # time
     start_time = time.time()
@@ -281,12 +297,12 @@ def load_question(screen, question, photo, answers, qtime):
 
     timerText = textbox.OutputBox(screen, text=str(qtime), size=(int((103-43-6)/800.*WIDTH), int((237-177)/600.*HEIGHT)), place=(int((43+3)/800.*WIDTH), int(177/600.*HEIGHT)),
                                               color=None, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
-    timerTextHeader = textbox.OutputBox(screen, text="Seconds:", size=(int(142/800.*WIDTH), int((237-177+100)/600.*HEIGHT)), place=(0, int(177/600.*HEIGHT) - int((237-177+50)/600.*HEIGHT)),
+    timerTextHeader = textbox.OutputBox(screen, text=" Seconds:", size=(int(142/800.*WIDTH), int((237-177+100)/600.*HEIGHT)), place=(0, int(177/600.*HEIGHT) - int((237-177+50)/600.*HEIGHT)),
                                               color=None, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
 
     answerText = textbox.OutputBox(screen, text=str(0), size=(int((753-693-6)/800.*WIDTH), int((235-175)/600.*HEIGHT)), place=(int((693+3)/800.*WIDTH), int(175/600.*HEIGHT)),
                                               color=None, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
-    answerTextHeader = textbox.OutputBox(screen, text="Answers:", size=(int((800-664)/800.*WIDTH), int((235-175+100)/600.*HEIGHT)), place=(int(664/800.*WIDTH), int(175/600.*HEIGHT) - int((235-175+50)/600.*HEIGHT)),
+    answerTextHeader = textbox.OutputBox(screen, text="Answers: ", size=(int((800-664)/800.*WIDTH), int((235-175+100)/600.*HEIGHT)), place=(int(664/800.*WIDTH), int(175/600.*HEIGHT) - int((235-175+50)/600.*HEIGHT)),
                                               color=None, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
 
     pygame.mixer.music.load(OST_DIR + "question.mp3")
@@ -306,7 +322,11 @@ def load_question(screen, question, photo, answers, qtime):
                 if event.key == pygame.K_ESCAPE:
                     exit()
                     return True
+
         screen.blit(image, (0, 0))
+        if addedimg:
+            screen.blit(addedimg, (int(143/800.*WIDTH), int(100/600.*HEIGHT)))
+        #check_for_place(screen, events)
 
         # question
         question_text.draw()
@@ -332,12 +352,15 @@ def load_question(screen, question, photo, answers, qtime):
     return False
 
 
-def load_timer(num, screen, question):
+def load_timer(num, screen, question,):
+    global QuestioNumber, TotalQN
+    QuestioNumber += 1
     first = time.time()
     last = time.time()
     current = time.time()
     count = 0
     question_text = textbox.OutputBox(screen, question, (WIDTH, int(70/600.*HEIGHT)), (0, int(312/600.*HEIGHT)), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
+    question_id = textbox.OutputBox(screen, "Question " + str(QuestioNumber) + " out of " + str(TotalQN), (WIDTH, int(40/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
     finish = False
     while current - first <= num + 0.4 and not finish:
         events = pygame.event.get()
@@ -375,13 +398,14 @@ def load_timer(num, screen, question):
             barop.fill((188, 135, 243))
             screen.blit(barop, (int((current - first-0.3)/num * WIDTH), int(400/600.*HEIGHT)))
             screen.blit(bar, (0, int(400/600.*HEIGHT)))
+            question_id.draw()
             pygame.display.flip()
             last = current
             count += 1
     return False
 
 
-def show_answer(screen, res, correct_answer, question):
+def show_answer(screen, res, correct_answer, question, photo):
     res_sum = max(res) if max(res) else 1
     rc = pygame.image.load(IMAGES_DIR + "main\\red_correct.png")
     rc = resfix(rc)
@@ -414,6 +438,11 @@ def show_answer(screen, res, correct_answer, question):
         green = gc
     basic_form = pygame.image.load(IMAGES_DIR + "main\\basic_result_form.png")
     basic_form = resfix(basic_form)
+    addedimg = None
+    if photo:
+        with open("files/temp.jpg", "wb") as temp:
+            temp.write(base64.b64decode(photo))
+        addedimg = pygame.transform.scale(pygame.image.load("./files/temp.jpg"), (int((665-143)/800.*WIDTH), int((334-100)/600.*HEIGHT)))
 
     a = [3, 367, 403, 368, 3, 484, 403, 484]
     Rstartx, Rstarty, Bstartx, Bstarty, Ystartx, Ystarty, Gstartx, Gstarty = [int(a[x]/800.*WIDTH) if x % 2 == 0 else int(a[x]/600.*HEIGHT) for x in range(len(a))]
@@ -497,6 +526,8 @@ def show_answer(screen, res, correct_answer, question):
             amount = questionFont.render(str(int(res[0] * c)), False, WHITE)
             screen.blit(amount, (Rstartx + 130 + Sx * c * res[0], Rstarty + 40 + Sy * c * res[0]))
             question_text.draw()
+            if addedimg:
+                screen.blit(addedimg, (int(143/800.*WIDTH), int(100/600.*HEIGHT)))
             pygame.display.flip()
 
             c = c + 0.1 if c + 0.1 <= 1 else 1
@@ -599,7 +630,7 @@ def exit_screen(screen, names, points):
             else:
                 sub = False
                 gif += 1
-        elif speed % 5 != 0:
+        else:
             gif += 1
 
         pygame.display.flip()

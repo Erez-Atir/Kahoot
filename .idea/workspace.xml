@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a5628d7-df6f-4558-bd47-85e0ba4365e8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/Kahoot.py" afterPath="$PROJECT_DIR$/Client/Kahoot.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/Kahoot.py" afterPath="$PROJECT_DIR$/Server/Kahoot.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/files/Server.py" afterPath="$PROJECT_DIR$/Client/files/Server.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/files/Server.py" afterPath="$PROJECT_DIR$/Server/files/Server.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/Libraries/textbox.py" afterPath="$PROJECT_DIR$/Client/Libraries/textbox.py" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Client\Kahoot.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\Kahoot.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/files/ServerDitection.py" afterPath="$PROJECT_DIR$/Client/files/ServerDitection.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/files/ServerDitection.py" afterPath="$PROJECT_DIR$/Server/files/ServerDitection.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/Libraries/__init__.py" afterPath="$PROJECT_DIR$/Client/Libraries/__init__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Kahoot.iws" />
@@ -42,10 +42,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Kahoot.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Server/Kahoot.py">
+      <file leaf-file-name="Kaboot.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Server/Kaboot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="614" column="28" selection-start="29024" selection-end="29024" vertical-scroll-proportion="0.27288732" vertical-offset="10283" max-vertical-offset="11628">
+            <state line="152" column="5" selection-start="5960" selection-end="5960" vertical-scroll-proportion="-16.576923" vertical-offset="2609" max-vertical-offset="14300">
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -53,13 +53,74 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Kahoot.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/Kahoot.py">
+      <file leaf-file-name="Kaboot.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Client/Kaboot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="408" column="29" selection-start="19544" selection-end="19544" vertical-scroll-proportion="0.0" vertical-offset="5275" max-vertical-offset="7327">
+            <state line="235" column="8" selection-start="11384" selection-end="11384" vertical-scroll-proportion="0.71652174" vertical-offset="3583" max-vertical-offset="7361">
               <folding>
                 <element signature="e#55#68#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base64.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/base64.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="72" column="0" selection-start="2282" selection-end="2282" vertical-scroll-proportion="0.0" vertical-offset="986" max-vertical-offset="6188">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="temp.jpg" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Server/files/temp.jpg">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/json/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="188" column="0" selection-start="6910" selection-end="6910" vertical-scroll-proportion="0.0" vertical-offset="2975" max-vertical-offset="6052">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="decoder.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/json/decoder.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="364" column="0" selection-start="13120" selection-end="13120" vertical-scroll-proportion="0.0" vertical-offset="5916" max-vertical-offset="6562">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Server/quizes/test.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="30" column="19" selection-start="112033" selection-end="112033" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="encoder.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/json/encoder.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="433" column="0" selection-start="15845" selection-end="15845" vertical-scroll-proportion="0.0" vertical-offset="7104" max-vertical-offset="7718">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="client.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/Libraries/client.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="236" column="31" selection-start="6505" selection-end="6505" vertical-scroll-proportion="0.0" vertical-offset="3809" max-vertical-offset="4454">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -78,12 +139,21 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/Client/Libraries/textbox.py" />
-        <option value="$PROJECT_DIR$/Client/Libraries/__init__.py" />
-        <option value="$PROJECT_DIR$/Client/Libraries/client.py" />
         <option value="$PROJECT_DIR$/Client/files/Server.py" />
         <option value="$PROJECT_DIR$/Server/files/Server.py" />
-        <option value="$PROJECT_DIR$/Client/Kahoot.py" />
         <option value="$PROJECT_DIR$/Server/Kahoot.py" />
+        <option value="$PROJECT_DIR$/Client/files/oppener.py" />
+        <option value="$PROJECT_DIR$/Client/Kahoot.py" />
+        <option value="$PROJECT_DIR$/Server/files/ServerDitection.py" />
+        <option value="$PROJECT_DIR$/Client/files/reconnect.py" />
+        <option value="$PROJECT_DIR$/Client/files/ServerDitection.py" />
+        <option value="$PROJECT_DIR$/Client/Libraries/__init__.py" />
+        <option value="$PROJECT_DIR$/Server/quizes/t.json" />
+        <option value="$PROJECT_DIR$/Server/quizes/example_1.json" />
+        <option value="$PROJECT_DIR$/Client/Libraries/client.py" />
+        <option value="$PROJECT_DIR$/Server/Kaboot.py" />
+        <option value="$PROJECT_DIR$/Client/Kaboot.py" />
+        <option value="$PROJECT_DIR$/Server/quizes/test.json" />
       </list>
     </option>
   </component>
@@ -162,6 +232,60 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="quizes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Kahoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Kahoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Kahoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Kahoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="files" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Kahoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Kahoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Client" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -176,6 +300,10 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PythonSdkConfigurable" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -184,9 +312,9 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Erez Atir\PycharmProjects\Kahoot\Client\Libraries" />
-      <recent name="C:\Users\Erez Atir\PycharmProjects\Kahoot\Client" />
       <recent name="C:\Users\Erez Atir\PycharmProjects\Kahoot\Client\files" />
+      <recent name="C:\Users\Erez Atir\PycharmProjects\Kahoot\Client" />
+      <recent name="C:\Users\Erez Atir\PycharmProjects\Kahoot\Client\Libraries" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -201,7 +329,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Kahoot">
+  <component name="RunManager" selected="Python.Kaboot">
     <configuration default="false" name="Kahoot (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -222,7 +350,7 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Kahoot" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="Kaboot" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -234,31 +362,33 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Kahoot" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Client/Kahoot.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Client/Kaboot.py" />
       <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PyDebugRunner" />
       <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PyDebugRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Server" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Server/files" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Client/Libraries" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Kahoot" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Server/files/Server.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Client/Libraries/__init__.py" />
       <option name="PARAMETERS" value="" />
       <RunnerSettings RunnerId="PythonRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="test_server.pyw" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="test_server.pyw (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -276,19 +406,19 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="textsample" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="Kaboot (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Client" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Server" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Kahoot" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Client/textsample.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Server/Kaboot.py" />
       <option name="PARAMETERS" value="" />
       <RunnerSettings RunnerId="PythonRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
@@ -417,18 +547,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.Kahoot (1)" />
-      <item index="1" class="java.lang.String" itemvalue="Python.Kahoot" />
-      <item index="2" class="java.lang.String" itemvalue="Python.Server" />
-      <item index="3" class="java.lang.String" itemvalue="Python.test_server.pyw" />
-      <item index="4" class="java.lang.String" itemvalue="Python.textsample" />
+      <item index="1" class="java.lang.String" itemvalue="Python.Kaboot" />
+      <item index="2" class="java.lang.String" itemvalue="Python.__init__" />
+      <item index="3" class="java.lang.String" itemvalue="Python.test_server.pyw (1)" />
+      <item index="4" class="java.lang.String" itemvalue="Python.Kaboot (1)" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.Kahoot" />
-        <item index="1" class="java.lang.String" itemvalue="Python.Kahoot (1)" />
-        <item index="2" class="java.lang.String" itemvalue="Python.test_server.pyw" />
-        <item index="3" class="java.lang.String" itemvalue="Python.textsample" />
-        <item index="4" class="java.lang.String" itemvalue="Python.Server" />
+        <item index="0" class="java.lang.String" itemvalue="Python.Kaboot (1)" />
+        <item index="1" class="java.lang.String" itemvalue="Python.Kaboot" />
+        <item index="2" class="java.lang.String" itemvalue="Python.test_server.pyw (1)" />
+        <item index="3" class="java.lang.String" itemvalue="Python.__init__" />
+        <item index="4" class="java.lang.String" itemvalue="Python.Kahoot (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -468,24 +598,43 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.4997367" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19220643" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31641468" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19220643" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39956802" sideWeight="0.4997367" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3088553" sideWeight="0.5002633" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3088553" sideWeight="0.4997367" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.4997367" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39956802" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.5002633" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19220643" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3088553" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -508,7 +657,7 @@
           <line>166</line>
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -527,77 +676,194 @@
       </provider>
     </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/.PyCharm30/system/python_stubs/-1088862027/select.py" />
-    <entry file="file://$APPLICATION_HOME_DIR$/.PyCharm30/system/python_stubs/-1088862027/__builtin__.py" />
     <entry file="file://$PROJECT_DIR$/Server/files/textbox.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/test_server.pyw">
+    <entry file="file://$PROJECT_DIR$/Server/files/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="21" selection-start="933" selection-end="933" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="5967">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="609">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Libraries/__init__.py">
+    <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/threading.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="200" selection-end="200" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/files/Server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="26" selection-start="883" selection-end="883" vertical-scroll-proportion="0.5374376" vertical-offset="170" max-vertical-offset="4012">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Libraries/client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="236" column="31" selection-start="6505" selection-end="6505" vertical-scroll-proportion="0.3026087" vertical-offset="3821" max-vertical-offset="4454">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Libraries/textbox.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="181" column="0" selection-start="9213" selection-end="9213" vertical-scroll-proportion="0.62229615" vertical-offset="2652" max-vertical-offset="3298">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/files/test_server_support.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="10" selection-start="217" selection-end="217" vertical-scroll-proportion="0.22628951" vertical-offset="0" max-vertical-offset="2788">
+        <state line="678" column="0" selection-start="24020" selection-end="24020" vertical-scroll-proportion="0.33333334" vertical-offset="11323" max-vertical-offset="22729">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Server/files/Server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="145" column="16" selection-start="4558" selection-end="4558" vertical-scroll-proportion="0.547421" vertical-offset="2136" max-vertical-offset="4743">
+        <state line="60" column="0" selection-start="1431" selection-end="1502" vertical-scroll-proportion="0.33390707" vertical-offset="826" max-vertical-offset="4743">
           <folding>
             <element signature="e#55#68#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Kahoot.py">
+    <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/multiprocessing/process.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="408" column="29" selection-start="19544" selection-end="19544" vertical-scroll-proportion="0.0" vertical-offset="5275" max-vertical-offset="7327">
+        <state line="129" column="0" selection-start="4012" selection-end="4012" vertical-scroll-proportion="0.0" vertical-offset="1940" max-vertical-offset="5542">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/multiprocessing/forking.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="357" column="0" selection-start="11253" selection-end="11253" vertical-scroll-proportion="0.33278418" vertical-offset="5782" max-vertical-offset="8721">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/files/test_server_support.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="120" selection-start="1844" selection-end="1948" vertical-scroll-proportion="0.3321859" vertical-offset="997" max-vertical-offset="2788">
           <folding>
-            <element signature="e#55#68#0" expanded="true" />
+            <element signature="e#196#206#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/Kahoot.py">
+    <entry file="file://$PROJECT_DIR$/Client/files/Server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="614" column="28" selection-start="29024" selection-end="29024" vertical-scroll-proportion="0.27288732" vertical-offset="10283" max-vertical-offset="11628">
+        <state line="14" column="32" selection-start="353" selection-end="353" vertical-scroll-proportion="0.2520593" vertical-offset="0" max-vertical-offset="4012">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Libraries/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="7" selection-start="1147" selection-end="1147" vertical-scroll-proportion="0.5303777" vertical-offset="408" max-vertical-offset="1496">
+          <folding>
+            <element signature="e#27#36#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Libraries/textbox.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="160" column="8" selection-start="8278" selection-end="8278" vertical-scroll-proportion="0.21839081" vertical-offset="2536" max-vertical-offset="3298">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/files/ServerDitection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="78" column="8" selection-start="2772" selection-end="2772" vertical-scroll-proportion="0.85738254" vertical-offset="815" max-vertical-offset="1530">
+          <folding>
+            <element signature="e#55#68#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/test_server.pyw">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="4" selection-start="392" selection-end="392" vertical-scroll-proportion="0.47454843" vertical-offset="0" max-vertical-offset="5967">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/files/test_server.tcl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3434">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/socket.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="223" column="0" selection-start="7712" selection-end="7712" vertical-scroll-proportion="0.33333334" vertical-offset="3537" max-vertical-offset="9792">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/files/ServerDitection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="18" selection-start="1482" selection-end="1486" vertical-scroll-proportion="-9.153846" vertical-offset="357" max-vertical-offset="1445">
+          <folding>
+            <element signature="e#59#72#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/.PyCharm30/system/python_stubs/-1088862027/__builtin__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="414" column="4" selection-start="13596" selection-end="13596" vertical-scroll-proportion="0.33333334" vertical-offset="6835" max-vertical-offset="87567">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/.PyCharm30/system/python_stubs/-1088862027/_io.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="4" selection-start="1641" selection-end="1641" vertical-scroll-proportion="0.33333334" vertical-offset="596" max-vertical-offset="23460">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Libraries/client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="236" column="31" selection-start="6505" selection-end="6505" vertical-scroll-proportion="0.0" vertical-offset="3809" max-vertical-offset="4454">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/json/decoder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="364" column="0" selection-start="13120" selection-end="13120" vertical-scroll-proportion="0.0" vertical-offset="5916" max-vertical-offset="6562">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/json/encoder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="433" column="0" selection-start="15845" selection-end="15845" vertical-scroll-proportion="0.0" vertical-offset="7104" max-vertical-offset="7718">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/json/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="188" column="0" selection-start="6910" selection-end="6910" vertical-scroll-proportion="0.0" vertical-offset="2975" max-vertical-offset="6052">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/base64.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="0" selection-start="2282" selection-end="2282" vertical-scroll-proportion="0.0" vertical-offset="986" max-vertical-offset="6188">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/Kaboot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="152" column="5" selection-start="5960" selection-end="5960" vertical-scroll-proportion="-16.576923" vertical-offset="2609" max-vertical-offset="14300">
           <folding>
             <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/files/temp.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/quizes/test.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="19" selection-start="112033" selection-end="112033" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Kaboot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="235" column="8" selection-start="11384" selection-end="11384" vertical-scroll-proportion="0.71652174" vertical-offset="3583" max-vertical-offset="7361">
+          <folding>
+            <element signature="e#55#68#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -1,19 +1,26 @@
-    #-----------------------Imports-----------------------
+#-----------------------Imports-----------------------
 import socket
 import time
 import subprocess
 from uuid import getnode
-
-
+import threading
+import traceback
+import sys
 #-----------------------Globals-----------------------
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s.connect(("8.8.8.8", 80))
 IP = s.getsockname()[0]
 s.close()
 MyMac = "-".join([hex(getnode()).split('0x')[1].split("L")[0][x:x+2] for x in range(0, 12, 2)]).upper()
+data_to_return = None
+goodbye = False
 
 
 #----------------------Functions----------------------
+def _error():
+    print '\33[31m' + traceback.format_exc() + '\033[0m'
+
+
 def subnet_calculator():
     global IP, MyMac
     stdout, stderr = subprocess.Popen(['ipconfig/all'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True).communicate()
@@ -32,22 +39,46 @@ def server_emitter():
         subnet = subnet_calculator()
         while True:
             server.sendto(message, (subnet, 37020))
-            time.sleep(1)
+            time.sleep(0.3)
     except Exception:
         pass
 
 
 def server_scout():
     try:
+        t = threading.Thread(None, check)
+        t.daemon = True
+        t.start()
+        start = time.time()
+        while time.time() - start <= 0.7:
+            if data_to_return:
+                return data_to_return.split("Here Be Server: ")[1]
+            if goodbye:
+                exit()
+
+        if data_to_return:
+            return data_to_return.split("Here Be Server: ")[1]
+        else:
+            return None
+    except Exception:
+        _error()
+
+
+def check():
+    try:
+        global data_to_return, goodbye
         client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
         client.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
         client.bind(("", 37020))
-        start = time.time()
-        while time.time() - start <= 3:
-            data, addr = client.recvfrom(1024)
-            if data:
-                if "Here Be Server: " in data and len(data.split("Here Be Server: ")) == 2:
-                    return data
+        data, addr = client.recvfrom(1024)
+        if data:
+            if "Here Be Server: " in data and len(data.split("Here Be Server: ")) == 2:
+                data_to_return = data
+    except socket.error:
+        #goodbye = True
+        pass
 
     except Exception:
-        pass
+        _error()
+
+
