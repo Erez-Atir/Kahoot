@@ -160,7 +160,7 @@ def main():
     TotalQN = len(quiz['Questions'])
     first = True
     for q in quiz['Questions']:
-        add_question(screen, q['time to read'], q['question'], [x.encode("utf-8") for x in q['answers']], q['correct answer'], q['photo'], q['time to answer'], q['points'], first)
+        add_question(screen, q['time to read'], q['question'], [x.encode("utf-8") for x in q['answers']], q['correct answer'], q['photo'], q['image file type'], q['time to answer'], q['points'], first)
         first = False
 
     Server.end_game()
@@ -178,7 +178,7 @@ def main():
     exit()
 
 
-def add_question(screen, timer, question, answers, correct_answer, photo, qtime, points, first=False):
+def add_question(screen, timer, question, answers, correct_answer, photo, photype, qtime, points, first=False):
         """
         function that adds a question to the game
         :param screen: gets the screen obj to print on
@@ -191,6 +191,10 @@ def add_question(screen, timer, question, answers, correct_answer, photo, qtime,
         :param points: gets the maximum points received py this question
         :return: Was the server closed
         """
+
+        if photo and photype:
+            with open("files/temp." + photype, "wb") as temp:
+                temp.write(base64.b64decode(photo))
 
         if not first:
             done = score_board(screen, Server.get_players(), points)
@@ -269,21 +273,16 @@ def load_question(screen, question, photo, answers, qtime):
 
     global users
     # image
-    if photo:
-        image = pygame.image.load(IMAGES_DIR + "main\\questions.png")
-    else:
-        image = pygame.image.load(IMAGES_DIR + "main\\questions_no_image.png")
+    image = pygame.image.load(IMAGES_DIR + "main\\questions_no_image.png")
 
     image = pygame.transform.scale(image, (WIDTH, HEIGHT))
     addedimg = None
     if photo:
-        with open("files/temp.jpg", "wb") as temp:
-            temp.write(base64.b64decode(photo))
-        addedimg = pygame.transform.scale(pygame.image.load("./files/temp.jpg"), (int((665-143)/800.*WIDTH), int((334-100)/600.*HEIGHT)))
+        addedimg = pygame.transform.scale(pygame.image.load("./files/temp.jpg"), (int((665-143)/800.*WIDTH), int((334-70)/600.*HEIGHT)))
 
 
     # question
-    question_text = textbox.OutputBox(screen, question, (WIDTH, int(100/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
+    question_text = textbox.OutputBox(screen, question, (WIDTH, int(70/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
 
     # time
     start_time = time.time()
@@ -325,7 +324,10 @@ def load_question(screen, question, photo, answers, qtime):
 
         screen.blit(image, (0, 0))
         if addedimg:
-            screen.blit(addedimg, (int(143/800.*WIDTH), int(100/600.*HEIGHT)))
+            screen.blit(addedimg, (int(143/800.*WIDTH), int(75/600.*HEIGHT)))
+        else:
+            textbox.OutputBox(screen, text=" KABOOT! ", size=(int((665-143)/800.*WIDTH), int((334-75)/600.*HEIGHT)), place=(int(143/800.*WIDTH), int(75/600.*HEIGHT)),
+                                          color=(201, 14, 163), text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf").draw()
         #check_for_place(screen, events)
 
         # question
@@ -436,18 +438,16 @@ def show_answer(screen, res, correct_answer, question, photo):
         yellow = yc
     if correct_answer == 4:
         green = gc
-    basic_form = pygame.image.load(IMAGES_DIR + "main\\basic_result_form.png")
+    basic_form = pygame.image.load(IMAGES_DIR + "main\\questions.png")
     basic_form = resfix(basic_form)
     addedimg = None
     if photo:
-        with open("files/temp.jpg", "wb") as temp:
-            temp.write(base64.b64decode(photo))
-        addedimg = pygame.transform.scale(pygame.image.load("./files/temp.jpg"), (int((665-143)/800.*WIDTH), int((334-100)/600.*HEIGHT)))
+        addedimg = pygame.transform.scale(pygame.image.load("./files/temp.jpg"), (int((665-143)/800.*WIDTH), int((334-70)/600.*HEIGHT)))
 
     a = [3, 367, 403, 368, 3, 484, 403, 484]
     Rstartx, Rstarty, Bstartx, Bstarty, Ystartx, Ystarty, Gstartx, Gstarty = [int(a[x]/800.*WIDTH) if x % 2 == 0 else int(a[x]/600.*HEIGHT) for x in range(len(a))]
     questionFont = pygame.font.Font("files\\montserrat\\Montserrat-Black.otf", 50)
-    question_text = textbox.OutputBox(screen, question, (WIDTH, int(100/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
+    question_text = textbox.OutputBox(screen, question, (WIDTH, int(70/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
 
     Sx = 60.0/res_sum  # scale of moving according to the amount of answers in x
     Sy = 25.0/res_sum  # scale of moving according to the amount of answers in y
@@ -527,7 +527,10 @@ def show_answer(screen, res, correct_answer, question, photo):
             screen.blit(amount, (Rstartx + 130 + Sx * c * res[0], Rstarty + 40 + Sy * c * res[0]))
             question_text.draw()
             if addedimg:
-                screen.blit(addedimg, (int(143/800.*WIDTH), int(100/600.*HEIGHT)))
+                screen.blit(addedimg, (int(143/800.*WIDTH), int(75/600.*HEIGHT)))
+            else:
+                textbox.OutputBox(screen, text=" KABOOT! ", size=(int((665-143)/800.*WIDTH), int((334-75)/600.*HEIGHT)), place=(int(143/800.*WIDTH), int(75/600.*HEIGHT)),
+                                          color=(201, 14, 163), text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf").draw()
             pygame.display.flip()
 
             c = c + 0.1 if c + 0.1 <= 1 else 1
@@ -586,13 +589,11 @@ def exit_screen(screen, names, points):
 
         if not la_finito:
             if current - start >= 5:
-                podioms[0] = podioms[0] - 6 if podioms[0] - 6 >= 0 else 0
-            if current - start >= 12.5:
-                podioms[1] = podioms[1] - 6 if podioms[1] - 6 >= 0 else 0
-            if current - start >= 21:
-                podioms[2] = podioms[2] - 6 if podioms[2] - 6 >= 0 else 0
+                podioms[0] = podioms[0] - 4 if podioms[0] - 4 >= 0 else 0
+                podioms[2] = podioms[2] - 4 if podioms[2] - 4 >= 0 else 0
+                podioms[1] = podioms[1] - 4 if podioms[1] - 4 >= 0 else 0
         else:
-                podioms = [x + (178 - gif)/20 for x in podioms]
+                podioms = [x + (178 - gif)/7 for x in podioms]
 
 
         image = pygame.image.load(IMAGES_DIR + "winners_stand\\Slide1.png")

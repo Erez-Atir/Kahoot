@@ -13,7 +13,8 @@
             "time to read": 2, 
             "points": 100, 
             "correct answer": 1, 
-            "id": 1
+            "id": 1, 
+            "image file type": "jpg"
         }, 
         {
             "time to answer": 30, 
@@ -25,10 +26,11 @@
                 "sometimes", 
                 "why? you single?"
             ], 
-            "time to read": 5, 
+            "time to read": 1, 
             "points": 100, 
             "correct answer": 2, 
-            "id": 2
+            "id": 2, 
+            "image file type": null
         }
     ]
 }
