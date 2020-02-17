@@ -273,9 +273,17 @@ def load_question(screen, question, photo, answers, qtime):
 
     global users
     # image
-    image = pygame.image.load(IMAGES_DIR + "main\\questions_no_image.png")
 
-    image = pygame.transform.scale(image, (WIDTH, HEIGHT))
+    rc = pygame.image.load(IMAGES_DIR + "main\\red_correct.png")
+    rc = resfix(rc)
+    bc = pygame.image.load(IMAGES_DIR + "main\\blue_correct.png")
+    bc = resfix(bc)
+    yc = pygame.image.load(IMAGES_DIR + "main\\orange_correct.png")
+    yc = resfix(yc)
+    gc = pygame.image.load(IMAGES_DIR + "main\\green_correct.png")
+    gc = resfix(gc)
+    a = [0, 367, 403, 367, 0, 484, 403, 484]
+    Rstartx, Rstarty, Bstartx, Bstarty, Ystartx, Ystarty, Gstartx, Gstarty = [int(a[x]/800.*WIDTH) if x % 2 == 0 else int(a[x]/600.*HEIGHT) for x in range(len(a))]
     addedimg = None
     if photo:
         addedimg = pygame.transform.scale(pygame.image.load("./files/temp.jpg"), (int((665-143)/800.*WIDTH), int((334-70)/600.*HEIGHT)))
@@ -322,12 +330,20 @@ def load_question(screen, question, photo, answers, qtime):
                     exit()
                     return True
 
-        screen.blit(image, (0, 0))
+        screen.fill(WHITE)
+        pygame.draw.circle(screen, (201, 14, 163), (int(723 / 800. * WIDTH), int(206 / 600. * HEIGHT)), 30)
+        pygame.draw.circle(screen, (201, 14, 163), (int(74 / 800. * WIDTH), int(206 / 600. * HEIGHT)), 30)
         if addedimg:
             screen.blit(addedimg, (int(143/800.*WIDTH), int(75/600.*HEIGHT)))
         else:
             textbox.OutputBox(screen, text=" KABOOT! ", size=(int((665-143)/800.*WIDTH), int((334-75)/600.*HEIGHT)), place=(int(143/800.*WIDTH), int(75/600.*HEIGHT)),
                                           color=(201, 14, 163), text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf").draw()
+
+        screen.blit(rc, (Rstartx, Rstarty))
+        screen.blit(bc, (Bstartx, Bstarty))
+        screen.blit(yc, (Ystartx, Ystarty))
+        screen.blit(gc, (Gstartx, Gstarty))
+
         #check_for_place(screen, events)
 
         # question
@@ -438,13 +454,12 @@ def show_answer(screen, res, correct_answer, question, photo):
         yellow = yc
     if correct_answer == 4:
         green = gc
-    basic_form = pygame.image.load(IMAGES_DIR + "main\\questions.png")
-    basic_form = resfix(basic_form)
+
     addedimg = None
     if photo:
         addedimg = pygame.transform.scale(pygame.image.load("./files/temp.jpg"), (int((665-143)/800.*WIDTH), int((334-70)/600.*HEIGHT)))
 
-    a = [3, 367, 403, 368, 3, 484, 403, 484]
+    a = [3, 367, 403, 367, 3, 484, 403, 484]
     Rstartx, Rstarty, Bstartx, Bstarty, Ystartx, Ystarty, Gstartx, Gstarty = [int(a[x]/800.*WIDTH) if x % 2 == 0 else int(a[x]/600.*HEIGHT) for x in range(len(a))]
     questionFont = pygame.font.Font("files\\montserrat\\Montserrat-Black.otf", 50)
     question_text = textbox.OutputBox(screen, question, (WIDTH, int(70/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
@@ -475,9 +490,9 @@ def show_answer(screen, res, correct_answer, question, photo):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     return False
-
-        screen.blit(basic_form, (0, 0))
-
+        screen.fill(WHITE)
+        pygame.draw.circle(screen, (201, 14, 163), (int(723 / 800. * WIDTH), int(206 / 600. * HEIGHT)), 30)
+        pygame.draw.circle(screen, (201, 14, 163), (int(74 / 800. * WIDTH), int(206 / 600. * HEIGHT)), 30)
         width = int(395/800.*WIDTH)     #width of the rectengels
         height = int(111/600.*HEIGHT)    #height of the rectrngels
         if time.time() - last > 0.1:
@@ -531,6 +546,8 @@ def show_answer(screen, res, correct_answer, question, photo):
             else:
                 textbox.OutputBox(screen, text=" KABOOT! ", size=(int((665-143)/800.*WIDTH), int((334-75)/600.*HEIGHT)), place=(int(143/800.*WIDTH), int(75/600.*HEIGHT)),
                                           color=(201, 14, 163), text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf").draw()
+
+
             pygame.display.flip()
 
             c = c + 0.1 if c + 0.1 <= 1 else 1
@@ -588,7 +605,7 @@ def exit_screen(screen, names, points):
         speed += 1
 
         if not la_finito:
-            if current - start >= 5:
+            if current - start >= 8:
                 podioms[0] = podioms[0] - 4 if podioms[0] - 4 >= 0 else 0
                 podioms[2] = podioms[2] - 4 if podioms[2] - 4 >= 0 else 0
                 podioms[1] = podioms[1] - 4 if podioms[1] - 4 >= 0 else 0
@@ -625,17 +642,19 @@ def exit_screen(screen, names, points):
         elif gif == 177:
             sub = True
             gif -= 1
-        elif gif > 29:
+        elif gif > 38:
             if sub and gif > 94:
                 gif -= 1
             else:
                 sub = False
                 gif += 1
         else:
-            gif += 1
+            if gif < 38 or time.time() - start >= 7:
+                if speed % 3 == 0:
+                    gif += 1
 
         pygame.display.flip()
-        clock.tick(60)
+        clock.tick(24)
 
 
 def print_names(screen, names):
@@ -671,6 +690,7 @@ def check_for_place(screen, events, width=1):
 
     pygame.draw.line(screen, (0, 0, 0), (pos[0], 0), (pos[0], HEIGHT), width)
     pygame.draw.line(screen, (0, 0, 0), (0, pos[1]), (WIDTH, pos[1]), width)
+    pygame.draw.circle(screen, (0,0,0), pos, 30, width)
 
 
 def resfix(image):
