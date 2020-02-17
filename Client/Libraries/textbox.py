@@ -1,13 +1,7 @@
 import pygame
 import time
-from win32api import GetKeyState
-from win32con import VK_CAPITAL
-
-pygame.font.init()
-FONT_LIB = pygame.font.match_font('bitstreamverasans')[0:-10] + "\\"
 
 
-#-----------------------Library-----------------------
 class InputBox:
     """
     Creates an input box which you can use to get the username for the first screen.
@@ -20,7 +14,7 @@ class InputBox:
     :param text_color: (R, G, B) of the text color
     :param font: the name of the font for the text
     """
-    def __init__(self, screen, size, place, color=(255, 255, 255), border_width=0, border_color=(0, 0, 0), text_color=(0, 0, 0), font="Arial.ttf", limit=None):
+    def __init__(self, screen, size, place, color=(255, 255, 255), border_width=0, border_color=(0, 0, 0), text_color=(0, 0, 0), font="Arial"):
         self.__start = time.time()
         self.__input_text = ""
         self.__keys = {letter: time.time() for letter in [chr(let) for let in range(97, 123) + range(48, 58) + [8, 32, 127]] + ["<-", "->"]}
@@ -35,7 +29,6 @@ class InputBox:
         self.border_color = border_color
         self.text_color = text_color
         self.font = font
-        self.limit = limit
 
     def draw(self):
         """
@@ -56,7 +49,7 @@ class InputBox:
         backspaced = False
         if self.__toggle:
             pressed = pygame.key.get_pressed()
-            shift = 97-65 if any(pressed[303:305]) or GetKeyState(VK_CAPITAL) else 0
+            shift = 97-65 if any(pressed[303:305]) else 0
             for key in range(97, 123) + range(48, 58) + [8, 32, 127, 275, 276, 278, 279]:
                 if pressed[key]:
                     if key in [275, 276]:
@@ -115,8 +108,6 @@ class InputBox:
                         self.__keys[key] = 0
                     else:
                         self.__keys[chr(key)] = 0
-        if self.limit:
-            self.__input_text = self.__input_text[:self.limit]
         font_size = self.__last_size if self.__last_size else self.size[1]
         text_font = pygame.font.Font(self.font, font_size)
         while any(x >= y*0.95 for x, y in zip(text_font.size(self.__input_text + '|'), self.size)):
@@ -158,7 +149,7 @@ class OutputBox:
     :param text_color: (R, G, B) of the text color
     :param font: the name of the font for the text
     """
-    def __init__(self, screen, text, size, place, color=(255, 255, 255), border_width=0, border_color=(0, 0, 0), text_color=(0, 0, 0), font="Arial.ttf"):
+    def __init__(self, screen, text, size, place, color=(255, 255, 255), border_width=0, border_color=(0, 0, 0), text_color=(0, 0, 0), font=None):
         self.__font_size = size[1]
         self._screen = screen
         self.text = text
@@ -190,3 +181,60 @@ class OutputBox:
             textW, textH = text_font.size(self.text.split("\n")[linumber])
             self._screen.blit(printext, (self.place[0] + self.size[0]/2 - textW/2, self.place[1] + self.size[1]/2 - (textH/2)*len(self.text.split("\n")) + textH*linumber))
             linumber += 1
+
+
+class ButtonBox:
+    """
+    Creates an input box which you can use to get the username for the first screen.
+    :param screen: the surface you want to draw on
+    :param text: the text you want to print
+    :param size: (x, y) -> where x is the length of the box and y is the height
+    :param place: (x, y) -> where x is the x-coordinate of the box and y is the y-coordinate, in relation to 'screen'
+    :param color: (R, G, B) of the background color of the box
+    :param border_width: the width of the border, 0 for no border
+    :param border_color: (R, G, B) of the border color
+    :param text_color: (R, G, B) of the text color
+    :param font: the name of the font for the text
+    """
+    def __init__(self, screen, text, size, place, color=(255, 255, 255), border_width=3, border_color=(0, 0, 0), text_color=(0, 0, 0), font=None):
+        self.__font_size = size[1]
+        self._screen = screen
+        self.text = text
+        self.size = size
+        self.place = place
+        self.color = color
+        self.border_width = border_width
+        self.border_color = border_color
+        self.text_color = text_color
+        self.font = font
+        self.clicked = False
+
+    def draw(self):
+        """
+        Call this inside the loop in order to draw the textbox to the screen
+        """
+        if self.color:
+            pygame.draw.rect(self._screen, self.color, (self.place, self.size))
+        x, y = pygame.mouse.get_pos()
+        if self.place[0] < x and x < self.place[0] + self.size[0] and y > self.place[1] and y < self.place[1] + self.size[1]:
+            pygame.draw.rect(self._screen, self.border_color, (tuple([x-self.border_width/2 for x in self.place]), tuple([x+self.border_width for x in self.size])), self.border_width)
+            if pygame.mouse.get_pressed()[0]:
+                self.clicked = True
+        font_size = self.__font_size
+        text_font = pygame.font.Font(self.font, font_size)
+        while max([text_font.size(self.text.split("\n")[x])[0] for x in range(len(self.text.split("\n")))]) >= self.size[0] or (text_font.size(self.text)[1])*len(self.text.split("\n")) >= self.size[1]:
+            font_size -= 1
+            text_font = pygame.font.Font(self.font, font_size)
+            self.__font_size = font_size
+        linumber = 0
+        for line in self.text.split("\n"):
+            printext = text_font.render(line, False, self.text_color)
+            textW, textH = text_font.size(self.text.split("\n")[linumber])
+            self._screen.blit(printext, (self.place[0] + self.size[0]/2 - textW/2, self.place[1] + self.size[1]/2 - (textH/2)*len(self.text.split("\n")) + textH*linumber))
+            linumber += 1
+
+
+    def was_clicked(self):
+        temp = self.clicked
+        self.clicked = False
+        return temp
