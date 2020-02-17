@@ -181,3 +181,60 @@ class OutputBox:
             textW, textH = text_font.size(self.text.split("\n")[linumber])
             self._screen.blit(printext, (self.place[0] + self.size[0]/2 - textW/2, self.place[1] + self.size[1]/2 - (textH/2)*len(self.text.split("\n")) + textH*linumber))
             linumber += 1
+
+
+class ButtonBox:
+    """
+    Creates an input box which you can use to get the username for the first screen.
+    :param screen: the surface you want to draw on
+    :param text: the text you want to print
+    :param size: (x, y) -> where x is the length of the box and y is the height
+    :param place: (x, y) -> where x is the x-coordinate of the box and y is the y-coordinate, in relation to 'screen'
+    :param color: (R, G, B) of the background color of the box
+    :param border_width: the width of the border, 0 for no border
+    :param border_color: (R, G, B) of the border color
+    :param text_color: (R, G, B) of the text color
+    :param font: the name of the font for the text
+    """
+    def __init__(self, screen, text, size, place, color=(255, 255, 255), border_width=3, border_color=(0, 0, 0), text_color=(0, 0, 0), font=None):
+        self.__font_size = size[1]
+        self._screen = screen
+        self.text = text
+        self.size = size
+        self.place = place
+        self.color = color
+        self.border_width = border_width
+        self.border_color = border_color
+        self.text_color = text_color
+        self.font = font
+        self.clicked = False
+
+    def draw(self):
+        """
+        Call this inside the loop in order to draw the textbox to the screen
+        """
+        if self.color:
+            pygame.draw.rect(self._screen, self.color, (self.place, self.size))
+        x, y = pygame.mouse.get_pos()
+        if self.place[0] < x and x < self.place[0] + self.size[0] and y > self.place[1] and y < self.place[1] + self.size[1]:
+            pygame.draw.rect(self._screen, self.border_color, (tuple([x-self.border_width/2 for x in self.place]), tuple([x+self.border_width for x in self.size])), self.border_width)
+            if pygame.mouse.get_pressed()[0]:
+                self.clicked = True
+        font_size = self.__font_size
+        text_font = pygame.font.Font(self.font, font_size)
+        while max([text_font.size(self.text.split("\n")[x])[0] for x in range(len(self.text.split("\n")))]) >= self.size[0] or (text_font.size(self.text)[1])*len(self.text.split("\n")) >= self.size[1]:
+            font_size -= 1
+            text_font = pygame.font.Font(self.font, font_size)
+            self.__font_size = font_size
+        linumber = 0
+        for line in self.text.split("\n"):
+            printext = text_font.render(line, False, self.text_color)
+            textW, textH = text_font.size(self.text.split("\n")[linumber])
+            self._screen.blit(printext, (self.place[0] + self.size[0]/2 - textW/2, self.place[1] + self.size[1]/2 - (textH/2)*len(self.text.split("\n")) + textH*linumber))
+            linumber += 1
+
+
+    def was_clicked(self):
+        temp = self.clicked
+        self.clicked = False
+        return temp
