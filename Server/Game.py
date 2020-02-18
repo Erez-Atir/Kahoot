@@ -7,6 +7,7 @@ from files import textbox
 import json
 import base64
 
+QUIZ = "test"
 
 PLAYERSSCORE = {} #""""dictionary, saves the points of each player"""
 FONT_LIB = pygame.font.match_font('bitstreamverasans')[0:-10] + "\\" #finds the fony libary path
@@ -55,7 +56,7 @@ def main():
     pygame.display.flip()
     pygame.font.init()
 
-    a = textbox.OutputBox(screen, "KABOOT!", (WIDTH, int(100/600.*HEIGHT)), (0, int(50/600.*HEIGHT)), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
+    a = textbox.OutputBox(screen, QUIZ, (WIDTH, int(100/600.*HEIGHT)), (0, int(50/600.*HEIGHT)), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
     b = textbox.OutputBox(screen, "No Users Logged In", (WIDTH, int(50/600.*HEIGHT)), (0, int(175/600.*HEIGHT)), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
     c = textbox.OutputBox(screen, "Start", (int(770/800.*WIDTH-25/800.*WIDTH), int(580/600.*HEIGHT-490/600.*HEIGHT)), (int(25/800.*WIDTH), int(490/600.*HEIGHT)), (255, 255, 255), 0, (0, 0, 0), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
 
@@ -90,20 +91,17 @@ def main():
                     if 25/800.*WIDTH < x and x < 770/800.*WIDTH and y > 490/600.*HEIGHT and y < 580/600.*HEIGHT:   # if mouse above start button
                         start_game = True
         """"load screen"""
+        screen.fill((35, 177, 76))
+        for topstart in [x*int(WIDTH/10) for x in range(20)]:
+            pygame.draw.line(screen, (176, 235, 48), (trying + topstart, -10), (-10, trying + topstart), int(0.0125*WIDTH))
         x, y = mouse_loc                                   #gets mouse location
         if 25/800.*WIDTH < x and x < 770/800.*WIDTH and y > 490/600.*HEIGHT and y < 580/600.*HEIGHT:    # if mouse above start button=
-            screen.fill((35, 177, 76))
-            for topstart in [x*int(WIDTH/10) for x in range(20)]:
-                pygame.draw.line(screen, (176, 235, 48), (trying + topstart, -10), (-10, trying + topstart), int(0.0125*WIDTH))
             a.draw()
             b.draw()
             c.border_width = 6
             c.draw()
             pygame.mouse.set_cursor(*pygame.cursors.broken_x)# set cursor to broken x
         else:
-            screen.fill((35, 177, 76))
-            for topstart in [x*int(WIDTH/10) for x in range(20)]:
-                pygame.draw.line(screen, (176, 235, 48), (trying + topstart, -10), (-10, trying + topstart), int(0.0125*WIDTH))
             a.draw()
             b.draw()
             c.border_width = 0
@@ -146,14 +144,13 @@ def main():
         clock.tick(60)
 
     pygame.mouse.set_cursor(*pygame.cursors.arrow)
-    with open('quizes/test.json', 'rb') as qfile:
+    with open('quizes/' + QUIZ + '.json', 'rb') as qfile:
         quiz = json.load(qfile)
 
     #with open(IMAGES_DIR+"Example.jpg", 'rb') as img:
     #    quiz['Questions'][0]['photo'] = base64.b64encode(img.read())
-
-    with open('quizes/test.json', 'wb') as qfile:
-        json.dump(quiz, qfile, indent=4)
+    #with open('quizes/test.json', 'wb') as qfile:
+    #    json.dump(quiz, qfile, indent=4)
 
     pygame.mixer.music.fadeout(quiz['Questions'][0]['time to read']*1000)
 
@@ -302,7 +299,7 @@ def load_question(screen, question, photo, answers, qtime):
         answer_boxes.append(textbox.OutputBox(screen, text=answers[y], size=(int(335/800.*WIDTH), int(105/600.*HEIGHT)), place=(int(int(60/800.*WIDTH) + (WIDTH / 2) * (y % 2)), int(372/600.*HEIGHT) + int(120/600.*HEIGHT) * int(y / 2)),
                                               color=None, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf"))
 
-    timerText = textbox.OutputBox(screen, text=str(qtime), size=(int((103-43-6)/800.*WIDTH), int((237-177)/600.*HEIGHT)), place=(int((43+3)/800.*WIDTH), int(177/600.*HEIGHT)),
+    timerText = textbox.OutputBox(screen, text=str(qtime), size=(int((753-693-6)/800.*WIDTH), int((235-175)/600.*HEIGHT)), place=(int((43+3)/800.*WIDTH), int(175/600.*HEIGHT)),
                                               color=None, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
     timerTextHeader = textbox.OutputBox(screen, text=" Seconds:", size=(int(142/800.*WIDTH), int((237-177+100)/600.*HEIGHT)), place=(0, int(177/600.*HEIGHT) - int((237-177+50)/600.*HEIGHT)),
                                               color=None, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
@@ -696,36 +693,6 @@ def check_for_place(screen, events, width=1):
 def resfix(image):
     size = image.get_rect().size
     return pygame.transform.scale(image, (int(size[0]/800.*WIDTH), int(size[1]/600.*HEIGHT)))
-
-
-class Button:
-    def __init__(self, width, height, color, location):
-        self.drawn = False
-        self.height = height
-        self.width = width
-        self.color = color
-        self.location = location
-        self.background = pygame.Surface((width, height))
-        self.background.fill(color)
-        self.items = {}
-        self.screen = None
-
-    def Draw(self, screen):
-        self.screen = screen
-        for item in self.items.keys():
-            self.background.blit(item, self.items[item])
-        screen.blit(self.background, self.location)
-        pygame.display.flip()
-        self.drawn = True
-
-
-    def add_item(self, item, location):
-        self.items[item] = location
-        if self.drawn:
-            item.fill(BLUE)
-            self.background.blit(item, location)
-            self.screen.blit(self.background, self.location)
-            pygame.display.flip()
 
 
 main()

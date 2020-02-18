@@ -1,5 +1,6 @@
 import pygame
 import time
+pygame.font.init()
 
 
 class InputBox:
@@ -14,7 +15,7 @@ class InputBox:
     :param text_color: (R, G, B) of the text color
     :param font: the name of the font for the text
     """
-    def __init__(self, screen, size, place, color=(255, 255, 255), border_width=0, border_color=(0, 0, 0), text_color=(0, 0, 0), font="Arial"):
+    def __init__(self, screen, size, place, color=(255, 255, 255), border_width=0, border_color=(0, 0, 0), text_color=(0, 0, 0), font="Arial", limit=None):
         self.__start = time.time()
         self.__input_text = ""
         self.__keys = {letter: time.time() for letter in [chr(let) for let in range(97, 123) + range(48, 58) + [8, 32, 127]] + ["<-", "->"]}
@@ -29,6 +30,7 @@ class InputBox:
         self.border_color = border_color
         self.text_color = text_color
         self.font = font
+        self.limit = limit
 
     def draw(self):
         """

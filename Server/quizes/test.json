@@ -12,8 +12,7 @@
             ], 
             "time to read": 2, 
             "points": 100, 
-            "correct answer": 1, 
-            "id": 1, 
+            "correct answer": 1,
             "image file type": "jpg"
         }, 
         {
@@ -28,8 +27,7 @@
             ], 
             "time to read": 1, 
             "points": 100, 
-            "correct answer": 2, 
-            "id": 2, 
+            "correct answer": 2,
             "image file type": null
         }
     ]
