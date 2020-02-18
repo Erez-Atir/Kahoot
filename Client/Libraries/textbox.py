@@ -1,8 +1,17 @@
 import pygame
 import time
+<<<<<<< HEAD
 pygame.font.init()
+=======
+from win32api import GetKeyState
+from win32con import VK_CAPITAL
+>>>>>>> parent of 9d9ca93... button
+
+pygame.font.init()
+FONT_LIB = pygame.font.match_font('bitstreamverasans')[0:-10] + "\\"
 
 
+#-----------------------Library-----------------------
 class InputBox:
     """
     Creates an input box which you can use to get the username for the first screen.
@@ -15,7 +24,11 @@ class InputBox:
     :param text_color: (R, G, B) of the text color
     :param font: the name of the font for the text
     """
+<<<<<<< HEAD
     def __init__(self, screen, size, place, color=(255, 255, 255), border_width=0, border_color=(0, 0, 0), text_color=(0, 0, 0), font="Arial", limit=None):
+=======
+    def __init__(self, screen, size, place, color=(255, 255, 255), border_width=0, border_color=(0, 0, 0), text_color=(0, 0, 0), font="Arial.ttf", limit=None):
+>>>>>>> parent of 9d9ca93... button
         self.__start = time.time()
         self.__input_text = ""
         self.__keys = {letter: time.time() for letter in [chr(let) for let in range(97, 123) + range(48, 58) + [8, 32, 127]] + ["<-", "->"]}
@@ -51,7 +64,7 @@ class InputBox:
         backspaced = False
         if self.__toggle:
             pressed = pygame.key.get_pressed()
-            shift = 97-65 if any(pressed[303:305]) else 0
+            shift = 97-65 if any(pressed[303:305]) or GetKeyState(VK_CAPITAL) else 0
             for key in range(97, 123) + range(48, 58) + [8, 32, 127, 275, 276, 278, 279]:
                 if pressed[key]:
                     if key in [275, 276]:
@@ -110,6 +123,8 @@ class InputBox:
                         self.__keys[key] = 0
                     else:
                         self.__keys[chr(key)] = 0
+        if self.limit:
+            self.__input_text = self.__input_text[:self.limit]
         font_size = self.__last_size if self.__last_size else self.size[1]
         text_font = pygame.font.Font(self.font, font_size)
         while any(x >= y*0.95 for x, y in zip(text_font.size(self.__input_text + '|'), self.size)):
@@ -151,7 +166,7 @@ class OutputBox:
     :param text_color: (R, G, B) of the text color
     :param font: the name of the font for the text
     """
-    def __init__(self, screen, text, size, place, color=(255, 255, 255), border_width=0, border_color=(0, 0, 0), text_color=(0, 0, 0), font=None):
+    def __init__(self, screen, text, size, place, color=(255, 255, 255), border_width=0, border_color=(0, 0, 0), text_color=(0, 0, 0), font="Arial.ttf"):
         self.__font_size = size[1]
         self._screen = screen
         self.text = text
@@ -182,6 +197,7 @@ class OutputBox:
             printext = text_font.render(line, False, self.text_color)
             textW, textH = text_font.size(self.text.split("\n")[linumber])
             self._screen.blit(printext, (self.place[0] + self.size[0]/2 - textW/2, self.place[1] + self.size[1]/2 - (textH/2)*len(self.text.split("\n")) + textH*linumber))
+<<<<<<< HEAD
             linumber += 1
 
 
@@ -240,3 +256,6 @@ class ButtonBox:
         temp = self.clicked
         self.clicked = False
         return temp
+=======
+            linumber += 1
+>>>>>>> parent of 9d9ca93... button
