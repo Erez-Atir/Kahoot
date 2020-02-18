@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a5628d7-df6f-4558-bd47-85e0ba4365e8" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\Kaboot.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\login\game_background.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\login\log_screen.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\login\log_screen_start_selected.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\main\basic_result_form.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\main\questions.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\main\questions_no_image.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/images/main/orange_correct.png" afterPath="$PROJECT_DIR$/Server/images/main/orange_correct.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/images/main/orange_incorrect.png" afterPath="$PROJECT_DIR$/Server/images/main/orange_incorrect.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/quizes/test.json" afterPath="$PROJECT_DIR$/Server/quizes/test.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/Kaboot.py" afterPath="$PROJECT_DIR$/Client/Kaboot.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/Libraries/textbox.py" afterPath="$PROJECT_DIR$/Client/Libraries/textbox.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Kahoot.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -78,16 +68,16 @@
       <file leaf-file-name="Kaboot.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client/Kaboot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="109" column="24" selection-start="4714" selection-end="4714" vertical-scroll-proportion="0.0" vertical-offset="1601" max-vertical-offset="7310">
+            <state line="131" column="31" selection-start="5961" selection-end="5961" vertical-scroll-proportion="0.0" vertical-offset="1703" max-vertical-offset="7412">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="textbox.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="textbox.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client/Libraries/textbox.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="26" selection-start="1436" selection-end="1436" vertical-scroll-proportion="0.7459547" vertical-offset="83" max-vertical-offset="4199">
+            <state line="2" column="18" selection-start="44" selection-end="44" vertical-scroll-proportion="0.0" vertical-offset="3462" max-vertical-offset="4352">
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -115,10 +105,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.json" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="test.json" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Server/quizes/test.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="27" selection-start="58" selection-end="58" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
+            <state line="3" column="27" selection-start="58" selection-end="58" vertical-scroll-proportion="0.08429752" vertical-offset="0" max-vertical-offset="663">
               <folding />
             </state>
           </provider>
@@ -167,12 +157,12 @@
         <option value="$PROJECT_DIR$/Server/quizes/t.json" />
         <option value="$PROJECT_DIR$/Server/quizes/example_1.json" />
         <option value="$PROJECT_DIR$/Client/Libraries/client.py" />
-        <option value="$PROJECT_DIR$/Client/Kaboot.py" />
         <option value="$PROJECT_DIR$/Server/Kaboot.py" />
         <option value="$PROJECT_DIR$/Server/quizes/test.json" />
         <option value="$PROJECT_DIR$/Server/Game.py" />
         <option value="$PROJECT_DIR$/Server/Quizmatron.py" />
         <option value="$PROJECT_DIR$/Client/Libraries/textbox.py" />
+        <option value="$PROJECT_DIR$/Client/Kaboot.py" />
       </list>
     </option>
   </component>
@@ -915,13 +905,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/quizes/test.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="27" selection-start="58" selection-end="58" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Client/Libraries/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="79" column="0" selection-start="3205" selection-end="3205" vertical-scroll-proportion="0.0" vertical-offset="861" max-vertical-offset="1479">
@@ -954,19 +937,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Libraries/textbox.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="18" selection-start="44" selection-end="44" vertical-scroll-proportion="0.0" vertical-offset="3462" max-vertical-offset="4352">
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Client/Kaboot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="109" column="24" selection-start="4714" selection-end="4714" vertical-scroll-proportion="0.0" vertical-offset="1601" max-vertical-offset="7310">
+        <state line="131" column="31" selection-start="5961" selection-end="5961" vertical-scroll-proportion="0.0" vertical-offset="1703" max-vertical-offset="7412">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Libraries/textbox.py">
+    <entry file="file://$PROJECT_DIR$/Server/quizes/test.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="26" selection-start="1436" selection-end="1436" vertical-scroll-proportion="0.7459547" vertical-offset="83" max-vertical-offset="4199">
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
+        <state line="3" column="27" selection-start="58" selection-end="58" vertical-scroll-proportion="0.08429752" vertical-offset="0" max-vertical-offset="663">
+          <folding />
         </state>
       </provider>
     </entry>

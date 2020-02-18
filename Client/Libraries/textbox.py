@@ -1,11 +1,8 @@
 import pygame
 import time
-<<<<<<< HEAD
 pygame.font.init()
-=======
 from win32api import GetKeyState
 from win32con import VK_CAPITAL
->>>>>>> parent of 9d9ca93... button
 
 pygame.font.init()
 FONT_LIB = pygame.font.match_font('bitstreamverasans')[0:-10] + "\\"
@@ -24,11 +21,7 @@ class InputBox:
     :param text_color: (R, G, B) of the text color
     :param font: the name of the font for the text
     """
-<<<<<<< HEAD
-    def __init__(self, screen, size, place, color=(255, 255, 255), border_width=0, border_color=(0, 0, 0), text_color=(0, 0, 0), font="Arial", limit=None):
-=======
     def __init__(self, screen, size, place, color=(255, 255, 255), border_width=0, border_color=(0, 0, 0), text_color=(0, 0, 0), font="Arial.ttf", limit=None):
->>>>>>> parent of 9d9ca93... button
         self.__start = time.time()
         self.__input_text = ""
         self.__keys = {letter: time.time() for letter in [chr(let) for let in range(97, 123) + range(48, 58) + [8, 32, 127]] + ["<-", "->"]}
@@ -197,7 +190,6 @@ class OutputBox:
             printext = text_font.render(line, False, self.text_color)
             textW, textH = text_font.size(self.text.split("\n")[linumber])
             self._screen.blit(printext, (self.place[0] + self.size[0]/2 - textW/2, self.place[1] + self.size[1]/2 - (textH/2)*len(self.text.split("\n")) + textH*linumber))
-<<<<<<< HEAD
             linumber += 1
 
 
@@ -256,6 +248,3 @@ class ButtonBox:
         temp = self.clicked
         self.clicked = False
         return temp
-=======
-            linumber += 1
->>>>>>> parent of 9d9ca93... button

@@ -123,8 +123,14 @@ def login_screen():
                 # If pressed key is ESC quit program
                 if event.key == pygame.K_ESCAPE:
                     exit()
-        if resfix(590+320) > mouse[0] > resfix(590) and resfix(None, 480+80) > mouse[1] > resfix(None, 480) and pygame.mouse.get_pressed()[0]:
-            finish = True if username else False
+        if resfix(590+320) > mouse[0] > resfix(590) and resfix(None, 480+80) > mouse[1] > resfix(None, 480):
+            if pygame.mouse.get_pressed()[0]:
+                finish = True if username else False
+            button.color = WHITE
+            button.text_color = GREY
+        else:
+            button.color = GREY
+            button.text_color = WHITE
         a.draw()
         b.draw()
         login.draw()
