@@ -7,7 +7,7 @@ from files import textbox
 import json
 import base64
 
-QUIZ = "test"
+Title = "test"
 
 PLAYERSSCORE = {} #""""dictionary, saves the points of each player"""
 FONT_LIB = pygame.font.match_font('bitstreamverasans')[0:-10] + "\\" #finds the fony libary path
@@ -46,7 +46,7 @@ BLACKSURFACE = pygame.Surface((WIDTH, HEIGHT))
 BLACKSURFACE.fill(WHITE)
 
 
-def main():
+def main(QUIZ):
     global users, QuestioNumber, TotalQN
     done = False                                     #"""the playes exited the game?"""
     start_game = False                               # the game has started?
@@ -695,4 +695,4 @@ def resfix(image):
     return pygame.transform.scale(image, (int(size[0]/800.*WIDTH), int(size[1]/600.*HEIGHT)))
 
 
-main()
+main(Title)

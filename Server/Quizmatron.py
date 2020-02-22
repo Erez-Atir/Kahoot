@@ -6,7 +6,7 @@ from files import textbox
 import json
 import base64
 
-QUIZ = "test"
+Title = "test"
 
 PLAYERSSCORE = {} #""""dictionary, saves the points of each player"""
 FONT_LIB = pygame.font.match_font('bitstreamverasans')[0:-10] + "\\" #finds the fony libary path
@@ -26,8 +26,8 @@ BLACK = (0, 0, 0)
 TCHELET = (150, 150, 255)
 MouseMotion = 4
 
-screen = pygame.display.set_mode((800, 600), pygame.FULLSCREEN)  # full screen
-#screen = pygame.display.set_mode((800, 600))  # set screen wid =800, hieght =600
+#screen = pygame.display.set_mode((800, 600), pygame.FULLSCREEN)  # full screen
+screen = pygame.display.set_mode((800, 600))  # set screen wid =800, hieght =600
 
 """height and width of the screen"""
 size = width, height = pygame.display.Info().current_w, pygame.display.Info().current_h
@@ -45,7 +45,7 @@ BLACKSURFACE = pygame.Surface((WIDTH, HEIGHT))
 BLACKSURFACE.fill(WHITE)
 
 
-def main():
+def main(QUIZ):
     global users, QuestioNumber, TotalQN
     done = False                                     #"""the playes exited the game?"""
     start_game = False                               # the game has started?
@@ -187,27 +187,38 @@ def load_question(screen, question, photo, answers, qtime):
 
 
     # question
-    question_text = textbox.OutputBox(screen, question, (WIDTH, int(70/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
-
+    question_text = textbox.InputBox(screen, (WIDTH, int(70/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf", False, question)
     # time
-    start_time = time.time()
-
-    time_passed = time.time() - start_time
 
     answer_boxes = []
     for y in range(4):
-        answer_boxes.append(textbox.OutputBox(screen, text=answers[y], size=(int(335/800.*WIDTH), int(105/600.*HEIGHT)), place=(int(int(60/800.*WIDTH) + (WIDTH / 2) * (y % 2)), int(372/600.*HEIGHT) + int(120/600.*HEIGHT) * int(y / 2)),
+        answer_boxes.append(textbox.InputBox(screen, placeholder=answers[y], size=(int(335/800.*WIDTH), int(105/600.*HEIGHT)), place=(int(int(60/800.*WIDTH) + (WIDTH / 2) * (y % 2)), int(372/600.*HEIGHT) + int(120/600.*HEIGHT) * int(y / 2)),
                                               color=None, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf"))
 
-    timerText = textbox.OutputBox(screen, text="<-", size=(int((753-693-6)/800.*WIDTH), int((235-175)/600.*HEIGHT)), place=(int((43+3)/800.*WIDTH), int(175/600.*HEIGHT)),
-                                              color=None, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
-    timerTextHeader = textbox.OutputBox(screen, text=" Seconds:", size=(int(142/800.*WIDTH), int((237-177+100)/600.*HEIGHT)), place=(0, int(177/600.*HEIGHT) - int((237-177+50)/600.*HEIGHT)),
-                                              color=None, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
+    TimeToAnswerQ = textbox.OutputBox(screen, text=" Seconds\nto answer:", size=(int(140/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(2/800.*WIDTH), int((70)/600.*HEIGHT)),
+                                          color=None, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
+    TimeToAnswerA = textbox.InputBox(screen, size=(int(140/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(2/800.*WIDTH), int((70+298/6)/600.*HEIGHT)),
+                                          color=WHITE, text_color=BLACK, border_color=BLACK, border_width=2, font="files\\montserrat\\Montserrat-Black.otf", numeric=True)
 
-    answerText = textbox.OutputBox(screen, text="->", size=(int((753-693-6)/800.*WIDTH), int((235-175)/600.*HEIGHT)), place=(int((693+3)/800.*WIDTH), int(175/600.*HEIGHT)),
-                                              color=None, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
-    answerTextHeader = textbox.OutputBox(screen, text="Answers: ", size=(int((800-664)/800.*WIDTH), int((235-175+100)/600.*HEIGHT)), place=(int(664/800.*WIDTH), int(175/600.*HEIGHT) - int((235-175+50)/600.*HEIGHT)),
-                                              color=None, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
+    TimeToReadQ = textbox.OutputBox(screen, text=" Seconds\nto read:", size=(int(140/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(2/800.*WIDTH), int((70+int((296/6)/600.*HEIGHT)*2+5)/600.*HEIGHT)),
+                                      color=None, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
+    TimeToReadA = textbox.InputBox(screen, size=(int(140/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(2/800.*WIDTH), int((70+int((296/6)/600.*HEIGHT)*2+298/6+5)/600.*HEIGHT)),
+                                          color=WHITE, text_color=BLACK, border_color=BLACK, border_width=2, font="files\\montserrat\\Montserrat-Black.otf", numeric=True)
+    prev = textbox.ButtonBox(screen, text="<-", size=(int((753-693-6)/800.*WIDTH), int((235-175)/600.*HEIGHT)), place=(int((43+3)/800.*WIDTH), int((366-(235-170)-20)/600.*HEIGHT)),
+                                              color=None, text_color=WHITE, border_color=None, font="files\\montserrat\\Montserrat-Black.otf")
+
+
+    PointsQ = textbox.OutputBox(screen, text=" Reward:", size=(int(138/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(660/800.*WIDTH), int((70)/600.*HEIGHT)),
+                                          color=None, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
+    PointsA = textbox.InputBox(screen, size=(int(138/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(660/800.*WIDTH), int((70+298/6)/600.*HEIGHT)),
+                                          color=WHITE, text_color=BLACK, border_color=BLACK, border_width=2, font="files\\montserrat\\Montserrat-Black.otf", numeric=True)
+
+    nothing = textbox.OutputBox(screen, text="place saver", size=(int(138/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(660/800.*WIDTH), int((70+int((296/6)/600.*HEIGHT)*2+5)/600.*HEIGHT)),
+                                        color=None, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
+    BackToHomeScreen = textbox.ButtonBox(screen, text="Back To\nMain Screen", size=(int(138/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(660/800.*WIDTH), int((70+int((296/6)/600.*HEIGHT)*2+298/6+5)/600.*HEIGHT) - int((296/6)/600.*HEIGHT)/2),
+                                          color=(201, 14, 163), text_color=WHITE, border_color=None, border_width=2, font="files\\montserrat\\Montserrat-Black.otf")
+    next = textbox.ButtonBox(screen, text="->", size=(int((753-693-6)/800.*WIDTH), int((235-175)/600.*HEIGHT)), place=(int((693+3)/800.*WIDTH), int((366-(235-170)-20)/600.*HEIGHT)),
+                                              color=None, text_color=WHITE, border_color=None, font="files\\montserrat\\Montserrat-Black.otf")
 
     answers_amount = 0
     while True:
@@ -224,8 +235,8 @@ def load_question(screen, question, photo, answers, qtime):
                     return True
 
         screen.fill(WHITE)
-        pygame.draw.circle(screen, (201, 14, 163), (int(723 / 800. * WIDTH), int(206 / 600. * HEIGHT)), 30)
-        pygame.draw.circle(screen, (201, 14, 163), (int(74 / 800. * WIDTH), int(206 / 600. * HEIGHT)), 30)
+        pygame.draw.circle(screen, (201, 14, 163), (int(723 / 800. * WIDTH), int((366-30-20) / 600. * HEIGHT)), 30)
+        pygame.draw.circle(screen, (201, 14, 163), (int(74 / 800. * WIDTH), int((366-30-20) / 600. * HEIGHT)), 30)
         if addedimg:
             screen.blit(addedimg, (int(143/800.*WIDTH), int(75/600.*HEIGHT)))
         else:
@@ -246,13 +257,23 @@ def load_question(screen, question, photo, answers, qtime):
         for answer in answer_boxes:
             answer.draw()
 
-        # timer
-        timerText.draw()
-        timerTextHeader.draw()
 
-        answerText.draw()
-        answerTextHeader.draw()
+        for button in [BackToHomeScreen, prev, next]:
+            if button.is_highlighted():
+                button.text_color = BLACK
+            else:
+                button.text_color = WHITE
 
+        TimeToAnswerQ.draw()
+        TimeToAnswerA.draw()
+        TimeToReadQ.draw()
+        TimeToReadA.draw()
+        prev.draw()
+
+        PointsQ.draw()
+        PointsA.draw()
+        BackToHomeScreen.draw()
+        next.draw()
 
 
         pygame.display.flip()
@@ -276,7 +297,6 @@ def check_for_place(screen, events, width=1):
 
     pygame.draw.line(screen, (0, 0, 0), (pos[0], 0), (pos[0], HEIGHT), width)
     pygame.draw.line(screen, (0, 0, 0), (0, pos[1]), (WIDTH, pos[1]), width)
-    pygame.draw.circle(screen, (0,0,0), pos, 30, width)
 
 
 def resfix(image):
@@ -284,5 +304,4 @@ def resfix(image):
     return pygame.transform.scale(image, (int(size[0]/800.*WIDTH), int(size[1]/600.*HEIGHT)))
 
 
-
-main()
+main(Title)
