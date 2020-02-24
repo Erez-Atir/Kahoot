@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a5628d7-df6f-4558-bd47-85e0ba4365e8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/Game.py" afterPath="$PROJECT_DIR$/Server/Game.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/Quizmatron.py" afterPath="$PROJECT_DIR$/Server/Quizmatron.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/files/textbox.py" afterPath="$PROJECT_DIR$/Server/files/textbox.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Kahoot.iws" />
@@ -40,19 +38,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Game.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Server/Game.py">
+      <file leaf-file-name="Quizmatron.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Server/Quizmatron.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="14" selection-start="630" selection-end="630" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="11849">
+            <state line="206" column="174" selection-start="9237" selection-end="9237" vertical-scroll-proportion="1.2408377" vertical-offset="2689" max-vertical-offset="5219">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Quizmatron.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Server/Quizmatron.py">
+      <file leaf-file-name="Kaboot.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/Kaboot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="13" selection-start="1227" selection-end="1231" vertical-scroll-proportion="-1.7700348" vertical-offset="1713" max-vertical-offset="5219">
+            <state line="430" column="0" selection-start="20034" selection-end="20034" vertical-scroll-proportion="0.0" vertical-offset="5409" max-vertical-offset="7412">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_server_support.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/files/test_server_support.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="70" column="120" selection-start="1844" selection-end="1948" vertical-scroll-proportion="0.0" vertical-offset="1537" max-vertical-offset="2737">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_server.pyw" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/test_server.pyw">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="339" column="0" selection-start="13943" selection-end="13943" vertical-scroll-proportion="0.0" vertical-offset="5316" max-vertical-offset="5967">
               <folding />
             </state>
           </provider>
@@ -61,10 +77,17 @@
       <file leaf-file-name="textbox.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Server/files/textbox.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="160" column="48" selection-start="8966" selection-end="8966" vertical-scroll-proportion="0.0" vertical-offset="2671" max-vertical-offset="5220">
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-              </folding>
+            <state line="160" column="48" selection-start="8966" selection-end="8966" vertical-scroll-proportion="0.0" vertical-offset="4338" max-vertical-offset="4913">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Server.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Server/files/Server.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="60" column="0" selection-start="1431" selection-end="1502" vertical-scroll-proportion="0.0" vertical-offset="4053" max-vertical-offset="4641">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -81,7 +104,7 @@
       <file leaf-file-name="test.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Server/quizes/test.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="27" selection-start="58" selection-end="58" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="663">
+            <state line="15" column="20" selection-start="111359" selection-end="111640" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
               <folding />
             </state>
           </provider>
@@ -135,8 +158,8 @@
         <option value="$PROJECT_DIR$/Client/Libraries/textbox.py" />
         <option value="$PROJECT_DIR$/Client/Kaboot.py" />
         <option value="$PROJECT_DIR$/Server/files/textbox.py" />
-        <option value="$PROJECT_DIR$/Server/Quizmatron.py" />
         <option value="$PROJECT_DIR$/Server/Game.py" />
+        <option value="$PROJECT_DIR$/Server/Quizmatron.py" />
       </list>
     </option>
   </component>
@@ -172,6 +195,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -250,7 +274,83 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="audio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Kahoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Kahoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Kahoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Kahoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Kahoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Kahoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="files" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Kahoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Kahoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="files" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="montserrat" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -274,7 +374,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -383,7 +482,9 @@
       <module name="Kahoot" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Server/Game.py" />
       <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PyDebugRunner" />
       <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PyDebugRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
@@ -537,9 +638,9 @@
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.Quizmatron" />
         <item index="1" class="java.lang.String" itemvalue="Python.Kaboot" />
-        <item index="2" class="java.lang.String" itemvalue="Python.Game" />
-        <item index="3" class="java.lang.String" itemvalue="Python.Kaboot (1)" />
-        <item index="4" class="java.lang.String" itemvalue="Python.test_server.pyw (1)" />
+        <item index="2" class="java.lang.String" itemvalue="Python.test_server.pyw (1)" />
+        <item index="3" class="java.lang.String" itemvalue="Python.Game" />
+        <item index="4" class="java.lang.String" itemvalue="Python.Kaboot (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -576,7 +677,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -584,18 +685,18 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19220643" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39956802" sideWeight="0.4997367" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39870688" sideWeight="0.4997367" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30495688" sideWeight="0.5002633" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33943966" sideWeight="0.4997367" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33909288" sideWeight="0.4997367" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286638" sideWeight="0.4997367" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286638" sideWeight="0.4997367" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -766,15 +867,6 @@
         <state line="678" column="0" selection-start="24020" selection-end="24020" vertical-scroll-proportion="0.33333334" vertical-offset="11323" max-vertical-offset="22729" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/files/Server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="0" selection-start="1431" selection-end="1502" vertical-scroll-proportion="0.33390707" vertical-offset="826" max-vertical-offset="4743">
-          <folding>
-            <element signature="e#55#68#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/multiprocessing/process.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="129" column="0" selection-start="4012" selection-end="4012" vertical-scroll-proportion="0.0" vertical-offset="1940" max-vertical-offset="5542" />
@@ -785,11 +877,6 @@
         <state line="357" column="0" selection-start="11253" selection-end="11253" vertical-scroll-proportion="0.33278418" vertical-offset="5782" max-vertical-offset="8721" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/files/test_server_support.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="120" selection-start="1844" selection-end="1948" vertical-scroll-proportion="0.3321859" vertical-offset="997" max-vertical-offset="2788" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Client/files/Server.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="32" selection-start="353" selection-end="353" vertical-scroll-proportion="0.2520593" vertical-offset="0" max-vertical-offset="4012" />
@@ -798,11 +885,6 @@
     <entry file="file://$PROJECT_DIR$/Client/files/ServerDitection.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="78" column="8" selection-start="2772" selection-end="2772" vertical-scroll-proportion="0.85738254" vertical-offset="815" max-vertical-offset="1530" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/test_server.pyw">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="4" selection-start="392" selection-end="392" vertical-scroll-proportion="0.47454843" vertical-offset="0" max-vertical-offset="5967" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/files/test_server.tcl">
@@ -878,18 +960,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Kaboot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="131" column="31" selection-start="5961" selection-end="5961" vertical-scroll-proportion="-0.08443709" vertical-offset="2227" max-vertical-offset="7412" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/quizes/test.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="27" selection-start="58" selection-end="58" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Client/Libraries/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="79" column="0" selection-start="3205" selection-end="3205" vertical-scroll-proportion="0.0" vertical-offset="861" max-vertical-offset="1479">
@@ -897,25 +967,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/files/textbox.py">
+    <entry file="file://$PROJECT_DIR$/Server/Game.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="160" column="48" selection-start="8966" selection-end="8966" vertical-scroll-proportion="0.0" vertical-offset="2671" max-vertical-offset="5220">
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
+        <state line="638" column="12" selection-start="30523" selection-end="30523" vertical-scroll-proportion="0.0" vertical-offset="10305" max-vertical-offset="11849">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/Game.py">
+    <entry file="file://$PROJECT_DIR$/Server/files/textbox.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="14" selection-start="630" selection-end="630" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="11849">
+        <state line="160" column="48" selection-start="8966" selection-end="8966" vertical-scroll-proportion="0.0" vertical-offset="2671" max-vertical-offset="5220">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/files/Server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="0" selection-start="1431" selection-end="1502" vertical-scroll-proportion="0.0" vertical-offset="4053" max-vertical-offset="4641">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/test_server.pyw">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="339" column="0" selection-start="13943" selection-end="13943" vertical-scroll-proportion="0.0" vertical-offset="5316" max-vertical-offset="5967">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/files/test_server_support.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="120" selection-start="1844" selection-end="1948" vertical-scroll-proportion="0.0" vertical-offset="739" max-vertical-offset="2737">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Kaboot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="430" column="0" selection-start="20034" selection-end="20034" vertical-scroll-proportion="0.0" vertical-offset="6837" max-vertical-offset="7412">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/quizes/test.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="20" selection-start="111359" selection-end="111640" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Server/Quizmatron.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="13" selection-start="1227" selection-end="1231" vertical-scroll-proportion="-1.7700348" vertical-offset="1713" max-vertical-offset="5219">
+        <state line="206" column="174" selection-start="9237" selection-end="9237" vertical-scroll-proportion="1.2408377" vertical-offset="2689" max-vertical-offset="5219">
           <folding />
         </state>
       </provider>

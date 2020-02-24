@@ -195,14 +195,14 @@ def load_question(screen, question, photo, answers, qtime):
         answer_boxes.append(textbox.InputBox(screen, placeholder=answers[y], size=(int(335/800.*WIDTH), int(105/600.*HEIGHT)), place=(int(int(60/800.*WIDTH) + (WIDTH / 2) * (y % 2)), int(372/600.*HEIGHT) + int(120/600.*HEIGHT) * int(y / 2)),
                                               color=None, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf"))
 
-    TimeToAnswerQ = textbox.OutputBox(screen, text=" Seconds\nto answer:", size=(int(140/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(2/800.*WIDTH), int((70)/600.*HEIGHT)),
-                                          color=None, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
-    TimeToAnswerA = textbox.InputBox(screen, size=(int(140/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(2/800.*WIDTH), int((70+298/6)/600.*HEIGHT)),
-                                          color=WHITE, text_color=BLACK, border_color=BLACK, border_width=2, font="files\\montserrat\\Montserrat-Black.otf", numeric=True)
 
-    TimeToReadQ = textbox.OutputBox(screen, text=" Seconds\nto read:", size=(int(140/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(2/800.*WIDTH), int((70+int((296/6)/600.*HEIGHT)*2+5)/600.*HEIGHT)),
+    TimeToReadQ = textbox.OutputBox(screen, text=" Seconds\nto read:", size=(int(140/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(2/800.*WIDTH), int((70)/600.*HEIGHT)),
+                                          color=None, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
+    TimeToReadA = textbox.InputBox(screen, size=(int(140/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(2/800.*WIDTH), int((70+298/6)/600.*HEIGHT)),
+                                          color=WHITE, text_color=BLACK, border_color=BLACK, border_width=2, font="files\\montserrat\\Montserrat-Black.otf", numeric=True)
+    TimeToAnswerQ = textbox.OutputBox(screen, text=" Seconds\nto answer:", size=(int(140/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(2/800.*WIDTH), int((70+int((296/6)/600.*HEIGHT)*2+5)/600.*HEIGHT)),
                                       color=None, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
-    TimeToReadA = textbox.InputBox(screen, size=(int(140/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(2/800.*WIDTH), int((70+int((296/6)/600.*HEIGHT)*2+298/6+5)/600.*HEIGHT)),
+    TimeToAnswerA = textbox.InputBox(screen, size=(int(140/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(2/800.*WIDTH), int((70+int((296/6)/600.*HEIGHT)*2+298/6+5)/600.*HEIGHT)),
                                           color=WHITE, text_color=BLACK, border_color=BLACK, border_width=2, font="files\\montserrat\\Montserrat-Black.otf", numeric=True)
     prev = textbox.ButtonBox(screen, text="<-", size=(int((753-693-6)/800.*WIDTH), int((235-175)/600.*HEIGHT)), place=(int((43+3)/800.*WIDTH), int((366-(235-170)-20)/600.*HEIGHT)),
                                               color=None, text_color=WHITE, border_color=None, font="files\\montserrat\\Montserrat-Black.otf")
