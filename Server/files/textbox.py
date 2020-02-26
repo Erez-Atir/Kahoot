@@ -233,7 +233,7 @@ class ButtonBox:
     :param text_color: (R, G, B) of the text color
     :param font: the name of the font for the text
     """
-    def __init__(self, screen, text, size, place, color=(255, 255, 255), border_width=3, border_color=(0, 0, 0), text_color=(0, 0, 0), font=None):
+    def __init__(self, screen, text, size, place, color=(255, 255, 255), border_width=3, border_color=(0, 0, 0), text_color=(0, 0, 0), font=None, mouse=True):
         self.__font_size = size[1]
         self._screen = screen
         self.text = text
@@ -246,6 +246,7 @@ class ButtonBox:
         self.font = font
         self.clicked = False
         self.highlighted = False
+        self.mouse = mouse
 
     def draw(self):
         """
@@ -254,13 +255,17 @@ class ButtonBox:
         if self.color:
             pygame.draw.rect(self._screen, self.color, (self.place, self.size))
         x, y = pygame.mouse.get_pos()
-        if self.place[0] < x and x < self.place[0] + self.size[0] and y > self.place[1] and y < self.place[1] + self.size[1]:
+        if self.place[0] < x < self.place[0] + self.size[0] and self.place[1] < y < self.place[1] + self.size[1]:
             if self.border_color:
                 pygame.draw.rect(self._screen, self.border_color, (tuple([x-self.border_width/2 for x in self.place]), tuple([x+self.border_width for x in self.size])), self.border_width)
+            if self.mouse:
+                pygame.mouse.set_cursor(*pygame.cursors.broken_x)
             self.highlighted = True
             if pygame.mouse.get_pressed()[0]:
                 self.clicked = True
         else:
+            if self.highlighted:
+                pygame.mouse.set_cursor(*pygame.cursors.arrow)
             self.highlighted = False
         font_size = self.__font_size
         text_font = pygame.font.Font(self.font, font_size)

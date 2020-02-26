@@ -244,7 +244,7 @@ def main_screen():
 
         pygame.display.flip()
 
-    pygame.draw.circle(screen, PURPLE, resfix(1500/2, 800/2), resfix(100))
+    pygame.draw.circle(screen, (255, 0, 0), resfix(1500/2, 800/2), resfix(100))
     pygame.display.flip()
     return None
 

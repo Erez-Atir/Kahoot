@@ -6,8 +6,10 @@ from files import Server
 from files import textbox
 import json
 import base64
+import threading
 
 Title = "test"
+Running = True
 
 PLAYERSSCORE = {} #""""dictionary, saves the points of each player"""
 FONT_LIB = pygame.font.match_font('bitstreamverasans')[0:-10] + "\\" #finds the fony libary path
@@ -47,7 +49,7 @@ BLACKSURFACE.fill(WHITE)
 
 
 def main(QUIZ):
-    global users, QuestioNumber, TotalQN
+    global users, QuestioNumber, TotalQN, Running
     done = False                                     #"""the playes exited the game?"""
     start_game = False                               # the game has started?
     pygame.init()                                    # initiate pygames
@@ -79,11 +81,13 @@ def main(QUIZ):
 
             if event.type == pygame.QUIT:#user presses the X
                 done = True
+                Running = False
                 exit()
             if event.type == pygame.KEYDOWN:
                 # If pressed key is ESC quit program
                 if event.key == pygame.K_ESCAPE:
                     done = True
+                    Running = False
                     exit()
             if event.type == MouseButtonDown:#player clicks the screen(should be only button)
                 if event.button == 1:
@@ -167,11 +171,12 @@ def main(QUIZ):
     while len(players) < 3:
         players.append("None")
         points.append(0)
-    Server.receive()
+
     exit_screen(screen, players, points)
 
     pygame.quit()
     time.sleep(0.2)
+    Running = False
     exit()
 
 
@@ -201,9 +206,9 @@ def add_question(screen, timer, question, answers, correct_answer, photo, photyp
         done = load_timer(timer, screen, question)  # set timer for certain amount of time + print it
         if not done:
             Server.new_question(qtime, answers)  # sends a message to all client that a new question is now available
-            done = load_question(screen, question, photo, answers, qtime)  # calls a function to print the question
+            done = load_question(screen, question, photype, answers, qtime)  # calls a function to print the question
             if not done:
-                done = show_answer(screen, Server.results(correct_answer, points), correct_answer, question, photo)
+                done = show_answer(screen, Server.results(correct_answer, points), correct_answer, question, photype)
             else:
                 return True
         else:
@@ -212,6 +217,7 @@ def add_question(screen, timer, question, answers, correct_answer, photo, photyp
 
 
 def score_board(screen, players, next_round_points):
+    global Running
     image = pygame.image.load(IMAGES_DIR + "scoreboard\\scoreboard.png")
     image = resfix(image)
 
@@ -233,11 +239,15 @@ def score_board(screen, players, next_round_points):
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.QUIT:
+
+                Running = False
                 exit()
                 return True
             if event.type == pygame.KEYDOWN:
                 # If pressed key is ESC quit program
                 if event.key == pygame.K_ESCAPE:
+
+                    Running = False
                     exit()
                     return True
             if event.type == pygame.KEYDOWN:
@@ -251,7 +261,7 @@ def score_board(screen, players, next_round_points):
             user.draw()
         under.draw()
         pygame.display.flip()
-        Server.receive()
+
     return False
 
 
@@ -268,7 +278,7 @@ def load_question(screen, question, photo, answers, qtime):
     :return: Did player exit the game
     """
 
-    global users
+    global users, Running
     # image
 
     rc = pygame.image.load(IMAGES_DIR + "main\\red_correct.png")
@@ -283,7 +293,7 @@ def load_question(screen, question, photo, answers, qtime):
     Rstartx, Rstarty, Bstartx, Bstarty, Ystartx, Ystarty, Gstartx, Gstarty = [int(a[x]/800.*WIDTH) if x % 2 == 0 else int(a[x]/600.*HEIGHT) for x in range(len(a))]
     addedimg = None
     if photo:
-        addedimg = pygame.transform.scale(pygame.image.load("./files/temp.jpg"), (int((665-143)/800.*WIDTH), int((334-70)/600.*HEIGHT)))
+        addedimg = pygame.transform.scale(pygame.image.load("./files/temp." + photo), (int((665-143)/800.*WIDTH), int((334-70)/600.*HEIGHT)))
 
 
     # question
@@ -319,11 +329,15 @@ def load_question(screen, question, photo, answers, qtime):
         for event in events:
             if event.type == pygame.QUIT:
                 pygame.mixer.music.stop()
+
+                Running = False
                 exit()
                 return True
             if event.type == pygame.KEYDOWN:
                 # If pressed key is ESC quit program
                 if event.key == pygame.K_ESCAPE:
+
+                    Running = False
                     exit()
                     return True
 
@@ -368,7 +382,7 @@ def load_question(screen, question, photo, answers, qtime):
 
 
 def load_timer(num, screen, question,):
-    global QuestioNumber, TotalQN
+    global QuestioNumber, TotalQN, Running
     QuestioNumber += 1
     first = time.time()
     last = time.time()
@@ -381,11 +395,15 @@ def load_timer(num, screen, question,):
         events = pygame.event.get()
         for event in events:
             if event.type == QUIT:
+
+                Running = False
                 exit()
                 return True
             if event.type == pygame.KEYDOWN:
                 # If pressed key is ESC quit program
                 if event.key == pygame.K_ESCAPE:
+
+                    Running = False
                     exit()
                     return True
             #if event.type == pygame.KEYDOWN:
@@ -421,6 +439,7 @@ def load_timer(num, screen, question,):
 
 
 def show_answer(screen, res, correct_answer, question, photo):
+    global Running
     res_sum = max(res) if max(res) else 1
     rc = pygame.image.load(IMAGES_DIR + "main\\red_correct.png")
     rc = resfix(rc)
@@ -454,7 +473,7 @@ def show_answer(screen, res, correct_answer, question, photo):
 
     addedimg = None
     if photo:
-        addedimg = pygame.transform.scale(pygame.image.load("./files/temp.jpg"), (int((665-143)/800.*WIDTH), int((334-70)/600.*HEIGHT)))
+        addedimg = pygame.transform.scale(pygame.image.load("./files/temp." + photo), (int((665-143)/800.*WIDTH), int((334-70)/600.*HEIGHT)))
 
     a = [3, 367, 403, 367, 3, 484, 403, 484]
     Rstartx, Rstarty, Bstartx, Bstarty, Ystartx, Ystarty, Gstartx, Gstarty = [int(a[x]/800.*WIDTH) if x % 2 == 0 else int(a[x]/600.*HEIGHT) for x in range(len(a))]
@@ -473,15 +492,19 @@ def show_answer(screen, res, correct_answer, question, photo):
     pygame.mixer.music.play(1)
     last = time.time()
     while not finish:
-        Server.receive()
+
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.QUIT:
+
+                Running = False
                 exit()
                 return True
             if event.type == pygame.KEYDOWN:
                 # If pressed key is ESC quit program
                 if event.key == pygame.K_ESCAPE:
+
+                    Running = False
                     exit()
                     return True
             if event.type == pygame.KEYDOWN:
@@ -554,6 +577,7 @@ def show_answer(screen, res, correct_answer, question, photo):
 
 def exit_screen(screen, names, points):
 
+    global Running
 
 
     sizes = [85, 85, 85]
@@ -578,7 +602,7 @@ def exit_screen(screen, names, points):
     final = [350, 386, 419]
     podioms = [400, 327, 241]
     while not finish:
-        Server.receive()
+
         current = time.time()
         last = current
         screen.fill((87, 37, 194))
@@ -587,6 +611,8 @@ def exit_screen(screen, names, points):
             if event.type == pygame.QUIT:
                 pygame.mixer.music.fadeout(gif*100)
                 finish = True
+
+                Running = False
                 exit()
 
             if event.type == pygame.KEYDOWN:
@@ -646,9 +672,8 @@ def exit_screen(screen, names, points):
                 sub = False
                 gif += 1
         else:
-            if gif < 38 or time.time() - start >= 7:
-                if speed % 3 == 0:
-                    gif += 1
+            if gif < 36 or time.time() - start >= 7:
+                gif += 1
 
         pygame.display.flip()
         clock.tick(24)
@@ -661,16 +686,6 @@ def print_names(screen, names):
             if counter < len(names):
                 textbox.OutputBox(screen=screen, text=names[counter], size=(WIDTH/6, HEIGHT/10), place=(5 + x * (WIDTH / 5), int(245/600.*HEIGHT) + HEIGHT/8*y), color=WHITE, border_width=2, border_color=BLACK, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf").draw()
                 counter += 1
-
-    if False:
-        if len(names[x] ) > 3:
-            largeText = pygame.font.Font(None, int(WIDTH/4/len(names[x])) - int(30/len(names[x])) + 5)
-            name_text = largeText.render(names[x], False, BLACK)#print the name
-            screen.blit(name_text, (x % 4 * (WIDTH / 4) + 20, int(245/600.*HEIGHT) + int(x / 4) * 60))
-        else:
-            largeText = pygame.font.Font(None, 60)
-            name_text = largeText.render(names[x], False, BLACK)  # print
-            screen.blit(name_text, (x % 4 * (WIDTH / 4), int(230/600.*HEIGHT) + int(x / 4) * 60))
 
 
 
@@ -695,4 +710,13 @@ def resfix(image):
     return pygame.transform.scale(image, (int(size[0]/800.*WIDTH), int(size[1]/600.*HEIGHT)))
 
 
+def handle_clients():
+    global Running
+    while Running:
+        Server.receive()
+
+
+threading.Thread(target=handle_clients).start()
+
 main(Title)
+
