@@ -6,6 +6,7 @@ from files import textbox
 import json
 import base64
 from Tkinter import *
+import tkMessageBox
 import tkFileDialog
 import win32gui, win32api, win32con
 
@@ -235,8 +236,9 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
     yb = textbox.ButtonBox(screen, text="", place=(10, 516), size=(46, 46), color=None, text_color=(0, 0, 0), border_color=None)
     gb = textbox.ButtonBox(screen, text="", place=(414, 519), size=(45, 43), color=None, text_color=(0, 0, 0), border_color=None)
 
-
+    regretometer = 0
     wtf = False
+    idk = False
     counter = 3
     while True:
         events = pygame.event.get()
@@ -343,26 +345,54 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
                 win32gui.EnumWindows(windowEnumerationHandler, top_windows)
                 for i in top_windows:
                     if "kaboot" in i[1].lower():
-                        win32gui.ShowWindow(i[0],5)
+                        win32gui.ShowWindow(i[0], 5)
                         win32gui.SetForegroundWindow(i[0])
                         break
                 if file:
                     imaging(screen, file, screen.copy())
+                    previmg = addedimg
+                    addedimg = addedimg = pygame.transform.scale(pygame.image.load("./files/temp." + "jpg"), (int((665-143)/800.*WIDTH), int((334-70)/600.*HEIGHT)))
+                    regretometer = 3
                 wtf = False
                 counter = 3
         if uploadimgbutt.was_clicked():
             wtf = True
 
+        if idk:
+            counter -= 1
+            if counter == 0:
+                Tk().withdraw()
+                delimgwindow = tkMessageBox.askyesno("Remove Image", "Are you sure you want to remove the existing image?\nThis action cannot be reversed!")
+                if delimgwindow:
+                    addedimg = None
+                    quiz['Questions'][QuestioNumber]['photo'] = None
+                    quiz['Questions'][QuestioNumber]['image file type'] = None
+                idk = False
+                counter = 3
+        if delimgbutt.was_clicked() and addedimg:
+            idk = True
 
 
-        #check_for_place(screen, events)
-
-
+        if regretometer == 3:
+            regretometer = 2
+        elif regretometer == 2:
+            regretometer = 1
+        elif regretometer == 1:
+            Tk().withdraw()
+            swich = tkMessageBox.askokcancel("Preview of New Image", "Are you sure you want to change the image?\nThis action cannot be reversed!")
+            if swich:
+                with open("./files/temp." + "jpg", 'rb') as img:
+                    quiz['Questions'][QuestioNumber]['photo'] = base64.b64encode(img.read())
+                    quiz['Questions'][QuestioNumber]['image file type'] = "jpg"
+            else:
+                addedimg = previmg
+            regretometer = 0
 
         with open('quizes/test.json', 'wb') as qfile:
             json.dump(quiz, qfile, indent=4)
-
+        #check_for_place(screen, events)
         pygame.display.flip()
+        clock.tick(60)
     pygame.mixer.music.stop()
     return False
 
@@ -373,17 +403,25 @@ def imaging(screen, file, background):
     background = background.convert()
     background.set_alpha(20)
 
+    question_text = textbox.OutputBox(screen, "Use + and - to change the image's scale.\nUse the mouse to move the image.", (WIDTH, int(75/600.*HEIGHT)), (0, 0), (0, 0, 0), 0, (), (255, 255, 255), "files\\montserrat\\Montserrat-Black.otf")
     doneb = textbox.ButtonBox(screen, "Done", (int(770/800.*WIDTH-25/800.*WIDTH), int(580/600.*HEIGHT-490/600.*HEIGHT)), (int(25/800.*WIDTH), int(490/600.*HEIGHT)), (255, 255, 255), 5, (0, 0, 0), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
     frame = textbox.OutputBox(screen, text="", size=(int((665-143)/800.*WIDTH), int((334-75)/600.*HEIGHT)), place=(int(143/800.*WIDTH), int(75/600.*HEIGHT)),
-                                          color=None, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf", border_width=4, border_color=(0, 0, 0))
+                                          color=None, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf", border_width=4, border_color=(255, 255, 255))
 
     image = pygame.image.load(file)
     place = frame.place
     size = image.get_size()
     resize = (1,1)
+    if size[0] > size[1]:
+        if size[0] > WIDTH:
+            resize = (1.*WIDTH/size[0], 1.*WIDTH/size[0])
+    else:
+        if size[1] > HEIGHT:
+            resize = (1.*HEIGHT/size[1], 1.*HEIGHT/size[1])
 
+    finished = False
     mouseinit = None
-    while not doneb.was_clicked():
+    while not finished:
         x, y = pygame.mouse.get_pos()
         events = pygame.event.get()
         for event in events:
@@ -406,33 +444,87 @@ def imaging(screen, file, background):
             if key:
                 if pressed.index(1) == 45:
                     if not (pressed[300] or pressed[303]):
-                        t = resize[1]-0.005 if resize[1]-0.005 > 0 else y
-                    s = resize[0]-0.005 if resize[0]-0.005 > 0 else x
+                        t = resize[1]-0.005 if resize[1]-0.005 > 0 else t
+                    s = resize[0]-0.005 if resize[0]-0.005 > 0 else s
                 if pressed.index(1) == 61:
                     if not (pressed[300] or pressed[303]):
                         t = resize[1]+0.01
                     s = resize[0]+0.01
         resize = (s,t)
+        if size[0]*resize[0] < frame.size[0] and not size[1]*resize[1] < frame.size[1]:
+                    place = (int(frame.place[0]+frame.size[0]/2-(size[0]*resize[0])/2.), place[1])
+                    if place[1] > frame.place[1]:
+                        place = (place[0], frame.place[1])
+                    if place[1] + size[1]*resize[1] < frame.place[1] + frame.size[1]:
+                        place = (place[0], frame.place[1]-(size[1]*resize[1]-frame.size[1]))
+        elif size[1]*resize[1] < frame.size[1] and not size[0]*resize[0] < frame.size[0]:
+                    place = (place[0], int(frame.place[1]+frame.size[1]/2-(size[1]*resize[1])/2.))
+                    if place[0] > frame.place[0]:
+                        place = (frame.place[0], place[1])
+                    if place[0] + size[0]*resize[0] < frame.place[0] + frame.size[0]:
+                        place = (frame.place[0]-(size[0]*resize[0]-frame.size[0]), place[1])
+        elif size[0]*resize[0] < frame.size[0] and size[1]*resize[1] < frame.size[1]:
+            place = (int(frame.place[0]+frame.size[0]/2-(size[0]*resize[0])/2.), int(frame.place[1]+frame.size[1]/2-(size[1]*resize[1])/2.))
+        else:
+            if size[0]*resize[0] > frame.size[0]:
+                        if place[1] + size[1]*resize[1] < frame.place[1] + frame.size[1]:
+                            place = (place[0], frame.place[1]-(size[1]*resize[1]-frame.size[1]))
+            if size[1]*resize[1] > frame.size[1]:
+                        if place[0] + size[0]*resize[0] < frame.place[0] + frame.size[0]:
+                            place = (frame.place[0]-(size[0]*resize[0]-frame.size[0]), place[1])
 
         image = pygame.transform.scale(pygame.image.load(file), (int(size[0]*resize[0]), int(size[1]*resize[1])))
-        if pygame.mouse.get_pressed()[0]:
+        if pygame.mouse.get_pressed()[0] and (not doneb.is_highlighted() or mouseinit):
             if not mouseinit:
                 mouseinit = (x - place[0], y - place[1])
             else:
-                place = (x - mouseinit[0], y - mouseinit[1])
+                if size[0]*resize[0] < frame.size[0] and not size[1]*resize[1] < frame.size[1]:
+                    place = (int(frame.place[0]+frame.size[0]/2-(size[0]*resize[0])/2.), y - mouseinit[1])
+                    if place[1] > frame.place[1]:
+                        place = (place[0], frame.place[1])
+                    if place[1] + size[1]*resize[1] < frame.place[1] + frame.size[1]:
+                        place = (place[0], frame.place[1]-(size[1]*resize[1]-frame.size[1]))
+                elif size[1]*resize[1] < frame.size[1] and not size[0]*resize[0] < frame.size[0]:
+                    place = (x - mouseinit[0], int(frame.place[1]+frame.size[1]/2-(size[1]*resize[1])/2.))
+                    if place[0] > frame.place[0]:
+                        place = (frame.place[0], place[1])
+                    if place[0] + size[0]*resize[0] < frame.place[0] + frame.size[0]:
+                        place = (frame.place[0]-(size[0]*resize[0]-frame.size[0]), place[1])
+                elif size[0]*resize[0] < frame.size[0] and size[1]*resize[1] < frame.size[1]:
+                    pass
+                else:
+                    place = (x - mouseinit[0], y - mouseinit[1])
+                    if place[1] > frame.place[1]:
+                        place = (place[0], frame.place[1])
+                    if place[1] + size[1]*resize[1] < frame.place[1] + frame.size[1]:
+                        place = (place[0], frame.place[1]-(size[1]*resize[1]-frame.size[1]))
+                    if place[0] > frame.place[0]:
+                        place = (frame.place[0], place[1])
+                    if place[0] + size[0]*resize[0] < frame.place[0] + frame.size[0]:
+                        place = (frame.place[0]-(size[0]*resize[0]-frame.size[0]), place[1])
         else:
             mouseinit = None
 
-
+        if mouseinit:
+            doneb.border_color = None
+        else:
+            doneb.border_color = (0, 0, 0)
 
         screen.blit(image, place)
         frame.draw()
+        doneb.draw()
+        question_text.draw()
 
-        if not mouseinit:
-            doneb.draw()
-
+        finished = doneb.was_clicked() and not mouseinit
 
         pygame.display.flip()
+
+    screen.fill((255, 255, 255))
+    screen.blit(image, place)
+    time.sleep(0.1)
+    camera = screen.subsurface(pygame.Rect((frame.place[0], frame.place[1], frame.size[0], frame.size[1])))
+    pygame.image.save(camera, "files//temp.jpg")
+
 
 
 
