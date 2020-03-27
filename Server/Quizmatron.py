@@ -240,6 +240,7 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
     wtf = False
     idk = False
     counter = 3
+    changes = False
     while True:
         events = pygame.event.get()
         for event in events:
@@ -278,16 +279,20 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
 
         # question
         question_text.draw()
-        if question_text.get_input():
+        if question_text.get_input() != quiz["Questions"][QuestioNumber]["question"]:
             quiz["Questions"][QuestioNumber]["question"] = question_text.get_input()
+            changes = True
+            #print "1"
 
         # answers
         numbbbbbbb = 0
         for answer in answer_boxes:
             answer.draw()
-            if answer.get_input():
+            if answer.get_input() != quiz["Questions"][QuestioNumber]["answers"][numbbbbbbb]:
                 quiz["Questions"][QuestioNumber]["answers"][numbbbbbbb] = answer.get_input()
-                numbbbbbbb += 1
+                changes = True
+                #print "2"
+            numbbbbbbb += 1
 
 
 
@@ -299,18 +304,24 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
 
         TimeToAnswerQ.draw()
         TimeToAnswerA.draw()
-        if TimeToAnswerA.get_input():
+        if TimeToAnswerA.get_input() and int(TimeToAnswerA.get_input()) != quiz["Questions"][QuestioNumber]["time to answer"]:
             quiz["Questions"][QuestioNumber]["time to answer"] = int(TimeToAnswerA.get_input())
+            changes = True
+            #print "3"
         TimeToReadQ.draw()
         TimeToReadA.draw()
-        if TimeToReadA.get_input():
+        if TimeToReadA.get_input() and int(TimeToReadA.get_input()) != quiz["Questions"][QuestioNumber]["time to read"]:
             quiz["Questions"][QuestioNumber]["time to read"] = int(TimeToReadA.get_input())
+            changes = True
+            #print "4"
         prev.draw()
 
         PointsQ.draw()
         PointsA.draw()
-        if PointsA.get_input():
+        if PointsA.get_input() and int(PointsA.get_input()) != quiz["Questions"][QuestioNumber]["points"]:
             quiz["Questions"][QuestioNumber]["points"] = int(PointsA.get_input())
+            changes = True
+            #print "5"
         BackToHomeScreen.draw()
         next.draw()
 
@@ -320,12 +331,20 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
         gb.draw()
         if rb.was_clicked():
             quiz["Questions"][QuestioNumber]["correct answer"] = 1
+            changes = True
+            #print "6"
         if bb.was_clicked():
             quiz["Questions"][QuestioNumber]["correct answer"] = 2
+            changes = True
+            #print "7"
         if yb.was_clicked():
             quiz["Questions"][QuestioNumber]["correct answer"] = 3
+            changes = True
+            #print "8"
         if gb.was_clicked():
             quiz["Questions"][QuestioNumber]["correct answer"] = 4
+            changes = True
+            #print "9"
 
         imgbutt.draw()
         if imgbutt.is_highlighted():
@@ -367,6 +386,8 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
                     addedimg = None
                     quiz['Questions'][QuestioNumber]['photo'] = None
                     quiz['Questions'][QuestioNumber]['image file type'] = None
+                    changes = True
+                    #print "10"
                 idk = False
                 counter = 3
         if delimgbutt.was_clicked() and addedimg:
@@ -384,12 +405,17 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
                 with open("./files/temp." + "jpg", 'rb') as img:
                     quiz['Questions'][QuestioNumber]['photo'] = base64.b64encode(img.read())
                     quiz['Questions'][QuestioNumber]['image file type'] = "jpg"
+                    changes = True
+                    #print "11"
             else:
                 addedimg = previmg
             regretometer = 0
 
-        with open('quizes/test.json', 'wb') as qfile:
-            json.dump(quiz, qfile, indent=4)
+        if changes:
+            #print "updated"
+            with open('quizes/test.json', 'wb') as qfile:
+                json.dump(quiz, qfile, indent=4)
+        changes = False
         #check_for_place(screen, events)
         pygame.display.flip()
         clock.tick(60)

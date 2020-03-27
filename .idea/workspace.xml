@@ -40,10 +40,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Quizmatron.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Quizmatron.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Server/Quizmatron.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="393" column="29" selection-start="19598" selection-end="19598" vertical-scroll-proportion="-9.076923" vertical-offset="6445" max-vertical-offset="9537">
+            <state line="242" column="19" selection-start="13142" selection-end="13142" vertical-scroll-proportion="0.33734939" vertical-offset="3918" max-vertical-offset="9979">
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -54,16 +54,16 @@
       <file leaf-file-name="test.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Server/quizes/test.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="11" selection-start="22528" selection-end="22528" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="663">
+            <state line="15" column="11" selection-start="381" selection-end="381" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Game.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Game.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Server/Game.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="168" column="28" selection-start="6474" selection-end="6474" vertical-scroll-proportion="0.35800344" vertical-offset="2512" max-vertical-offset="12240">
+            <state line="185" column="25" selection-start="6914" selection-end="6914" vertical-scroll-proportion="0.0" vertical-offset="2512" max-vertical-offset="12240">
               <folding />
             </state>
           </provider>
@@ -401,7 +401,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Game">
+  <component name="RunManager" selected="Python.Quizmatron">
     <configuration default="false" name="Kaboot" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -626,8 +626,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.Game" />
-        <item index="1" class="java.lang.String" itemvalue="Python.Quizmatron" />
+        <item index="0" class="java.lang.String" itemvalue="Python.Quizmatron" />
+        <item index="1" class="java.lang.String" itemvalue="Python.Game" />
         <item index="2" class="java.lang.String" itemvalue="Python.Kaboot" />
         <item index="3" class="java.lang.String" itemvalue="Python.test_server.pyw (1)" />
         <item index="4" class="java.lang.String" itemvalue="Python.Kaboot (1)" />
@@ -667,7 +667,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="1" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -737,7 +737,9 @@
     </entry>
     <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/json/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="289" column="0" selection-start="11785" selection-end="11785" vertical-scroll-proportion="0.0" vertical-offset="4913" max-vertical-offset="6069" />
+        <state line="289" column="0" selection-start="11785" selection-end="11785" vertical-scroll-proportion="0.0" vertical-offset="4913" max-vertical-offset="6069">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/json/decoder.py">
@@ -764,7 +766,9 @@
     </entry>
     <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/json/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="289" column="0" selection-start="11785" selection-end="11785" vertical-scroll-proportion="0.0" vertical-offset="4913" max-vertical-offset="6069" />
+        <state line="289" column="0" selection-start="11785" selection-end="11785" vertical-scroll-proportion="0.0" vertical-offset="4913" max-vertical-offset="6069">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/json/decoder.py">
@@ -789,7 +793,9 @@
     </entry>
     <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/json/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="188" column="0" selection-start="6910" selection-end="6910" vertical-scroll-proportion="0.0" vertical-offset="3196" max-vertical-offset="6069" />
+        <state line="188" column="0" selection-start="6910" selection-end="6910" vertical-scroll-proportion="0.0" vertical-offset="3196" max-vertical-offset="6069">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/json/decoder.py">
@@ -926,7 +932,9 @@
     </entry>
     <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/json/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="289" column="0" selection-start="11785" selection-end="11785" vertical-scroll-proportion="-0.018847007" vertical-offset="4913" max-vertical-offset="6052" />
+        <state line="289" column="0" selection-start="11785" selection-end="11785" vertical-scroll-proportion="-0.018847007" vertical-offset="4913" max-vertical-offset="6052">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/json/decoder.py">
@@ -970,26 +978,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/Quizmatron.py">
+    <entry file="file://$PROJECT_DIR$/Server/Game.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="393" column="29" selection-start="19598" selection-end="19598" vertical-scroll-proportion="-9.076923" vertical-offset="6445" max-vertical-offset="9537">
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
+        <state line="185" column="25" selection-start="6914" selection-end="6914" vertical-scroll-proportion="0.0" vertical-offset="2512" max-vertical-offset="12240">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Server/quizes/test.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="11" selection-start="22528" selection-end="22528" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="663">
+        <state line="15" column="11" selection-start="381" selection-end="381" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/Game.py">
+    <entry file="file://$PROJECT_DIR$/Server/Quizmatron.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="168" column="28" selection-start="6474" selection-end="6474" vertical-scroll-proportion="0.35800344" vertical-offset="2512" max-vertical-offset="12240">
-          <folding />
+        <state line="242" column="19" selection-start="13142" selection-end="13142" vertical-scroll-proportion="0.33734939" vertical-offset="3918" max-vertical-offset="9979">
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
