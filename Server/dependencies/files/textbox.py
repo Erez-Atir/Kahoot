@@ -60,7 +60,7 @@ class InputBox:
                 if pressed[key]:
                     if key in [275, 276]:
                         key = "<-" if key == 276 else "->"
-                        if time.time() - self.__keys[key] >= 0.2:
+                        if time.time() - self.__keys[key] >= 0.1:
                             self.__keys[key] = time.time()
                             if key == "<-":
                                 self.__toggle__spot = self.__toggle__spot - 1 if self.__toggle__spot*-1 <= len(self.inputted_text) else self.__toggle__spot
@@ -111,7 +111,7 @@ class InputBox:
                             else:
                                 self.inputted_text = self.inputted_text[:self.__toggle__spot+1] + chr(key) + self.inputted_text[self.__toggle__spot+1:]
                     elif key == 8:
-                        if time.time() - self.__keys[chr(key)] >= 0.15:
+                        if time.time() - self.__keys[chr(key)] >= 0.1:
                             self.__keys[chr(key)] = time.time()
                             if self.__toggle__spot == -1:
                                 self.inputted_text = self.inputted_text[:-1]
@@ -121,7 +121,7 @@ class InputBox:
                         self.display.font_size += 100
                         backspaced = True
                     elif key == 127:
-                        if time.time() - self.__keys[chr(key)] >= 0.15:
+                        if time.time() - self.__keys[chr(key)] >= 0.1:
                             self.__keys[chr(key)] = time.time()
                             if self.__toggle__spot == -2:
                                 self.inputted_text = self.inputted_text[:self.__toggle__spot+1]
@@ -169,6 +169,14 @@ class InputBox:
         :return The user's input
         """
         return self.inputted_text
+
+    def is_toggled(self):
+        """
+        :return True if the text box is currently toggled and False otherwise
+        """
+        if self.__toggle:
+            return True
+        return False
 
 
 class OutputBox:

@@ -5,7 +5,6 @@ import thread
 import traceback
 import os
 import sys
-import operator
 sys.path.insert(0, os.getcwd()+'/files')
 import ServerDitection
 
@@ -178,7 +177,7 @@ def update_login():
 
 def receive():
     """
-    receives all of the players answers and saves them but doesn't respond yet in addition to answering trier mandatory requests.
+    receives all of the players answers and saves them but doesn't respond yet in addition to answering mandatory requests.
     :return: how many players answered yet
     """
     try:

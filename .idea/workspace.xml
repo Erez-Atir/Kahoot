@@ -2,9 +2,263 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a5628d7-df6f-4558-bd47-85e0ba4365e8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/files/temp.jpg" afterPath="$PROJECT_DIR$/Server/files/temp.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/Quizmatron.py" afterPath="$PROJECT_DIR$/Server/Quizmatron.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/quizes/test.json" afterPath="$PROJECT_DIR$/Server/quizes/test.json" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\Quizmatron.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\audio\answers.mp3" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\audio\login.mp3" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\audio\question.mp3" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\audio\winners.mp3" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\files\RosewoodStd-Regular.otf" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\files\Server.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\files\ServerDitection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\files\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\files\hampster_origin.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\files\montserrat\Montserrat-Black.otf" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\files\montserrat\Montserrat-Bold.otf" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\files\montserrat\Montserrat-ExtraBold.otf" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\files\montserrat\Montserrat-Hairline.otf" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\files\montserrat\Montserrat-Light.otf" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\files\montserrat\Montserrat-Regular.otf" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\files\montserrat\Montserrat-SemiBold.otf" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\files\montserrat\Montserrat-Thin.ttf" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\files\montserrat\Montserrat-UltraLight.otf" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\files\running_hamster.png.pptx" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\files\temp.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\files\test.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\files\textbox.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\files\winners.pptx" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\files\winning.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\Example.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\giphy.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\icons\upload_image.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\icons\x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\hamster\Slide1.PNG" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\hamster\Slide10.PNG" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\hamster\Slide11.PNG" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\hamster\Slide12.PNG" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\hamster\Slide2.PNG" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\hamster\Slide3.PNG" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\hamster\Slide4.PNG" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\hamster\Slide5.PNG" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\hamster\Slide6.PNG" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\hamster\Slide7.PNG" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\hamster\Slide8.PNG" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\hamster\Slide9.PNG" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\wheel\frame_00_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\wheel\frame_01_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\wheel\frame_02_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\wheel\frame_03_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\wheel\frame_04_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\wheel\frame_05_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\wheel\frame_06_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\wheel\frame_07_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\wheel\frame_08_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\wheel\frame_09_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\wheel\frame_10_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\wheel\frame_11_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\wheel\frame_12_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\wheel\frame_13_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\wheel\frame_14_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\wheel\frame_15_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\wheel\frame_16_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\wheel\frame_17_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\wheel\frame_18_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\loading\wheel\frame_19_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\main\blue_correct.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\main\blue_incorrect.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\main\green_correct.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\main\green_incorrect.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\main\orange_correct.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\main\orange_incorrect.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\main\red_correct.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\main\red_incorrect.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\scoreboard\scoreboard.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_000_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_001_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_002_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_003_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_004_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_005_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_006_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_007_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_008_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_009_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_010_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_011_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_012_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_013_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_014_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_015_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_016_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_017_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_018_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_019_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_020_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_021_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_022_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_023_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_024_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_025_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_026_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_027_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_028_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_029_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_030_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_031_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_032_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_033_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_034_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_035_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_036_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_037_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_038_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_039_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_040_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_041_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_042_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_043_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_044_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_045_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_046_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_047_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_048_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_049_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_050_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_051_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_052_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_053_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_054_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_055_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_056_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_057_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_058_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_059_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_060_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_061_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_062_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_063_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_064_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_065_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_066_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_067_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_068_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_069_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_070_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_071_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_072_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_073_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_074_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_075_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_076_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_077_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_078_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_079_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_080_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_081_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_082_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_083_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_084_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_085_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_086_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_087_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_088_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_089_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_090_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_091_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_092_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_093_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_094_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_095_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_096_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_097_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_098_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_099_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_100_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_101_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_102_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_103_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_104_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_105_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_106_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_107_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_108_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_109_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_110_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_111_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_112_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_113_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_114_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_115_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_116_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_117_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_118_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_119_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_120_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_121_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_122_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_123_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_124_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_125_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_126_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_127_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_128_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_129_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_130_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_131_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_132_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_133_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_134_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_135_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_136_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_137_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_138_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_139_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_140_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_141_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_142_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_143_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_144_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_145_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_146_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_147_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_148_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_149_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_150_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_151_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_152_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_153_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_154_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_155_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_156_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_157_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_158_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_159_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_160_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_161_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_162_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_163_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_164_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_165_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_166_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_167_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_168_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_169_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_170_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_171_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_172_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_173_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_174_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_175_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_176_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_177_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\win_background\frame_178_delay-0.04s.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\winners_stand\Slide1.PNG" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\winners_stand\Slide2.PNG" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\images\winners_stand\Slide3.PNG" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\quizes\test.json" afterPath="" />
+      <change type="MOVED" beforePath="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\Game.py" afterPath="$PROJECT_DIR$/Server/dependencies/Game.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/Kaboot.py" afterPath="$PROJECT_DIR$/Client/Kaboot.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/Libraries/__init__.py" afterPath="$PROJECT_DIR$/Client/Libraries/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/Libraries/client.py" afterPath="$PROJECT_DIR$/Client/Libraries/client.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Kahoot.iws" />
@@ -40,10 +294,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Quizmatron.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Server/Quizmatron.py">
+      <file leaf-file-name="Kaboot.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Server/Kaboot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="242" column="19" selection-start="13142" selection-end="13142" vertical-scroll-proportion="0.33734939" vertical-offset="3918" max-vertical-offset="9979">
+            <state line="148" column="206" selection-start="5924" selection-end="5924" vertical-scroll-proportion="0.58235294" vertical-offset="2120" max-vertical-offset="2958">
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -51,29 +305,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.json" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Server/quizes/test.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="11" selection-start="381" selection-end="381" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Game.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Server/Game.py">
+        <entry file="file://$PROJECT_DIR$/Server/dependencies/Game.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="185" column="25" selection-start="6914" selection-end="6914" vertical-scroll-proportion="0.0" vertical-offset="2512" max-vertical-offset="12240">
+            <state line="97" column="20" selection-start="3750" selection-end="3763" vertical-scroll-proportion="0.0" vertical-offset="1173" max-vertical-offset="12240">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="textbox.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Server/files/textbox.py">
+        <entry file="file://$PROJECT_DIR$/Server/dependencies/files/textbox.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="12" selection-start="2492" selection-end="2598" vertical-scroll-proportion="0.0" vertical-offset="901" max-vertical-offset="5015">
+            <state line="291" column="8" selection-start="15384" selection-end="15384" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5134">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Quizmatron.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Server/dependencies/Quizmatron.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="53" column="4" selection-start="1362" selection-end="1362" vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="9843">
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -92,24 +348,27 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/Client/files/Server.py" />
-        <option value="$PROJECT_DIR$/Server/files/Server.py" />
         <option value="$PROJECT_DIR$/Server/Kahoot.py" />
         <option value="$PROJECT_DIR$/Client/files/oppener.py" />
         <option value="$PROJECT_DIR$/Client/Kahoot.py" />
         <option value="$PROJECT_DIR$/Server/files/ServerDitection.py" />
         <option value="$PROJECT_DIR$/Client/files/reconnect.py" />
         <option value="$PROJECT_DIR$/Client/files/ServerDitection.py" />
-        <option value="$PROJECT_DIR$/Client/Libraries/__init__.py" />
         <option value="$PROJECT_DIR$/Server/quizes/t.json" />
         <option value="$PROJECT_DIR$/Server/quizes/example_1.json" />
-        <option value="$PROJECT_DIR$/Client/Libraries/client.py" />
-        <option value="$PROJECT_DIR$/Server/Kaboot.py" />
         <option value="$PROJECT_DIR$/Client/Libraries/textbox.py" />
-        <option value="$PROJECT_DIR$/Client/Kaboot.py" />
-        <option value="$PROJECT_DIR$/Server/quizes/test.json" />
         <option value="$PROJECT_DIR$/Server/Game.py" />
         <option value="$PROJECT_DIR$/Server/files/textbox.py" />
+        <option value="$PROJECT_DIR$/Client/Kaboot.py" />
+        <option value="$PROJECT_DIR$/Server/files/Server.py" />
+        <option value="$PROJECT_DIR$/Client/Libraries/__init__.py" />
+        <option value="$PROJECT_DIR$/Client/Libraries/client.py" />
+        <option value="$PROJECT_DIR$/Server/quizes/test.json" />
         <option value="$PROJECT_DIR$/Server/Quizmatron.py" />
+        <option value="$PROJECT_DIR$/Server/files/Game.py" />
+        <option value="$PROJECT_DIR$/Server/dependencies/Game.py" />
+        <option value="$PROJECT_DIR$/Server/dependencies/Quizmatron.py" />
+        <option value="$PROJECT_DIR$/Server/Kaboot.py" />
       </list>
     </option>
   </component>
@@ -118,6 +377,22 @@
     <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Buildout</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -145,6 +420,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -191,83 +467,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="quizes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Kahoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Kahoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Kahoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Kahoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Kahoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Kahoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="files" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Kahoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Kahoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="audio" />
+              <option name="myItemId" value="dependencies" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -282,24 +482,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Kahoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Kahoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -363,16 +545,15 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="FullScreen" value="false" />
     <property name="SearchEverywhereHistory" value="" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/PaintProject-master" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Client" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PythonSdkConfigurable" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.File Status" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
@@ -384,9 +565,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\dependencies" />
+      <recent name="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server" />
+      <recent name="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\files" />
       <recent name="C:\Users\Erez Atir\PycharmProjects\Kahoot\Client\files" />
       <recent name="C:\Users\Erez Atir\PycharmProjects\Kahoot\Client" />
-      <recent name="C:\Users\Erez Atir\PycharmProjects\Kahoot\Client\Libraries" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -401,20 +584,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Quizmatron">
-    <configuration default="false" name="Kaboot" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.Kaboot">
+    <configuration default="false" name="Game (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Client" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Server/files" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Kahoot" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Client/Kaboot.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Server/files/Game.py" />
       <option name="PARAMETERS" value="" />
       <RunnerSettings RunnerId="PyDebugRunner" />
       <RunnerSettings RunnerId="PythonRunner" />
@@ -422,25 +605,7 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="test_server.pyw (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Client" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Kahoot" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Client/test_server.pyw" />
-      <option name="PARAMETERS" value="" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Kaboot (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="Game (2)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -452,7 +617,25 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Kahoot" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Server/Kaboot.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\dependencies\Game.py" />
+      <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Quizmatron (2)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Server/dependencies" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Kahoot" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Server/dependencies/Quizmatron.py" />
       <option name="PARAMETERS" value="" />
       <RunnerSettings RunnerId="PythonRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
@@ -465,20 +648,18 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Server" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Server/dependencies" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Kahoot" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Server/Game.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Erez Atir\PycharmProjects\Kahoot\Server\dependencies\Game.py" />
       <option name="PARAMETERS" value="" />
-      <RunnerSettings RunnerId="PyDebugRunner" />
       <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PyDebugRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Quizmatron" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="Kaboot" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -490,7 +671,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Kahoot" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Server/Quizmatron.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Server/Kaboot.py" />
       <option name="PARAMETERS" value="" />
       <RunnerSettings RunnerId="PythonRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
@@ -618,19 +799,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.Kaboot" />
-      <item index="1" class="java.lang.String" itemvalue="Python.test_server.pyw (1)" />
-      <item index="2" class="java.lang.String" itemvalue="Python.Kaboot (1)" />
+      <item index="0" class="java.lang.String" itemvalue="Python.Game (1)" />
+      <item index="1" class="java.lang.String" itemvalue="Python.Game (2)" />
+      <item index="2" class="java.lang.String" itemvalue="Python.Quizmatron (2)" />
       <item index="3" class="java.lang.String" itemvalue="Python.Game" />
-      <item index="4" class="java.lang.String" itemvalue="Python.Quizmatron" />
+      <item index="4" class="java.lang.String" itemvalue="Python.Kaboot" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.Quizmatron" />
-        <item index="1" class="java.lang.String" itemvalue="Python.Game" />
-        <item index="2" class="java.lang.String" itemvalue="Python.Kaboot" />
-        <item index="3" class="java.lang.String" itemvalue="Python.test_server.pyw (1)" />
-        <item index="4" class="java.lang.String" itemvalue="Python.Kaboot (1)" />
+        <item index="0" class="java.lang.String" itemvalue="Python.Kaboot" />
+        <item index="1" class="java.lang.String" itemvalue="Python.Quizmatron (2)" />
+        <item index="2" class="java.lang.String" itemvalue="Python.Game" />
+        <item index="3" class="java.lang.String" itemvalue="Python.Game (2)" />
+        <item index="4" class="java.lang.String" itemvalue="Python.Game (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -667,7 +848,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -675,10 +856,10 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19220643" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39870688" sideWeight="0.4997367" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39416847" sideWeight="0.4997367" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30495688" sideWeight="0.5002633" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33045357" sideWeight="0.4997367" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19546436" sideWeight="0.4997367" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -704,71 +885,23 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/Server/files/Server.py</url>
-          <line>166</line>
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Server/Quizmatron.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="209" column="0" selection-start="9051" selection-end="9051" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="5032">
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Kaboot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="9" selection-start="313" selection-end="327" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="7361" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/quizes/test.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="32" selection-start="112028" selection-end="112028" vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="663">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/json/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="289" column="0" selection-start="11785" selection-end="11785" vertical-scroll-proportion="0.0" vertical-offset="4913" max-vertical-offset="6069">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/json/decoder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="364" column="0" selection-start="13120" selection-end="13120" vertical-scroll-proportion="0.0" vertical-offset="6188" max-vertical-offset="6630" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/images/Example.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Client/Kaboot.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="9" selection-start="313" selection-end="327" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="7361" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/quizes/test.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="20" selection-start="112095" selection-end="112095" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="697">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/json/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="289" column="0" selection-start="11785" selection-end="11785" vertical-scroll-proportion="0.0" vertical-offset="4913" max-vertical-offset="6069">
-          <folding />
-        </state>
+        <state line="289" column="0" selection-start="11785" selection-end="11785" vertical-scroll-proportion="0.0" vertical-offset="4913" max-vertical-offset="6069" />
       </provider>
     </entry>
     <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/json/decoder.py">
@@ -786,28 +919,14 @@
         <state line="72" column="0" selection-start="2282" selection-end="2282" vertical-scroll-proportion="0.0" vertical-offset="1224" max-vertical-offset="6222" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/files/temp.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/json/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="188" column="0" selection-start="6910" selection-end="6910" vertical-scroll-proportion="0.0" vertical-offset="3196" max-vertical-offset="6069">
-          <folding />
-        </state>
+        <state line="188" column="0" selection-start="6910" selection-end="6910" vertical-scroll-proportion="0.0" vertical-offset="3196" max-vertical-offset="6069" />
       </provider>
     </entry>
     <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/json/decoder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="364" column="0" selection-start="13120" selection-end="13120" vertical-scroll-proportion="0.0" vertical-offset="6188" max-vertical-offset="6630" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/quizes/test.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="19" selection-start="112033" selection-end="112033" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="663">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/json/encoder.py">
@@ -831,11 +950,6 @@
       </provider>
     </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/.PyCharm30/system/python_stubs/-1088862027/select.py" />
-    <entry file="file://$PROJECT_DIR$/Server/files/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="609" />
-      </provider>
-    </entry>
     <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/multiprocessing/process.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="129" column="0" selection-start="4012" selection-end="4012" vertical-scroll-proportion="0.0" vertical-offset="1940" max-vertical-offset="5542" />
@@ -846,24 +960,9 @@
         <state line="357" column="0" selection-start="11253" selection-end="11253" vertical-scroll-proportion="0.33278418" vertical-offset="5782" max-vertical-offset="8721" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/files/Server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="32" selection-start="353" selection-end="353" vertical-scroll-proportion="0.2520593" vertical-offset="0" max-vertical-offset="4012" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/files/ServerDitection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="8" selection-start="2772" selection-end="2772" vertical-scroll-proportion="0.85738254" vertical-offset="815" max-vertical-offset="1530" />
-      </provider>
-    </entry>
     <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/socket.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="223" column="0" selection-start="7712" selection-end="7712" vertical-scroll-proportion="0.33333334" vertical-offset="3537" max-vertical-offset="9792" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/files/ServerDitection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="18" selection-start="1482" selection-end="1486" vertical-scroll-proportion="-9.153846" vertical-offset="357" max-vertical-offset="1445" />
       </provider>
     </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/.PyCharm30/system/python_stubs/-1088862027/_io.py">
@@ -876,75 +975,19 @@
         <state line="72" column="0" selection-start="2282" selection-end="2282" vertical-scroll-proportion="0.0" vertical-offset="986" max-vertical-offset="6188" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/files/temp.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/json/encoder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="433" column="0" selection-start="15845" selection-end="15845" vertical-scroll-proportion="0.42045453" vertical-offset="7102" max-vertical-offset="7718" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Libraries/client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="236" column="31" selection-start="6505" selection-end="6505" vertical-scroll-proportion="0.25487012" vertical-offset="3838" max-vertical-offset="4454" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/images/Example.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/.PyCharm30/system/python_stubs/-1088862027/__builtin__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="1104" selection-end="1104" vertical-scroll-proportion="0.33225283" vertical-offset="254" max-vertical-offset="87567">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Libraries/textbox.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="214" column="26" selection-start="11045" selection-end="11045" vertical-scroll-proportion="0.25769854" vertical-offset="3462" max-vertical-offset="4335" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/files/test_server_support.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="120" selection-start="1844" selection-end="1948" vertical-scroll-proportion="-0.05654102" vertical-offset="1190" max-vertical-offset="2737" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/test_server.pyw">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="339" column="0" selection-start="13943" selection-end="13943" vertical-scroll-proportion="0.7361419" vertical-offset="5065" max-vertical-offset="5967" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/files/Server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="0" selection-start="1431" selection-end="1502" vertical-scroll-proportion="-0.11308204" vertical-offset="1020" max-vertical-offset="4641">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Libraries/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="0" selection-start="3205" selection-end="3205" vertical-scroll-proportion="0.8303769" vertical-offset="577" max-vertical-offset="1479" />
-      </provider>
-    </entry>
     <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/json/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="289" column="0" selection-start="11785" selection-end="11785" vertical-scroll-proportion="-0.018847007" vertical-offset="4913" max-vertical-offset="6052">
-          <folding />
-        </state>
+        <state line="289" column="0" selection-start="11785" selection-end="11785" vertical-scroll-proportion="-0.018847007" vertical-offset="4913" max-vertical-offset="6052" />
       </provider>
     </entry>
     <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/json/decoder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="364" column="0" selection-start="13120" selection-end="13120" vertical-scroll-proportion="0.5099778" vertical-offset="5660" max-vertical-offset="6562" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Kaboot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="246" column="41" selection-start="11721" selection-end="11721" vertical-scroll-proportion="-10.923077" vertical-offset="3847" max-vertical-offset="6392" />
       </provider>
     </entry>
     <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/threading.py">
@@ -954,9 +997,7 @@
     </entry>
     <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/lib-tk/tkFileDialog.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="121" column="4" selection-start="3325" selection-end="3325" vertical-scroll-proportion="0.3321976" vertical-offset="1862" max-vertical-offset="3757">
-          <folding />
-        </state>
+        <state line="121" column="4" selection-start="3325" selection-end="3325" vertical-scroll-proportion="0.3321976" vertical-offset="1862" max-vertical-offset="3757" />
       </provider>
     </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/.PyCharm30/system/python_stubs/-1088862027/win32api.py">
@@ -964,43 +1005,134 @@
         <state line="456" column="4" selection-start="10365" selection-end="10365" vertical-scroll-proportion="0.3321976" vertical-offset="7557" max-vertical-offset="12767" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/files/textbox.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="12" selection-start="2492" selection-end="2598" vertical-scroll-proportion="0.0" vertical-offset="803" max-vertical-offset="4998">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Client/files/test_server.tcl">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3434">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3434" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/files/Server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="14" selection-start="123" selection-end="123" vertical-scroll-proportion="-2.6153846" vertical-offset="0" max-vertical-offset="4097" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Libraries/textbox.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="13" selection-start="83" selection-end="91" vertical-scroll-proportion="0.0" vertical-offset="1122" max-vertical-offset="4352" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/files/ServerDitection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="0" selection-start="2294" selection-end="2714" vertical-scroll-proportion="0.0" vertical-offset="605" max-vertical-offset="1428">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/Game.py">
+    <entry file="file://$PROJECT_DIR$/Client/Libraries/client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="185" column="25" selection-start="6914" selection-end="6914" vertical-scroll-proportion="0.0" vertical-offset="2512" max-vertical-offset="12240">
+        <state line="122" column="60" selection-start="0" selection-end="7134" vertical-scroll-proportion="0.4490022" vertical-offset="1669" max-vertical-offset="4471" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Kaboot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="29" selection-start="1946" selection-end="1946" vertical-scroll-proportion="-0.057367828" vertical-offset="799" max-vertical-offset="7412">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/quizes/test.json">
+    <entry file="file://$PROJECT_DIR$/Client/files/sadog.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/dependencies/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="11" selection-start="381" selection-end="381" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="734">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/Quizmatron.py">
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="242" column="19" selection-start="13142" selection-end="13142" vertical-scroll-proportion="0.33734939" vertical-offset="3918" max-vertical-offset="9979">
+        <state line="1538" column="0" selection-start="60694" selection-end="60694" vertical-scroll-proportion="0.83787465" vertical-offset="24426" max-vertical-offset="25160">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Libraries/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="0" selection-start="1073" selection-end="1202" vertical-scroll-proportion="0.32561308" vertical-offset="560" max-vertical-offset="1462">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/test_server.pyw">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="68" selection-start="1170" selection-end="1170" vertical-scroll-proportion="-0.046321526" vertical-offset="816" max-vertical-offset="5967">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/files/test_server_support.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="77" column="13" selection-start="2169" selection-end="2169" vertical-scroll-proportion="0.67302454" vertical-offset="764" max-vertical-offset="2737">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/dependencies/Quizmatron.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="4" selection-start="1362" selection-end="1362" vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="9843">
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/.PyCharm30/system/python_stubs/-1088862027/__builtin__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3316" column="8" selection-start="113167" selection-end="113167" vertical-scroll-proportion="0.33240613" vertical-offset="56133" max-vertical-offset="87567">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/dependencies/files/textbox.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="291" column="8" selection-start="15384" selection-end="15384" vertical-scroll-proportion="0.0" vertical-offset="4428" max-vertical-offset="5134">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/dependencies/Game.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="97" column="20" selection-start="3750" selection-end="3763" vertical-scroll-proportion="0.0" vertical-offset="1173" max-vertical-offset="12240">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/Kaboot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="148" column="206" selection-start="5924" selection-end="5924" vertical-scroll-proportion="0.58235294" vertical-offset="2120" max-vertical-offset="2958">
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
 

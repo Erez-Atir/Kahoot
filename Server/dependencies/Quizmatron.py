@@ -51,72 +51,9 @@ BLACKSURFACE.fill(WHITE)
 
 def main(QUIZ):
     global users, TotalQN, quiz
-    done = False                                     #"""the playes exited the game?"""
-    start_game = False                               # the game has started?
-    pygame.init()                                    # initiate pygames
-
-    pygame.display.set_caption("Kaboot")
-    pygame.display.flip()
-    pygame.font.init()
-
-    a = textbox.OutputBox(screen, QUIZ, (WIDTH, int(100/600.*HEIGHT)), (0, int(50/600.*HEIGHT)), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
-    c = textbox.OutputBox(screen, "Done", (int(770/800.*WIDTH-25/800.*WIDTH), int(580/600.*HEIGHT-490/600.*HEIGHT)), (int(25/800.*WIDTH), int(490/600.*HEIGHT)), (255, 255, 255), 0, (0, 0, 0), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
-
-    users = None
-    mouse_loc = (0, 0)
-    trying = 0
-    sub  =False
-    while not start_game and not done: #while game was not exited and game is still at the log in part
-        events = pygame.event.get()
-        """checks events, user input"""
-        for event in events:#checks for events including:
-            if event.type == MouseMotion:#mouse hovering above the start button
-                x, y = event.pos
-                mouse_loc = event.pos
-
-            if event.type == pygame.QUIT:#user presses the X
-                done = True
-                exit()
-            if event.type == pygame.KEYDOWN:
-                # If pressed key is ESC quit program
-                if event.key == pygame.K_ESCAPE:
-                    done = True
-                    exit()
-            if event.type == MouseButtonDown:#player clicks the screen(should be only button)
-                if event.button == 1:
-                    x, y = event.pos
-                    if 25/800.*WIDTH < x and x < 770/800.*WIDTH and y > 490/600.*HEIGHT and y < 580/600.*HEIGHT:   # if mouse above start button
-                        start_game = True
-        """"load screen"""
-        screen.fill((237, 43, 0))
-        if trying > 0:
-            for x, y in [(x,y) for x in range(-20, 20) for y in range(-20, 20)]:
-                pygame.draw.circle(screen, (250, 134, 10), (x*WIDTH/10, y*WIDTH/10), int(trying))
-        x, y = mouse_loc                                   #gets mouse location
-        if 25/800.*WIDTH < x and x < 770/800.*WIDTH and y > 490/600.*HEIGHT and y < 580/600.*HEIGHT:
-            a.draw()
-            c.border_width = 6
-            c.draw()
-            pygame.mouse.set_cursor(*pygame.cursors.broken_x)# set cursor to broken x
-        else:
-            a.draw()
-            c.border_width = 0
-            c.draw()
-            pygame.mouse.set_cursor(*pygame.cursors.arrow)  # set cursor to an arrow
+                                    # initiate pygames
 
 
-        pygame.display.flip()
-
-        if trying >= WIDTH/10:
-            sub = True
-        if trying <= -20:
-            sub = False
-
-        if not sub:
-            trying += 0.5
-        else:
-            trying -= 0.5
-        clock.tick(60)
 
     pygame.mouse.set_cursor(*pygame.cursors.arrow)
     with open('quizes/' + QUIZ + '.json', 'rb') as qfile:
@@ -130,14 +67,13 @@ def main(QUIZ):
     pygame.mixer.music.fadeout(quiz['Questions'][0]['time to read']*1000)
 
     TotalQN = len(quiz['Questions'])
-    for q in quiz['Questions']:
-        add_question(screen, q['time to read'], q['question'], [x.encode("utf-8") for x in q['answers']], q['correct answer'], q['photo'], q['image file type'], q['time to answer'], q['points'])
+    add_question(screen, quiz, 0)
 
 
     exit()
 
 
-def add_question(screen, timer, question, answers, correct_answer, photo, photype, qtime, points):
+def add_question(screen, quiz, qn):
         """
         function that adds a question to the game
         :param screen: gets the screen obj to print on
@@ -150,12 +86,47 @@ def add_question(screen, timer, question, answers, correct_answer, photo, photyp
         :param points: gets the maximum points received py this question
         :return: Was the server closed
         """
-
+        global TotalQN
+        question = quiz['Questions'][qn]['question']
+        photype = quiz['Questions'][qn]['image file type']
+        answers = [x.encode("utf-8") for x in quiz['Questions'][qn]['answers']]
+        photo = quiz['Questions'][qn]['photo']
+        qtime = quiz['Questions'][qn]['time to answer']
+        points = quiz['Questions'][qn]['points']
+        timer = quiz['Questions'][qn]['time to read']
         if photo and photype:
             with open("files/temp." + photype, "wb") as temp:
                 temp.write(base64.b64decode(photo))
-        done = load_question(screen, question, photype, answers, qtime, points, timer, 0)  # calls a function to print the question
-        return done
+
+        while qn+1:
+            time.sleep(0.3)
+            #print qn, len(quiz['Questions'])
+            TotalQN = len(quiz['Questions'])
+            qn = load_question(screen, question, photype, answers, qtime, points, timer, qn)  # calls a function to print the question
+            if qn >= TotalQN:
+                quiz['Questions'].append({
+                    "time to answer": 60,
+                    "photo": None,
+                    "question": "#",
+                    "answers": ["", "", "", ""],
+                    "time to read": 5,
+                    "points": 100,
+                    "correct answer": 1,
+                    "image file type": None})
+                #print "updated"
+                with open('quizes/test.json', 'wb') as qfile:
+                    json.dump(quiz, qfile, indent=4)
+            question = quiz['Questions'][qn]['question']
+            photype = quiz['Questions'][qn]['image file type']
+            answers = [x.encode("utf-8") for x in quiz['Questions'][qn]['answers']]
+            photo = quiz['Questions'][qn]['photo']
+            qtime = quiz['Questions'][qn]['time to answer']
+            points = quiz['Questions'][qn]['points']
+            timer = quiz['Questions'][qn]['time to read']
+            if photo and photype:
+                with open("files/temp." + photype, "wb") as temp:
+                    temp.write(base64.b64decode(photo))
+        return qn
 
 
 def load_question(screen, question, photo, answers, qtime, points, rtime, QuestioNumber):
@@ -187,18 +158,20 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
     Rstartx, Rstarty, Bstartx, Bstarty, Ystartx, Ystarty, Gstartx, Gstarty = [int(a[x]/800.*WIDTH) if x % 2 == 0 else int(a[x]/600.*HEIGHT) for x in range(len(a))]
     addedimg = None
     if photo:
-        addedimg = pygame.transform.scale(pygame.image.load("./files/temp." + photo), (int((665-143)/800.*WIDTH), int((334-70)/600.*HEIGHT)))
+        addedimg = pygame.transform.scale(pygame.image.load("./files/temp." + photo), (int((665-143)/800.*WIDTH), int((334-75)/600.*HEIGHT)))
     imgbutt = textbox.ButtonBox(screen, text="", place=(int(143/800.*WIDTH), int(75/600.*HEIGHT)), size=(int((665-143)/800.*WIDTH),  int((334-75)/600.*HEIGHT)), color=None, text_color=(0, 0, 0), border_color=(0, 0, 0), border_width=2, mouse=False)
     uploadimg = pygame.transform.scale(pygame.image.load(IMAGES_DIR + "icons\\upload_image.png"), (int((665-143)/800.*WIDTH/4), int((334-70+60)/600.*HEIGHT/3)))
     uploadimgbutt = textbox.ButtonBox(screen, text="", place=(int(143/800.*WIDTH)+int((665-143)/800.*WIDTH)*0.55, int(75-20/600.*HEIGHT)+int((334-70)/600.*HEIGHT)*0.3), size=(int((665-143)/800.*WIDTH/4), int((334-70+60)/600.*HEIGHT/3)), color=None, text_color=(0, 0, 0), border_color=None, border_width=0)
     delimg = pygame.transform.scale(pygame.image.load(IMAGES_DIR + "icons\\x.png"), (int((665-143)/800.*WIDTH/4), int((334-70)/600.*HEIGHT/3)))
     delimgbutt = textbox.ButtonBox(screen, text="", place=(int(143/800.*WIDTH)+int((665-143)/800.*WIDTH)*0.20, int(75/600.*HEIGHT)+int((334-70)/600.*HEIGHT)*0.3), size=(int((665-143)/800.*WIDTH/4), int((334-70)/600.*HEIGHT/3)), color=None, text_color=(0, 0, 0), border_color=None, border_width=0)
-
+    previmg = addedimg
 
 
     # question
     question_text = textbox.InputBox(screen, (WIDTH, int(70/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf", False, question)
-    # time
+    # Number
+    OutOf = textbox.OutputBox(screen, text="Question " + str(QuestioNumber + 1) + " out of " + str(TotalQN), size=(WIDTH, int(372/600.*HEIGHT) - int(75/600.*HEIGHT) - int((334-70)/600.*HEIGHT)), place=(0, int(75/600.*HEIGHT) + int((334-75)/600.*HEIGHT)),
+                                          color=None, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
 
     answer_boxes = []
     for y in range(4):
@@ -214,8 +187,11 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
                                       color=None, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
     TimeToAnswerA = textbox.InputBox(screen, size=(int(140/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(2/800.*WIDTH), int((70+int((296/6)/600.*HEIGHT)*2+298/6+5)/600.*HEIGHT)),
                                           color=WHITE, text_color=BLACK, border_color=BLACK, border_width=2, font="files\\montserrat\\Montserrat-Black.otf", numeric=True, placeholder=str(qtime))
+
     prev = textbox.ButtonBox(screen, text="<-", size=(int((753-693-6)/800.*WIDTH), int((235-175)/600.*HEIGHT)), place=(int((43+3)/800.*WIDTH), int((366-(235-170)-20)/600.*HEIGHT)),
                                               color=None, text_color=WHITE, border_color=None, font="files\\montserrat\\Montserrat-Black.otf")
+    if QuestioNumber == 0:
+        prev.text = ""
 
 
     PointsQ = textbox.OutputBox(screen, text=" Reward:", size=(int(132/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(666/800.*WIDTH), int((70)/600.*HEIGHT)),
@@ -223,12 +199,14 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
     PointsA = textbox.InputBox(screen, size=(int(132/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(666/800.*WIDTH), int((70+298/6)/600.*HEIGHT)),
                                           color=WHITE, text_color=BLACK, border_color=BLACK, border_width=2, font="files\\montserrat\\Montserrat-Black.otf", numeric=True, placeholder=str(points))
 
-    nothing = textbox.OutputBox(screen, text="place saver", size=(int(132/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(666/800.*WIDTH), int((70+int((296/6)/600.*HEIGHT)*2+5)/600.*HEIGHT)),
-                                        color=None, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
-    BackToHomeScreen = textbox.ButtonBox(screen, text="Back To\nHome Screen", size=(int(132/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(666/800.*WIDTH), int((70+int((296/6)/600.*HEIGHT)*2+298/6+5)/600.*HEIGHT) - int((296/6)/600.*HEIGHT)/2),
+    DeleteQuestion = textbox.ButtonBox(screen, text="Delete Question", size=(int(132/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(666/800.*WIDTH), int((70+int((296/6)/600.*HEIGHT)*2+5)/600.*HEIGHT)),
+                                         color=(201, 14, 163), text_color=WHITE, border_color=None, border_width=2, font="files\\montserrat\\Montserrat-Black.otf")
+    BackToHomeScreen = textbox.ButtonBox(screen, text="Back To\nHome Screen", size=(int(132/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(666/800.*WIDTH), int((70+int((296/6)/600.*HEIGHT)*2+298/6+5)+5/600.*HEIGHT)),
                                           color=(201, 14, 163), text_color=WHITE, border_color=None, border_width=2, font="files\\montserrat\\Montserrat-Black.otf")
     next = textbox.ButtonBox(screen, text="->", size=(int((753-693-6)/800.*WIDTH), int((235-175)/600.*HEIGHT)), place=(int((693+3)/800.*WIDTH), int((366-(235-170)-20)/600.*HEIGHT)),
                                               color=None, text_color=WHITE, border_color=None, font="files\\montserrat\\Montserrat-Black.otf")
+    if QuestioNumber == TotalQN-1:
+        next.text = "NEW"
 
 
     rb = textbox.ButtonBox(screen, text="", place=(9, 397), size=(44, 41), color=None, text_color=(0, 0, 0), border_color=None)
@@ -276,10 +254,9 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
             pygame.draw.rect(screen, (29, 161, 29), (Gstartx, Gstarty, sx, sy))
         screen.blit(gc, (Gstartx, Gstarty))
 
-
         # question
         question_text.draw()
-        if question_text.get_input() != quiz["Questions"][QuestioNumber]["question"]:
+        if question_text.get_input() != quiz["Questions"][QuestioNumber]["question"] and not question_text.is_toggled():
             quiz["Questions"][QuestioNumber]["question"] = question_text.get_input()
             changes = True
             #print "1"
@@ -288,15 +265,15 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
         numbbbbbbb = 0
         for answer in answer_boxes:
             answer.draw()
-            if answer.get_input() != quiz["Questions"][QuestioNumber]["answers"][numbbbbbbb]:
+            if answer.get_input() != quiz["Questions"][QuestioNumber]["answers"][numbbbbbbb] and not answer.is_toggled():
                 quiz["Questions"][QuestioNumber]["answers"][numbbbbbbb] = answer.get_input()
                 changes = True
                 #print "2"
             numbbbbbbb += 1
 
+        OutOf.draw()
 
-
-        for button in [BackToHomeScreen, prev, next]:
+        for button in [BackToHomeScreen, prev, next, DeleteQuestion]:
             if button.is_highlighted():
                 button.text_color = BLACK
             else:
@@ -304,13 +281,13 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
 
         TimeToAnswerQ.draw()
         TimeToAnswerA.draw()
-        if TimeToAnswerA.get_input() and int(TimeToAnswerA.get_input()) != quiz["Questions"][QuestioNumber]["time to answer"]:
+        if TimeToAnswerA.get_input() and int(TimeToAnswerA.get_input()) != quiz["Questions"][QuestioNumber]["time to answer"] and not TimeToAnswerA.is_toggled():
             quiz["Questions"][QuestioNumber]["time to answer"] = int(TimeToAnswerA.get_input())
             changes = True
             #print "3"
         TimeToReadQ.draw()
         TimeToReadA.draw()
-        if TimeToReadA.get_input() and int(TimeToReadA.get_input()) != quiz["Questions"][QuestioNumber]["time to read"]:
+        if TimeToReadA.get_input() and int(TimeToReadA.get_input()) != quiz["Questions"][QuestioNumber]["time to read"] and not TimeToReadA.is_toggled():
             quiz["Questions"][QuestioNumber]["time to read"] = int(TimeToReadA.get_input())
             changes = True
             #print "4"
@@ -318,11 +295,12 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
 
         PointsQ.draw()
         PointsA.draw()
-        if PointsA.get_input() and int(PointsA.get_input()) != quiz["Questions"][QuestioNumber]["points"]:
+        if PointsA.get_input() and int(PointsA.get_input()) != quiz["Questions"][QuestioNumber]["points"] and not PointsA.is_toggled():
             quiz["Questions"][QuestioNumber]["points"] = int(PointsA.get_input())
             changes = True
             #print "5"
         BackToHomeScreen.draw()
+        DeleteQuestion.draw()
         next.draw()
 
         rb.draw()
@@ -345,6 +323,23 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
             quiz["Questions"][QuestioNumber]["correct answer"] = 4
             changes = True
             #print "9"
+
+        if next.was_clicked():
+            return QuestioNumber + 1
+        if prev.text and prev.was_clicked():
+            return QuestioNumber - 1
+        if BackToHomeScreen.was_clicked():
+            return -1
+        if DeleteQuestion.was_clicked():
+            quiz['Questions'].remove(quiz['Questions'][QuestioNumber])
+            #print "updated"
+            with open('quizes/test.json', 'wb') as qfile:
+                json.dump(quiz, qfile, indent=4)
+            if QuestioNumber < TotalQN - 1:
+                return QuestioNumber
+            else:
+                return QuestioNumber - 1
+
 
         imgbutt.draw()
         if imgbutt.is_highlighted():
@@ -370,7 +365,7 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
                 if file:
                     imaging(screen, file, screen.copy())
                     previmg = addedimg
-                    addedimg = addedimg = pygame.transform.scale(pygame.image.load("./files/temp." + "jpg"), (int((665-143)/800.*WIDTH), int((334-70)/600.*HEIGHT)))
+                    addedimg = pygame.transform.scale(pygame.image.load("./files/temp." + "jpg"), (int((665-143)/800.*WIDTH), int((334-75)/600.*HEIGHT)))
                     regretometer = 3
                 wtf = False
                 counter = 3
@@ -412,13 +407,12 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
             regretometer = 0
 
         if changes:
-            #print "updated"
+            print "updated"
             with open('quizes/test.json', 'wb') as qfile:
                 json.dump(quiz, qfile, indent=4)
         changes = False
         #check_for_place(screen, events)
         pygame.display.flip()
-        clock.tick(60)
     pygame.mixer.music.stop()
     return False
 
@@ -469,12 +463,10 @@ def imaging(screen, file, background):
         for key in pressed:
             if key:
                 if pressed.index(1) == 45:
-                    if not (pressed[300] or pressed[303]):
-                        t = resize[1]-0.005 if resize[1]-0.005 > 0 else t
+                    t = resize[1]-0.005 if resize[1]-0.005 > 0 else t
                     s = resize[0]-0.005 if resize[0]-0.005 > 0 else s
                 if pressed.index(1) == 61:
-                    if not (pressed[300] or pressed[303]):
-                        t = resize[1]+0.01
+                    t = resize[1]+0.01
                     s = resize[0]+0.01
         resize = (s,t)
         if size[0]*resize[0] < frame.size[0] and not size[1]*resize[1] < frame.size[1]:

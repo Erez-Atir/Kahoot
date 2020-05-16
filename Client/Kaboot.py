@@ -38,7 +38,7 @@ size = img[0].get_rect().size
 def resfix(x=None, y=None):
     """
     because we didn't instruct the class on how to make your program responsive
-    :param x: the x coordinate or a Pygame image. If sent None means only y need a conversion
+    :param x: the x coordinate or a Pygame imagprevimg = addedimge. If sent None means only y need a conversion
     :param y: the y coordinate. can be not sent for only x conversion.
     :return: The new coordinates on the new screen with the same proportions. Tuple for (x,y). int for only one number.
     """
