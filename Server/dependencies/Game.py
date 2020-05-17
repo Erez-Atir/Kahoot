@@ -8,13 +8,13 @@ import json
 import base64
 import threading
 
-Title = "test"
+Title = None
 Running = True
 
 PLAYERSSCORE = {} #""""dictionary, saves the points of each player"""
 FONT_LIB = pygame.font.match_font('bitstreamverasans')[0:-10] + "\\" #finds the fony libary path
-IMAGES_DIR = os.getcwd() + "\\images\\" #saves the path to the images libary
-OST_DIR = os.getcwd() + "\\audio\\"
+IMAGES_DIR = os.getcwd() + "\\dependencies\\images\\" #saves the path to the images libary
+OST_DIR = os.getcwd() + "\\dependencies\\audio\\"
 users = None
 QuestioNumber = 0
 TotalQN = None
@@ -29,8 +29,8 @@ BLACK = (0, 0, 0)
 TCHELET = (150, 150, 255)
 MouseMotion = 4
 
-#screen = pygame.display.set_mode((800, 600), pygame.FULLSCREEN)  # full screen
-screen = pygame.display.set_mode((800, 600))  # set screen wid =800, hieght =600
+#screen = None  # full screen
+#screen = pygame.display.set_mode((800, 600))  # set screen wid =800, hieght =600
 
 """height and width of the screen"""
 size = width, height = pygame.display.Info().current_w, pygame.display.Info().current_h
@@ -49,7 +49,11 @@ BLACKSURFACE.fill(WHITE)
 
 
 def main(QUIZ):
-    global users, QuestioNumber, TotalQN, Running
+    global users, QuestioNumber, TotalQN, Running, Title, screen
+    Title = QUIZ
+    threading.Thread(target=handle_clients).start()
+    screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
+    #screen = pygame.display.set_mode((800, 600))
     done = False                                     #"""the playes exited the game?"""
     start_game = False                               # the game has started?
     pygame.init()                                    # initiate pygames
@@ -58,9 +62,9 @@ def main(QUIZ):
     pygame.display.flip()
     pygame.font.init()
 
-    a = textbox.OutputBox(screen, QUIZ, (WIDTH, int(100/600.*HEIGHT)), (0, int(50/600.*HEIGHT)), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
-    b = textbox.OutputBox(screen, "No Users Logged In", (WIDTH, int(50/600.*HEIGHT)), (0, int(175/600.*HEIGHT)), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
-    c = textbox.OutputBox(screen, "Start", (int(770/800.*WIDTH-25/800.*WIDTH), int(580/600.*HEIGHT-490/600.*HEIGHT)), (int(25/800.*WIDTH), int(490/600.*HEIGHT)), (255, 255, 255), 0, (0, 0, 0), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
+    a = textbox.OutputBox(screen, QUIZ, (WIDTH, int(100/600.*HEIGHT)), (0, int(50/600.*HEIGHT)), (255, 255, 255), 0, (), (0, 0, 0), "dependencies\\files\\montserrat\\Montserrat-Black.otf")
+    b = textbox.OutputBox(screen, "No Users Logged In", (WIDTH, int(50/600.*HEIGHT)), (0, int(175/600.*HEIGHT)), (255, 255, 255), 0, (), (0, 0, 0), "dependencies\\files\\montserrat\\Montserrat-Black.otf")
+    c = textbox.OutputBox(screen, "Start", (int(770/800.*WIDTH-25/800.*WIDTH), int(580/600.*HEIGHT-490/600.*HEIGHT)), (int(25/800.*WIDTH), int(490/600.*HEIGHT)), (255, 255, 255), 0, (0, 0, 0), (0, 0, 0), "dependencies\\files\\montserrat\\Montserrat-Black.otf")
 
     prev_users = Server.update_login() #gets list of names
     print_names(screen, prev_users)#prints the name to the screen
@@ -71,6 +75,8 @@ def main(QUIZ):
     pygame.mixer.music.load(OST_DIR + "login.mp3")
     pygame.mixer.music.play(-1)
     trying = 0
+    time.sleep(0.5)
+    first = 2
     while not start_game and not done: #while game was not exited and game is still at the log in part
         events = pygame.event.get()
         """checks events, user input"""
@@ -92,8 +98,11 @@ def main(QUIZ):
             if event.type == MouseButtonDown:#player clicks the screen(should be only button)
                 if event.button == 1:
                     x, y = event.pos
-                    if 25/800.*WIDTH < x and x < 770/800.*WIDTH and y > 490/600.*HEIGHT and y < 580/600.*HEIGHT:   # if mouse above start button
-                        start_game = True
+                    if not first:
+                        if 25/800.*WIDTH < x and x < 770/800.*WIDTH and y > 490/600.*HEIGHT and y < 580/600.*HEIGHT:   # if mouse above start button
+                            start_game = True
+                    else:
+                        first -= 1
         """"load screen"""
         screen.fill((35, 177, 76))
         for topstart in [x*int(WIDTH/10) for x in range(20)]:
@@ -148,7 +157,7 @@ def main(QUIZ):
         clock.tick(60)
 
     pygame.mouse.set_cursor(*pygame.cursors.arrow)
-    with open('quizes/' + QUIZ + '.json', 'rb') as qfile:
+    with open("dependencies\\quizes\\" + QUIZ + '.json', 'rb') as qfile:
         quiz = json.load(qfile)
 
     #with open(IMAGES_DIR+"Example.jpg", 'rb') as img:
@@ -195,7 +204,7 @@ def add_question(screen, timer, question, answers, correct_answer, photo, photyp
         """
 
         if photo and photype:
-            with open("files/temp." + photype, "wb") as temp:
+            with open("dependencies\\files/temp." + photype, "wb") as temp:
                 temp.write(base64.b64decode(photo))
 
         if not first:
@@ -227,14 +236,14 @@ def score_board(screen, players, next_round_points):
 
     #print players
     finish = False
-    header = textbox.OutputBox(screen, "Scoreboard", (WIDTH, int(80/600.*HEIGHT)), (0, int(10/600.*HEIGHT)), (255, 255, 255), 0, (), (0, 0, 0), "files\\RosewoodStd-Regular.otf")
+    header = textbox.OutputBox(screen, "Scoreboard", (WIDTH, int(80/600.*HEIGHT)), (0, int(10/600.*HEIGHT)), (255, 255, 255), 0, (), (0, 0, 0), "dependencies\\files\\RosewoodStd-Regular.otf")
     users = []
     for i in range(5):
         if not i and players:
             users.append(textbox.OutputBox(screen, players[i][1] + "  -  " + str(players[i][0]) + " points", (int(700/800.*WIDTH), int(70/600.*HEIGHT)), (int(50/800.*WIDTH), int(120/600.*HEIGHT)), (255, 255, 255), 3, (0, 0, 0), (0, 0, 0), FONT_LIB + "ALGER.TTF"))
         elif i < len(players):
             users.append(textbox.OutputBox(screen, players[i][1] + "  -  " + str(players[i][0]) + " points", (int(700/800.*WIDTH), int(70/600.*HEIGHT)), (int(50/800.*WIDTH), int((70 * i + 20 + 120)/600.*HEIGHT)), (), 3, (0, 0, 0), (0, 0, 0), FONT_LIB + "ALGER.TTF"))
-    under = textbox.OutputBox(screen, "Next round reward - " + str(next_round_points) + " points!", (int(650/800.*WIDTH), int(75/600.*HEIGHT)), (int(75/800.*WIDTH), int(525/600.*HEIGHT)), (163, 73, 163), 0, (), (255, 255, 255), "files\\montserrat\\Montserrat-Black.otf")
+    under = textbox.OutputBox(screen, "Next round reward - " + str(next_round_points) + " points!", (int(650/800.*WIDTH), int(75/600.*HEIGHT)), (int(75/800.*WIDTH), int(525/600.*HEIGHT)), (163, 73, 163), 0, (), (255, 255, 255), "dependencies\\files\\montserrat\\Montserrat-Black.otf")
     while not finish:
         events = pygame.event.get()
         for event in events:
@@ -293,11 +302,11 @@ def load_question(screen, question, photo, answers, qtime):
     Rstartx, Rstarty, Bstartx, Bstarty, Ystartx, Ystarty, Gstartx, Gstarty = [int(a[x]/800.*WIDTH) if x % 2 == 0 else int(a[x]/600.*HEIGHT) for x in range(len(a))]
     addedimg = None
     if photo:
-        addedimg = pygame.transform.scale(pygame.image.load("./files/temp." + photo), (int((665-143)/800.*WIDTH), int((334-70)/600.*HEIGHT)))
+        addedimg = pygame.transform.scale(pygame.image.load("./dependencies/files/temp." + photo), (int((665-143)/800.*WIDTH), int((334-70)/600.*HEIGHT)))
 
 
     # question
-    question_text = textbox.OutputBox(screen, question, (WIDTH, int(70/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
+    question_text = textbox.OutputBox(screen, question, (WIDTH, int(70/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), "dependencies\\files\\montserrat\\Montserrat-Black.otf")
 
     # time
     start_time = time.time()
@@ -307,17 +316,17 @@ def load_question(screen, question, photo, answers, qtime):
     answer_boxes = []
     for y in range(4):
         answer_boxes.append(textbox.OutputBox(screen, text=answers[y], size=(int(335/800.*WIDTH), int(105/600.*HEIGHT)), place=(int(int(60/800.*WIDTH) + (WIDTH / 2) * (y % 2)), int(372/600.*HEIGHT) + int(120/600.*HEIGHT) * int(y / 2)),
-                                              color=None, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf"))
+                                              color=None, text_color=WHITE, font="dependencies\\files\\montserrat\\Montserrat-Black.otf"))
 
     timerText = textbox.OutputBox(screen, text=str(qtime), size=(int((753-693-6)/800.*WIDTH), int((235-175)/600.*HEIGHT)), place=(int((43+3)/800.*WIDTH), int(175/600.*HEIGHT)),
-                                              color=None, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
+                                              color=None, text_color=WHITE, font="dependencies\\files\\montserrat\\Montserrat-Black.otf")
     timerTextHeader = textbox.OutputBox(screen, text=" Seconds:", size=(int(142/800.*WIDTH), int((237-177+100)/600.*HEIGHT)), place=(0, int(177/600.*HEIGHT) - int((237-177+50)/600.*HEIGHT)),
-                                              color=None, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
+                                              color=None, text_color=BLACK, font="dependencies\\files\\montserrat\\Montserrat-Black.otf")
 
     answerText = textbox.OutputBox(screen, text=str(0), size=(int((753-693-6)/800.*WIDTH), int((235-175)/600.*HEIGHT)), place=(int((693+3)/800.*WIDTH), int(175/600.*HEIGHT)),
-                                              color=None, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf")
+                                              color=None, text_color=WHITE, font="dependencies\\files\\montserrat\\Montserrat-Black.otf")
     answerTextHeader = textbox.OutputBox(screen, text="Answers: ", size=(int((800-664)/800.*WIDTH), int((235-175+100)/600.*HEIGHT)), place=(int(664/800.*WIDTH), int(175/600.*HEIGHT) - int((235-175+50)/600.*HEIGHT)),
-                                              color=None, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
+                                              color=None, text_color=BLACK, font="dependencies\\files\\montserrat\\Montserrat-Black.otf")
 
     pygame.mixer.music.load(OST_DIR + "question.mp3")
     pygame.mixer.music.set_volume(0.4)
@@ -348,7 +357,7 @@ def load_question(screen, question, photo, answers, qtime):
             screen.blit(addedimg, (int(143/800.*WIDTH), int(75/600.*HEIGHT)))
         else:
             textbox.OutputBox(screen, text=" KABOOT! ", size=(int((665-143)/800.*WIDTH), int((334-75)/600.*HEIGHT)), place=(int(143/800.*WIDTH), int(75/600.*HEIGHT)),
-                                          color=(201, 14, 163), text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf").draw()
+                                          color=(201, 14, 163), text_color=WHITE, font="dependencies\\files\\montserrat\\Montserrat-Black.otf").draw()
 
         screen.blit(rc, (Rstartx, Rstarty))
         screen.blit(bc, (Bstartx, Bstarty))
@@ -388,8 +397,8 @@ def load_timer(num, screen, question,):
     last = time.time()
     current = time.time()
     count = 0
-    question_text = textbox.OutputBox(screen, question, (WIDTH, int(70/600.*HEIGHT)), (0, int(312/600.*HEIGHT)), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
-    question_id = textbox.OutputBox(screen, "Question " + str(QuestioNumber) + " out of " + str(TotalQN), (WIDTH, int(40/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
+    question_text = textbox.OutputBox(screen, question, (WIDTH, int(70/600.*HEIGHT)), (0, int(312/600.*HEIGHT)), (255, 255, 255), 0, (), (0, 0, 0), "dependencies\\files\\montserrat\\Montserrat-Black.otf")
+    question_id = textbox.OutputBox(screen, "Question " + str(QuestioNumber) + " out of " + str(TotalQN), (WIDTH, int(40/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), "dependencies\\files\\montserrat\\Montserrat-Black.otf")
     finish = False
     while current - first <= num + 0.4 and not finish:
         events = pygame.event.get()
@@ -473,12 +482,12 @@ def show_answer(screen, res, correct_answer, question, photo):
 
     addedimg = None
     if photo:
-        addedimg = pygame.transform.scale(pygame.image.load("./files/temp." + photo), (int((665-143)/800.*WIDTH), int((334-70)/600.*HEIGHT)))
+        addedimg = pygame.transform.scale(pygame.image.load("./dependencies/files/temp." + photo), (int((665-143)/800.*WIDTH), int((334-70)/600.*HEIGHT)))
 
     a = [3, 367, 403, 367, 3, 484, 403, 484]
     Rstartx, Rstarty, Bstartx, Bstarty, Ystartx, Ystarty, Gstartx, Gstarty = [int(a[x]/800.*WIDTH) if x % 2 == 0 else int(a[x]/600.*HEIGHT) for x in range(len(a))]
-    questionFont = pygame.font.Font("files\\montserrat\\Montserrat-Black.otf", 50)
-    question_text = textbox.OutputBox(screen, question, (WIDTH, int(70/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
+    questionFont = pygame.font.Font("dependencies\\files\\montserrat\\Montserrat-Black.otf", 50)
+    question_text = textbox.OutputBox(screen, question, (WIDTH, int(70/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), "dependencies\\files\\montserrat\\Montserrat-Black.otf")
 
     Sx = 60.0/res_sum  # scale of moving according to the amount of answers in x
     Sy = 25.0/res_sum  # scale of moving according to the amount of answers in y
@@ -565,7 +574,7 @@ def show_answer(screen, res, correct_answer, question, photo):
                 screen.blit(addedimg, (int(143/800.*WIDTH), int(75/600.*HEIGHT)))
             else:
                 textbox.OutputBox(screen, text=" KABOOT! ", size=(int((665-143)/800.*WIDTH), int((334-75)/600.*HEIGHT)), place=(int(143/800.*WIDTH), int(75/600.*HEIGHT)),
-                                          color=(201, 14, 163), text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf").draw()
+                                          color=(201, 14, 163), text_color=WHITE, font="dependencies\\files\\montserrat\\Montserrat-Black.otf").draw()
 
 
             pygame.display.flip()
@@ -639,21 +648,21 @@ def exit_screen(screen, names, points):
         image = pygame.image.load(IMAGES_DIR + "winners_stand\\Slide1.png")
         image = pygame.transform.scale(image, (WIDTH/5, int(HEIGHT*1.3)))
         screen.blit(image, (int((800/2 - 74)/800.*WIDTH), int((final[0] + podioms[0])/600.*HEIGHT)))
-        textbox.OutputBox(screen, str(points[0]) + " points!", (WIDTH/5-WIDTH/25, int(45/600.*HEIGHT)), (int((800/2 - 74)/800.*WIDTH+WIDTH/50), int((final[0] + podioms[0] + 130)/600.*HEIGHT)), None, 0, None, (255, 255, 255), "files\\montserrat\\Montserrat-Black.otf").draw()
-        textbox.OutputBox(screen, names[0], (WIDTH/5-WIDTH/25, int(80/600.*HEIGHT)), (int((800/2 - 74)/800.*WIDTH+WIDTH/50), int((final[0] + podioms[0])/600.*HEIGHT)), None, 0, None, (255, 255, 255), "files\\montserrat\\Montserrat-Black.otf").draw()
+        textbox.OutputBox(screen, str(points[0]) + " points!", (WIDTH/5-WIDTH/25, int(45/600.*HEIGHT)), (int((800/2 - 74)/800.*WIDTH+WIDTH/50), int((final[0] + podioms[0] + 130)/600.*HEIGHT)), None, 0, None, (255, 255, 255), "dependencies\\files\\montserrat\\Montserrat-Black.otf").draw()
+        textbox.OutputBox(screen, names[0], (WIDTH/5-WIDTH/25, int(80/600.*HEIGHT)), (int((800/2 - 74)/800.*WIDTH+WIDTH/50), int((final[0] + podioms[0])/600.*HEIGHT)), None, 0, None, (255, 255, 255), "dependencies\\files\\montserrat\\Montserrat-Black.otf").draw()
 
 
         image = pygame.image.load(IMAGES_DIR + "winners_stand\\Slide2.png")
         image = pygame.transform.scale(image, (WIDTH/5, int(HEIGHT*1.3)))
         screen.blit(image, (int((800/2 - 74*4)/800.*WIDTH), int((final[1] + podioms[1])/600.*HEIGHT)))
-        textbox.OutputBox(screen, str(points[1]) + " points!", (WIDTH/5-WIDTH/25, int(45/600.*HEIGHT)), (int((800/2 - 74*4)/800.*WIDTH+WIDTH/50), int((final[1] + podioms[1] + 130)/600.*HEIGHT)), None, 0, None, (255, 255, 255), "files\\montserrat\\Montserrat-Black.otf").draw()
-        textbox.OutputBox(screen, names[1], (WIDTH/5-WIDTH/25, int(80/600.*HEIGHT)), (int((800/2 - 74*4)/800.*WIDTH+WIDTH/50), int((final[1] + podioms[1])/600.*HEIGHT)), None, 0, None, (255, 255, 255), "files\\montserrat\\Montserrat-Black.otf").draw()
+        textbox.OutputBox(screen, str(points[1]) + " points!", (WIDTH/5-WIDTH/25, int(45/600.*HEIGHT)), (int((800/2 - 74*4)/800.*WIDTH+WIDTH/50), int((final[1] + podioms[1] + 130)/600.*HEIGHT)), None, 0, None, (255, 255, 255), "dependencies\\files\\montserrat\\Montserrat-Black.otf").draw()
+        textbox.OutputBox(screen, names[1], (WIDTH/5-WIDTH/25, int(80/600.*HEIGHT)), (int((800/2 - 74*4)/800.*WIDTH+WIDTH/50), int((final[1] + podioms[1])/600.*HEIGHT)), None, 0, None, (255, 255, 255), "dependencies\\files\\montserrat\\Montserrat-Black.otf").draw()
 
         image = pygame.image.load(IMAGES_DIR + "winners_stand\\Slide3.png")
         image = pygame.transform.scale(image, (WIDTH/5, int(HEIGHT*1.3)))
         screen.blit(image, (int((800/2 + 74*2)/800.*WIDTH), int((final[2] + podioms[2])/600.*HEIGHT)))
-        textbox.OutputBox(screen, str(points[2]) + " points!", (WIDTH/5-WIDTH/25, int(45/600.*HEIGHT)), (int((800/2 + 74*2)/800.*WIDTH+WIDTH/50), int((final[2] + podioms[2] + 130)/600.*HEIGHT)), None, 0, None, (255, 255, 255), "files\\montserrat\\Montserrat-Black.otf").draw()
-        textbox.OutputBox(screen, names[2], (WIDTH/5-WIDTH/25, int(80/600.*HEIGHT)), (int((800/2 + 74*2)/800.*WIDTH+WIDTH/50), int((final[2] + podioms[2])/600.*HEIGHT)), None, 0, None, (255, 255, 255), "files\\montserrat\\Montserrat-Black.otf").draw()
+        textbox.OutputBox(screen, str(points[2]) + " points!", (WIDTH/5-WIDTH/25, int(45/600.*HEIGHT)), (int((800/2 + 74*2)/800.*WIDTH+WIDTH/50), int((final[2] + podioms[2] + 130)/600.*HEIGHT)), None, 0, None, (255, 255, 255), "dependencies\\files\\montserrat\\Montserrat-Black.otf").draw()
+        textbox.OutputBox(screen, names[2], (WIDTH/5-WIDTH/25, int(80/600.*HEIGHT)), (int((800/2 + 74*2)/800.*WIDTH+WIDTH/50), int((final[2] + podioms[2])/600.*HEIGHT)), None, 0, None, (255, 255, 255), "dependencies\\files\\montserrat\\Montserrat-Black.otf").draw()
 
         if la_finito:
             if gif <= 56:
@@ -684,7 +693,7 @@ def print_names(screen, names):
     for y in range(3):
         for x in range(5):
             if counter < len(names):
-                textbox.OutputBox(screen=screen, text=names[counter], size=(WIDTH/6, HEIGHT/10), place=(5 + x * (WIDTH / 5), int(245/600.*HEIGHT) + HEIGHT/8*y), color=WHITE, border_width=2, border_color=BLACK, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf").draw()
+                textbox.OutputBox(screen=screen, text=names[counter], size=(WIDTH/6, HEIGHT/10), place=(5 + x * (WIDTH / 5), int(245/600.*HEIGHT) + HEIGHT/8*y), color=WHITE, border_width=2, border_color=BLACK, text_color=BLACK, font="dependencies\\files\\montserrat\\Montserrat-Black.otf").draw()
                 counter += 1
 
 
@@ -716,7 +725,4 @@ def handle_clients():
         Server.receive()
 
 
-threading.Thread(target=handle_clients).start()
-
-main(Title)
 

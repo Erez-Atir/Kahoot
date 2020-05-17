@@ -10,13 +10,13 @@ import tkMessageBox
 import tkFileDialog
 import win32gui, win32api, win32con
 
-Title = "test"
+Title = None
 quiz = None
 
 PLAYERSSCORE = {} #""""dictionary, saves the points of each player"""
 FONT_LIB = pygame.font.match_font('bitstreamverasans')[0:-10] + "\\" #finds the fony libary path
-IMAGES_DIR = os.getcwd() + "\\images\\" #saves the path to the images libary
-OST_DIR = os.getcwd() + "\\audio\\"
+IMAGES_DIR = os.getcwd() + "\\dependencies\\images\\" #saves the path to the images libary
+OST_DIR = os.getcwd() + "\\dependencies\\audio\\"
 users = None
 TotalQN = None
 
@@ -50,27 +50,26 @@ BLACKSURFACE.fill(WHITE)
 
 
 def main(QUIZ):
-    global users, TotalQN, quiz
+    global users, TotalQN, quiz, Title
+    Title = QUIZ
                                     # initiate pygames
-
+    pygame.display.set_caption(QUIZ)
+    pygame.display.flip()
+    pygame.font.init()
 
 
     pygame.mouse.set_cursor(*pygame.cursors.arrow)
-    with open('quizes/' + QUIZ + '.json', 'rb') as qfile:
+    with open("dependencies\\quizes\\" + QUIZ + '.json', 'rb') as qfile:
         quiz = json.load(qfile)
 
     #with open(IMAGES_DIR+"Example.jpg", 'rb') as img:
     #    quiz['Questions'][0]['photo'] = base64.b64encode(img.read())
-    #with open('quizes/test.json', 'wb') as qfile:
+    #with open('quizes/' + Title + '.json', 'wb') as qfile:
     #    json.dump(quiz, qfile, indent=4)
 
-    pygame.mixer.music.fadeout(quiz['Questions'][0]['time to read']*1000)
 
     TotalQN = len(quiz['Questions'])
     add_question(screen, quiz, 0)
-
-
-    exit()
 
 
 def add_question(screen, quiz, qn):
@@ -95,7 +94,7 @@ def add_question(screen, quiz, qn):
         points = quiz['Questions'][qn]['points']
         timer = quiz['Questions'][qn]['time to read']
         if photo and photype:
-            with open("files/temp." + photype, "wb") as temp:
+            with open("dependencies\\files/temp." + photype, "wb") as temp:
                 temp.write(base64.b64decode(photo))
 
         while qn+1:
@@ -107,14 +106,14 @@ def add_question(screen, quiz, qn):
                 quiz['Questions'].append({
                     "time to answer": 60,
                     "photo": None,
-                    "question": "#",
-                    "answers": ["", "", "", ""],
+                    "question": "?",
+                    "answers": ["1", "2", "3", "4"],
                     "time to read": 5,
                     "points": 100,
                     "correct answer": 1,
                     "image file type": None})
                 #print "updated"
-                with open('quizes/test.json', 'wb') as qfile:
+                with open('dependencies/quizes/' + Title + '.json', 'wb') as qfile:
                     json.dump(quiz, qfile, indent=4)
             question = quiz['Questions'][qn]['question']
             photype = quiz['Questions'][qn]['image file type']
@@ -124,7 +123,7 @@ def add_question(screen, quiz, qn):
             points = quiz['Questions'][qn]['points']
             timer = quiz['Questions'][qn]['time to read']
             if photo and photype:
-                with open("files/temp." + photype, "wb") as temp:
+                with open("dependencies\\files/temp." + photype, "wb") as temp:
                     temp.write(base64.b64decode(photo))
         return qn
 
@@ -158,7 +157,7 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
     Rstartx, Rstarty, Bstartx, Bstarty, Ystartx, Ystarty, Gstartx, Gstarty = [int(a[x]/800.*WIDTH) if x % 2 == 0 else int(a[x]/600.*HEIGHT) for x in range(len(a))]
     addedimg = None
     if photo:
-        addedimg = pygame.transform.scale(pygame.image.load("./files/temp." + photo), (int((665-143)/800.*WIDTH), int((334-75)/600.*HEIGHT)))
+        addedimg = pygame.transform.scale(pygame.image.load("./dependencies/files/temp." + photo), (int((665-143)/800.*WIDTH), int((334-75)/600.*HEIGHT)))
     imgbutt = textbox.ButtonBox(screen, text="", place=(int(143/800.*WIDTH), int(75/600.*HEIGHT)), size=(int((665-143)/800.*WIDTH),  int((334-75)/600.*HEIGHT)), color=None, text_color=(0, 0, 0), border_color=(0, 0, 0), border_width=2, mouse=False)
     uploadimg = pygame.transform.scale(pygame.image.load(IMAGES_DIR + "icons\\upload_image.png"), (int((665-143)/800.*WIDTH/4), int((334-70+60)/600.*HEIGHT/3)))
     uploadimgbutt = textbox.ButtonBox(screen, text="", place=(int(143/800.*WIDTH)+int((665-143)/800.*WIDTH)*0.55, int(75-20/600.*HEIGHT)+int((334-70)/600.*HEIGHT)*0.3), size=(int((665-143)/800.*WIDTH/4), int((334-70+60)/600.*HEIGHT/3)), color=None, text_color=(0, 0, 0), border_color=None, border_width=0)
@@ -168,43 +167,43 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
 
 
     # question
-    question_text = textbox.InputBox(screen, (WIDTH, int(70/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf", False, question)
+    question_text = textbox.InputBox(screen, (WIDTH, int(70/600.*HEIGHT)), (0, 0), (255, 255, 255), 0, (), (0, 0, 0), "dependencies\\files\\montserrat\\Montserrat-Black.otf", False, question)
     # Number
     OutOf = textbox.OutputBox(screen, text="Question " + str(QuestioNumber + 1) + " out of " + str(TotalQN), size=(WIDTH, int(372/600.*HEIGHT) - int(75/600.*HEIGHT) - int((334-70)/600.*HEIGHT)), place=(0, int(75/600.*HEIGHT) + int((334-75)/600.*HEIGHT)),
-                                          color=None, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
+                                          color=None, text_color=BLACK, font="dependencies\\files\\montserrat\\Montserrat-Black.otf")
 
     answer_boxes = []
     for y in range(4):
         answer_boxes.append(textbox.InputBox(screen, placeholder=answers[y], size=(int(335/800.*WIDTH), int(105/600.*HEIGHT)), place=(int(int(60/800.*WIDTH) + (WIDTH / 2) * (y % 2)), int(372/600.*HEIGHT) + int(120/600.*HEIGHT) * int(y / 2)),
-                                              color=None, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf"))
+                                              color=None, text_color=WHITE, font="dependencies\\files\\montserrat\\Montserrat-Black.otf"))
 
 
     TimeToReadQ = textbox.OutputBox(screen, text=" Seconds\nto read:", size=(int(140/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(2/800.*WIDTH), int((70)/600.*HEIGHT)),
-                                          color=None, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
+                                          color=None, text_color=BLACK, font="dependencies\\files\\montserrat\\Montserrat-Black.otf")
     TimeToReadA = textbox.InputBox(screen, size=(int(140/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(2/800.*WIDTH), int((70+298/6)/600.*HEIGHT)),
-                                          color=WHITE, text_color=BLACK, border_color=BLACK, border_width=2, font="files\\montserrat\\Montserrat-Black.otf", numeric=True, placeholder=str(rtime))
+                                          color=WHITE, text_color=BLACK, border_color=BLACK, border_width=2, font="dependencies\\files\\montserrat\\Montserrat-Black.otf", numeric=True, placeholder=str(rtime))
     TimeToAnswerQ = textbox.OutputBox(screen, text=" Seconds\nto answer:", size=(int(140/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(2/800.*WIDTH), int((70+int((296/6)/600.*HEIGHT)*2+5)/600.*HEIGHT)),
-                                      color=None, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
+                                      color=None, text_color=BLACK, font="dependencies\\files\\montserrat\\Montserrat-Black.otf")
     TimeToAnswerA = textbox.InputBox(screen, size=(int(140/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(2/800.*WIDTH), int((70+int((296/6)/600.*HEIGHT)*2+298/6+5)/600.*HEIGHT)),
-                                          color=WHITE, text_color=BLACK, border_color=BLACK, border_width=2, font="files\\montserrat\\Montserrat-Black.otf", numeric=True, placeholder=str(qtime))
+                                          color=WHITE, text_color=BLACK, border_color=BLACK, border_width=2, font="dependencies\\files\\montserrat\\Montserrat-Black.otf", numeric=True, placeholder=str(qtime))
 
     prev = textbox.ButtonBox(screen, text="<-", size=(int((753-693-6)/800.*WIDTH), int((235-175)/600.*HEIGHT)), place=(int((43+3)/800.*WIDTH), int((366-(235-170)-20)/600.*HEIGHT)),
-                                              color=None, text_color=WHITE, border_color=None, font="files\\montserrat\\Montserrat-Black.otf")
+                                              color=None, text_color=WHITE, border_color=None, font="dependencies\\files\\montserrat\\Montserrat-Black.otf")
     if QuestioNumber == 0:
         prev.text = ""
 
 
     PointsQ = textbox.OutputBox(screen, text=" Reward:", size=(int(132/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(666/800.*WIDTH), int((70)/600.*HEIGHT)),
-                                          color=None, text_color=BLACK, font="files\\montserrat\\Montserrat-Black.otf")
+                                          color=None, text_color=BLACK, font="dependencies\\files\\montserrat\\Montserrat-Black.otf")
     PointsA = textbox.InputBox(screen, size=(int(132/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(666/800.*WIDTH), int((70+298/6)/600.*HEIGHT)),
-                                          color=WHITE, text_color=BLACK, border_color=BLACK, border_width=2, font="files\\montserrat\\Montserrat-Black.otf", numeric=True, placeholder=str(points))
+                                          color=WHITE, text_color=BLACK, border_color=BLACK, border_width=2, font="dependencies\\files\\montserrat\\Montserrat-Black.otf", numeric=True, placeholder=str(points))
 
     DeleteQuestion = textbox.ButtonBox(screen, text="Delete Question", size=(int(132/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(666/800.*WIDTH), int((70+int((296/6)/600.*HEIGHT)*2+5)/600.*HEIGHT)),
-                                         color=(201, 14, 163), text_color=WHITE, border_color=None, border_width=2, font="files\\montserrat\\Montserrat-Black.otf")
+                                         color=(201, 14, 163), text_color=WHITE, border_color=None, border_width=2, font="dependencies\\files\\montserrat\\Montserrat-Black.otf")
     BackToHomeScreen = textbox.ButtonBox(screen, text="Back To\nHome Screen", size=(int(132/800.*WIDTH), int((296/6)/600.*HEIGHT)), place=(int(666/800.*WIDTH), int((70+int((296/6)/600.*HEIGHT)*2+298/6+5)+5/600.*HEIGHT)),
-                                          color=(201, 14, 163), text_color=WHITE, border_color=None, border_width=2, font="files\\montserrat\\Montserrat-Black.otf")
+                                          color=(201, 14, 163), text_color=WHITE, border_color=None, border_width=2, font="dependencies\\files\\montserrat\\Montserrat-Black.otf")
     next = textbox.ButtonBox(screen, text="->", size=(int((753-693-6)/800.*WIDTH), int((235-175)/600.*HEIGHT)), place=(int((693+3)/800.*WIDTH), int((366-(235-170)-20)/600.*HEIGHT)),
-                                              color=None, text_color=WHITE, border_color=None, font="files\\montserrat\\Montserrat-Black.otf")
+                                              color=None, text_color=WHITE, border_color=None, font="dependencies\\files\\montserrat\\Montserrat-Black.otf")
     if QuestioNumber == TotalQN-1:
         next.text = "NEW"
 
@@ -223,7 +222,6 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.QUIT:
-                pygame.mixer.music.stop()
                 exit()
                 return True
             if event.type == pygame.KEYDOWN:
@@ -239,7 +237,7 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
             screen.blit(addedimg, (int(143/800.*WIDTH), int(75/600.*HEIGHT)))
         else:
             textbox.OutputBox(screen, text=" KABOOT! ", size=(int((665-143)/800.*WIDTH), int((334-75)/600.*HEIGHT)), place=(int(143/800.*WIDTH), int(75/600.*HEIGHT)),
-                                          color=(201, 14, 163), text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf").draw()
+                                          color=(201, 14, 163), text_color=WHITE, font="dependencies\\files\\montserrat\\Montserrat-Black.otf").draw()
 
         if quiz["Questions"][QuestioNumber]["correct answer"] == 1:
             pygame.draw.rect(screen, (29, 161, 29), (Rstartx, Rstarty, sx, sy))
@@ -330,10 +328,10 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
             return QuestioNumber - 1
         if BackToHomeScreen.was_clicked():
             return -1
-        if DeleteQuestion.was_clicked():
+        if DeleteQuestion.was_clicked() and TotalQN > 1:
             quiz['Questions'].remove(quiz['Questions'][QuestioNumber])
             #print "updated"
-            with open('quizes/test.json', 'wb') as qfile:
+            with open('dependencies/quizes/' + Title + '.json', 'wb') as qfile:
                 json.dump(quiz, qfile, indent=4)
             if QuestioNumber < TotalQN - 1:
                 return QuestioNumber
@@ -365,7 +363,7 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
                 if file:
                     imaging(screen, file, screen.copy())
                     previmg = addedimg
-                    addedimg = pygame.transform.scale(pygame.image.load("./files/temp." + "jpg"), (int((665-143)/800.*WIDTH), int((334-75)/600.*HEIGHT)))
+                    addedimg = pygame.transform.scale(pygame.image.load("./dependencies/files/temp." + "jpg"), (int((665-143)/800.*WIDTH), int((334-75)/600.*HEIGHT)))
                     regretometer = 3
                 wtf = False
                 counter = 3
@@ -397,7 +395,7 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
             Tk().withdraw()
             swich = tkMessageBox.askokcancel("Preview of New Image", "Are you sure you want to change the image?\nThis action cannot be reversed!")
             if swich:
-                with open("./files/temp." + "jpg", 'rb') as img:
+                with open("./dependencies/files/temp." + "jpg", 'rb') as img:
                     quiz['Questions'][QuestioNumber]['photo'] = base64.b64encode(img.read())
                     quiz['Questions'][QuestioNumber]['image file type'] = "jpg"
                     changes = True
@@ -408,12 +406,11 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
 
         if changes:
             print "updated"
-            with open('quizes/test.json', 'wb') as qfile:
+            with open("dependencies\\quizes\\" + Title + '.json', 'wb') as qfile:
                 json.dump(quiz, qfile, indent=4)
         changes = False
         #check_for_place(screen, events)
         pygame.display.flip()
-    pygame.mixer.music.stop()
     return False
 
 
@@ -423,10 +420,10 @@ def imaging(screen, file, background):
     background = background.convert()
     background.set_alpha(20)
 
-    question_text = textbox.OutputBox(screen, "Use + and - to change the image's scale.\nUse the mouse to move the image.", (WIDTH, int(75/600.*HEIGHT)), (0, 0), (0, 0, 0), 0, (), (255, 255, 255), "files\\montserrat\\Montserrat-Black.otf")
-    doneb = textbox.ButtonBox(screen, "Done", (int(770/800.*WIDTH-25/800.*WIDTH), int(580/600.*HEIGHT-490/600.*HEIGHT)), (int(25/800.*WIDTH), int(490/600.*HEIGHT)), (255, 255, 255), 5, (0, 0, 0), (0, 0, 0), "files\\montserrat\\Montserrat-Black.otf")
+    question_text = textbox.OutputBox(screen, "Use + and - to change the image's scale.\nUse the mouse to move the image.", (WIDTH, int(75/600.*HEIGHT)), (0, 0), (0, 0, 0), 0, (), (255, 255, 255), "dependencies\\files\\montserrat\\Montserrat-Black.otf")
+    doneb = textbox.ButtonBox(screen, "Done", (int(770/800.*WIDTH-25/800.*WIDTH), int(580/600.*HEIGHT-490/600.*HEIGHT)), (int(25/800.*WIDTH), int(490/600.*HEIGHT)), (255, 255, 255), 5, (0, 0, 0), (0, 0, 0), "dependencies\\files\\montserrat\\Montserrat-Black.otf")
     frame = textbox.OutputBox(screen, text="", size=(int((665-143)/800.*WIDTH), int((334-75)/600.*HEIGHT)), place=(int(143/800.*WIDTH), int(75/600.*HEIGHT)),
-                                          color=None, text_color=WHITE, font="files\\montserrat\\Montserrat-Black.otf", border_width=4, border_color=(255, 255, 255))
+                                          color=None, text_color=WHITE, font="dependencies\\files\\montserrat\\Montserrat-Black.otf", border_width=4, border_color=(255, 255, 255))
 
     image = pygame.image.load(file)
     place = frame.place
@@ -446,7 +443,6 @@ def imaging(screen, file, background):
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.QUIT:
-                pygame.mixer.music.stop()
                 exit()
                 return True
             if event.type == pygame.KEYDOWN:
@@ -541,7 +537,7 @@ def imaging(screen, file, background):
     screen.blit(image, place)
     time.sleep(0.1)
     camera = screen.subsurface(pygame.Rect((frame.place[0], frame.place[1], frame.size[0], frame.size[1])))
-    pygame.image.save(camera, "files//temp.jpg")
+    pygame.image.save(camera, "dependencies\\files\\temp.jpg")
 
 
 
@@ -570,4 +566,3 @@ def resfix(image):
     return pygame.transform.scale(image, (int(size[0]/800.*WIDTH), int(size[1]/600.*HEIGHT)))
 
 
-main(Title)

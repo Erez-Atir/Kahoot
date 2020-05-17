@@ -14,7 +14,7 @@ class InputBox:
     :param text_color: (R, G, B) of the text color
     :param font: the name of the font for the text
     """
-    def __init__(self, screen, size, place, color=(255, 255, 255), border_width=0, border_color=(0, 0, 0), text_color=(0, 0, 0), font="Arial", numeric=False, placeholder=""):
+    def __init__(self, screen, size, place, color=(255, 255, 255), border_width=0, border_color=(0, 0, 0), text_color=(0, 0, 0), font="Arial", numeric=False, placeholder="", allow_enter = True):
         self.__start = time.time()
         self.inputted_text = placeholder
         self.__keys = {letter: time.time() for letter in [chr(let) for let in range(97, 123) + range(48, 58) + [39, 44, 45, 46, 47, 59, 61, 91, 92, 93] + [8, 13, 32, 127]] + ["<-", "->"]}
@@ -31,6 +31,7 @@ class InputBox:
         self.font = font
         self.is_numeric = numeric
         self.display = OutputBox(screen, "", size, place, color, border_width, border_color, text_color, font)
+        self.enter = allow_enter
 
     def draw(self):
         """
@@ -56,6 +57,8 @@ class InputBox:
             #        print pressed.index(1)
             shift = 97-65 if any(pressed[303:305]) else 0
             temp = range(97, 123) + range(48, 58) + [8, 13, 32, 39, 45, 44, 46, 47, 61, 59, 91, 92, 93, 127, 275, 276, 278, 279] if not self.is_numeric else range(48, 58) + [8, 127, 275, 276, 278, 279]
+            if not self.enter:
+                temp.remove(13)
             for key in temp:
                 if pressed[key]:
                     if key in [275, 276]:
