@@ -15,8 +15,9 @@ BLUE = (53, 119, 252)
 PURPLE = (176, 71, 246)
 GREY = (85, 77, 77)
 ORANGE = (255, 181, 30)
-screen = pygame.display.set_mode((600, 400))
-#screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+
+#screen = pygame.display.set_mode((600, 400))
+screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 WIDTH, HEIGHT = pygame.display.Info().current_w, pygame.display.Info().current_h
 clock = pygame.time.Clock()
 REFRESH_RATE = 32

@@ -327,6 +327,7 @@ def load_question(screen, question, photo, answers, qtime, points, rtime, Questi
         if prev.text and prev.was_clicked():
             return QuestioNumber - 1
         if BackToHomeScreen.was_clicked():
+            time.sleep(0.1)
             return -1
         if DeleteQuestion.was_clicked() and TotalQN > 1:
             quiz['Questions'].remove(quiz['Questions'][QuestioNumber])

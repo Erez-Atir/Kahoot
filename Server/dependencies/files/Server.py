@@ -24,8 +24,9 @@ __server_socket.listen(5)
 __mandatory = []
 # Contains mandatory responses like login confirmations, get score command and such: [(socket1, 'OK'), (socket2, 'TAKEN'), ......]
 
-thread.start_new_thread(ServerDitection.server_emitter, ())
-#Server Search Protocol
+def initiate():
+    thread.start_new_thread(ServerDitection.server_emitter, ())
+    #Server Search Protocol
 
 open_client_sockets = []
 # All connected sockets
@@ -75,7 +76,8 @@ def __send__mandatory(wlist):
                 client_socket.send(data + '\n')
                 __mandatory.remove(message)
         except socket.error:
-                open_client_sockets.remove(client_socket)
+                if client_socket in open_client_sockets:
+                    open_client_sockets.remove(client_socket)
 
 
 def __handle_client_request(client_socket, request):
@@ -144,13 +146,15 @@ def __single_user(client_socket):
                 __handle_client_request(client_socket, data)
 
             else:
-                open_client_sockets.remove(client_socket)
+                if client_socket in open_client_sockets:
+                    open_client_sockets.remove(client_socket)
                 for player in __players:
                     if player.socket == client_socket:
                         player.connected = False
                 print "Connection with client closed."
         except socket.error:
-            open_client_sockets.remove(client_socket)
+            if client_socket in open_client_sockets:
+                open_client_sockets.remove(client_socket)
         except Exception:
             _error()
 
@@ -168,7 +172,8 @@ def update_login():
         for current_socket in rlist:
             __single_user(current_socket)
         for current_socket in xlist:
-            open_client_sockets.remove(current_socket)
+            if current_socket in open_client_sockets:
+                open_client_sockets.remove(current_socket)
         __send__mandatory(wlist)
         return [x.name for x in __players if x.connected]
     except Exception:
@@ -187,7 +192,8 @@ def receive():
             for current_socket in rlist:
                 __single_user(current_socket)
             for current_socket in xlist:
-                open_client_sockets.remove(current_socket)
+                if current_socket in open_client_sockets:
+                    open_client_sockets.remove(current_socket)
             __send__mandatory(wlist)
             return answersanount
     except Exception:
@@ -221,7 +227,8 @@ def results(correct_answer, score):
                     answers[answer-1] += 1
 
             for current_socket in xlist:
-                open_client_sockets.remove(current_socket)
+                if current_socket in open_client_sockets:
+                    open_client_sockets.remove(current_socket)
             for player in __players:
                 player.answer = None
             __players.sort(key=lambda x: x.score, reverse=True)

@@ -50,6 +50,7 @@ BLACKSURFACE.fill(WHITE)
 
 def main(QUIZ):
     global users, QuestioNumber, TotalQN, Running, Title, screen
+    Server.initiate()
     Title = QUIZ
     threading.Thread(target=handle_clients).start()
     screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
@@ -685,7 +686,10 @@ def exit_screen(screen, names, points):
                 gif += 1
 
         pygame.display.flip()
-        clock.tick(24)
+        if time.time() - start >= 10:
+            clock.tick(10)
+        else:
+            clock.tick(5)
 
 
 def print_names(screen, names):

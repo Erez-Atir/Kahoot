@@ -2,17 +2,17 @@
     "Questions": [
         {
             "time to answer": 60, 
-            "points": 100, 
+            "photo": null, 
+            "question": "?", 
             "answers": [
                 "1", 
                 "2", 
                 "3", 
                 "4"
             ], 
-            "photo": null, 
+            "time to read": 1, 
+            "points": 100, 
             "correct answer": 1, 
-            "question": "?", 
-            "time to read": 5, 
             "image file type": null
         }
     ]
